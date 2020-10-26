@@ -65,21 +65,23 @@ export const ListSectionsScreen: React.FunctionComponent<ListSectionsScreenProps
       opacity: 0.2,
       x: 0,
       y: 3,
-      style: { marginVertical: 5 },
+      // style: { marginVertical: 5 },
     };
 
     return (
-      <BoxShadow setting={shadowOpt}>
-        <View style={styles.item}>
-          <Image
-            source={{
-              uri: "https://picsum.photos/200",
-            }}
-            style={styles.image}
-          />
-          <Text style={styles.title}>{item.title}</Text>
-        </View>
-      </BoxShadow>
+      <View style={styles.item}>
+        {/* <BoxShadow setting={shadowOpt}> */}
+        {/* <View> */}
+        <Image
+          source={{
+            uri: "https://picsum.photos/200",
+          }}
+          style={styles.image}
+        />
+        <Text style={styles.title}>{item.title}</Text>
+        {/* </View> */}
+        {/* </BoxShadow> */}
+      </View>
     );
   };
 
@@ -99,15 +101,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+    paddingLeft: 8,
   },
   item: {
     borderWidth: 1,
     borderRadius: 13,
+    borderColor: "#f9f9f9",
     // padding: 4,
     marginVertical: 8,
   },
   title: {
     fontSize: 32,
+    padding: 8,
   },
   image: {
     width: "100%",
