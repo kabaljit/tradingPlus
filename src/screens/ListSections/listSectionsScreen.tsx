@@ -10,6 +10,8 @@ import {
   Image,
 } from "react-native";
 
+import { BoxShadow } from "react-native-shadow";
+
 import {
   ListSectionsScreenFormValues,
   ListSectionsScreenProps,
@@ -54,16 +56,30 @@ export const ListSectionsScreen: React.FunctionComponent<ListSectionsScreenProps
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
     console.log("item: ", item);
+    const shadowOpt = {
+      width: 100,
+      height: 100,
+      color: "#000",
+      border: 2,
+      radius: 3,
+      opacity: 0.2,
+      x: 0,
+      y: 3,
+      style: { marginVertical: 5 },
+    };
+
     return (
-      <View style={styles.item}>
-        <Image
-          source={{
-            uri: "https://picsum.photos/200",
-          }}
-          style={styles.image}
-        />
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
+      <BoxShadow setting={shadowOpt}>
+        <View style={styles.item}>
+          <Image
+            source={{
+              uri: "https://picsum.photos/200",
+            }}
+            style={styles.image}
+          />
+          <Text style={styles.title}>{item.title}</Text>
+        </View>
+      </BoxShadow>
     );
   };
 
@@ -85,12 +101,10 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    // backgroundColor: "#f9c2ff",
     borderWidth: 1,
     borderRadius: 13,
     // padding: 4,
     marginVertical: 8,
-    // marginHorizontal: 8,
   },
   title: {
     fontSize: 32,
