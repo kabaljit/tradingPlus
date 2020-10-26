@@ -5,6 +5,7 @@ import { ListSectionsScreen } from "./src/screens/ListSections";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { GoalScreen } from "./src/screens/Goal";
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,7 @@ export default function App() {
           component={ListSectionsScreen}
           options={{ title: "Welcome" }}
         />
-        {/* <Stack.Screen name="Home" component={ListSectionsScreen} /> */}
+        <Stack.Screen name="Goal" component={GoalScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

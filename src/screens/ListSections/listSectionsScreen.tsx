@@ -23,34 +23,41 @@ const DATA = [
     title: "Goal of the Final App",
     description: "",
     image: "",
+    screen: "Goal",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "User stories",
     description: "",
     image: "",
+    screen: "Goal",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Mock sketches",
     description: "",
     image: "",
+    screen: "Goal",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d32",
     title: "Comparison for different apps",
     description: "",
     image: "",
+    screen: "Goal",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e32d72",
     title: "Technology stack",
     description: "",
     image: "",
+    screen: "Goal",
   },
 ];
 
-export const ListSectionsScreen: React.FunctionComponent<ListSectionsScreenProps> = ({}) => {
+export const ListSectionsScreen: React.FunctionComponent<ListSectionsScreenProps> = ({
+  navigation,
+}) => {
   const [selectedId, setSelectedId] = React.useState(null);
 
   const renderItem = ({ item }) => {
@@ -69,19 +76,25 @@ export const ListSectionsScreen: React.FunctionComponent<ListSectionsScreenProps
     };
 
     return (
-      <View style={styles.item}>
-        {/* <BoxShadow setting={shadowOpt}> */}
-        {/* <View> */}
-        <Image
-          source={{
-            uri: "https://picsum.photos/200",
-          }}
-          style={styles.image}
-        />
-        <Text style={styles.title}>{item.title}</Text>
-        {/* </View> */}
-        {/* </BoxShadow> */}
-      </View>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate(item.screen);
+        }}
+      >
+        <View style={styles.item}>
+          {/* <BoxShadow setting={shadowOpt}> */}
+          {/* <View> */}
+          <Image
+            source={{
+              uri: "https://picsum.photos/200",
+            }}
+            style={styles.image}
+          />
+          <Text style={styles.title}>{item.title}</Text>
+          {/* </View> */}
+          {/* </BoxShadow> */}
+        </View>
+      </TouchableOpacity>
     );
   };
 
