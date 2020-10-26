@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { GoalScreen } from "./src/screens/Goal";
 import { UserStoriesScreen } from "./src/screens/UserStories/";
 import { MockScreen } from "./src/screens/Mock";
+import { ComparisonScreen } from "./src/screens/Comparison";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Goal" component={GoalScreen} />
         <Stack.Screen name="UserStories" component={UserStoriesScreen} />
         <Stack.Screen name="Mock" component={MockScreen} />
+        <Stack.Screen name="Comparison" component={ComparisonScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
