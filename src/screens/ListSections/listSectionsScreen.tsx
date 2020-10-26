@@ -30,7 +30,7 @@ const DATA = [
     title: "User stories",
     description: "",
     image: "",
-    screen: "Goal",
+    screen: "UserStories",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
