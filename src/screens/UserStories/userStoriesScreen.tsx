@@ -221,6 +221,9 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 13,
   },
+  slider: {
+    flex: 1,
+  },
 });
 
 export default UserStoriesScreen;

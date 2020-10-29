@@ -115,9 +115,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 13,
     borderColor: "#f9f9f9",
+    // backgroundColor: "white",
     // padding: 4,
     marginVertical: 16,
     marginHorizontal: 12,
+    minHeight: 250,
   },
   title: {
     fontSize: 32,
