@@ -8,41 +8,181 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ScrollView,
+  Dimensions,
 } from "react-native";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 
 import { UserStoriesScreenProps } from "./userStoriesScreen.models";
 
+const DATA = [
+  {
+    title: (styles) => (
+      <>
+        <View style={styles.wrapper}>
+          <Image
+            style={styles.image}
+            source={{
+              uri:
+                "https://worldview.stratfor.com/sites/default/files/styles/article_full/public/cryptocurrency-gulf-display-shutterstock-1028639176.png?itok=K36RQG5A",
+            }}
+          ></Image>
+        </View>
+        <Text style={{ ...styles.text, ...styles.title }}>
+          User 1: Buy currency
+        </Text>
+        <Text style={{ ...styles.text }}>
+          A 21 old year user want to buy a new cryptocurrency. But he doesn’t
+          have any knowledge about the currency. He will follow the next steps
+          to own the currency:
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          1. From the home screen he will tap the search icon to search the
+          currency.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          2. Once he found the currency, he will tab on it
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          3. Then in a new screen he will be provide with more information about
+          the currency like price, description, volume and other technical
+          information.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          4. If he is happy with the currency then he will proceed to buy the
+          currency, by tapping on buy button.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          5. Then he will be shown summary of his transaction with exchange rate
+          and quantity he wants to purchase.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          6. Then we will be asked to enter his bank details.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          7. In the end we will be known success or failed screen depending on
+          status of the transaction
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          8. Once he is done with the transaction, we will be redirected to
+          currency screen which the bought now with updated balance
+        </Text>
+      </>
+    ),
+    description: "sd fsdfsdfsd",
+  },
+  {
+    title: (styles) => (
+      <>
+        <View style={styles.wrapper}>
+          <Image
+            style={styles.image}
+            source={{
+              uri:
+                "https://worldview.stratfor.com/sites/default/files/styles/article_full/public/cryptocurrency-gulf-display-shutterstock-1028639176.png?itok=K36RQG5A",
+            }}
+          ></Image>
+        </View>
+        <Text style={{ ...styles.text, ...styles.title }}>
+          User 1: Buy currency
+        </Text>
+        <Text style={{ ...styles.text }}>
+          A 21 old year user want to buy a new cryptocurrency. But he doesn’t
+          have any knowledge about the currency. He will follow the next steps
+          to own the currency:
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          1. From the home screen he will tap the search icon to search the
+          currency.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          2. Once he found the currency, he will tab on it
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          3. Then in a new screen he will be provide with more information about
+          the currency like price, description, volume and other technical
+          information.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          4. If he is happy with the currency then he will proceed to buy the
+          currency, by tapping on buy button.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          5. Then he will be shown summary of his transaction with exchange rate
+          and quantity he wants to purchase.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          6. Then we will be asked to enter his bank details.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          7. In the end we will be known success or failed screen depending on
+          status of the transaction
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          8. Once he is done with the transaction, we will be redirected to
+          currency screen which the bought now with updated balance
+        </Text>
+      </>
+    ),
+    description: "sd fsdfsdfsd",
+  },
+  // {
+  //   title: "title",
+  //   description: "sd fsdfsdfsd",
+  // },
+];
 export const UserStoriesScreen: React.FunctionComponent<UserStoriesScreenProps> = ({}) => {
   const [selectedId, setSelectedId] = React.useState(null);
+  const [activeSlider, setActiveSlider] = React.useState(0);
+
+  const _renderItem = ({ item, index }) => {
+    return <View style={styles.slide}>{item.title(styles)}</View>;
+  };
+
+  const renderPagination = () => {
+    return (
+      <Pagination
+        dotsLength={DATA.length}
+        activeDotIndex={activeSlider}
+        containerStyle={{ backgroundColor: "rgba(0, 0, 0, 0.75)" }}
+        dotStyle={{
+          width: 10,
+          height: 10,
+          borderRadius: 5,
+          marginHorizontal: 8,
+          backgroundColor: "rgba(255, 255, 255, 0.92)",
+        }}
+        inactiveDotStyle={
+          {
+            // Define styles for inactive dots here
+          }
+        }
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    );
+  };
+
+  let _carousel;
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.wrapper}>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              "https://worldview.stratfor.com/sites/default/files/styles/article_full/public/cryptocurrency-gulf-display-shutterstock-1028639176.png?itok=K36RQG5A",
+      <ScrollView>
+        <Carousel
+          ref={(c) => {
+            _carousel = c;
           }}
-        ></Image>
-        <Text style={styles.text}>User 1: Buy currency</Text>
-        <Text style={styles.text}>
-          A 21 old year user want to buy a new cryptocurrency. But he doesn’t
-          have any knowledge about the currency. He will follow the next steps
-          to own the currency 1. From the home screen he will tap the search
-          icon to search the currency. 2. Once he found the currency, he will
-          tab on it 3. Then in a new screen he will be provide with more
-          information about the currency like price, description, volume and
-          other technical information. 4. If he is happy with the currency then
-          he will proceed to buy the currency, by tapping on buy button. 5. Then
-          he will be shown summary of his transaction with exchange rate and
-          quantity he wants to purchase. 6. Then we will be asked to enter his
-          bank details. 7. In the end we will be known success or failed screen
-          depending on status of the transaction 8. Once he is done with the
-          transaction, we will be redirected to currency screen which the bought
-          now with updated balance
-        </Text>
-      </View>
+          data={DATA}
+          renderItem={_renderItem}
+          pagingEnabled={true}
+          sliderWidth={Dimensions.get("screen").width}
+          onSnapToItem={(index) => setActiveSlider(index)}
+          itemWidth={300}
+        >
+          {renderPagination}
+        </Carousel>
+      </ScrollView>
+      {renderPagination}
     </SafeAreaView>
   );
 };
@@ -56,8 +196,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     textAlign: "justify",
-    marginTop: 30,
+    marginTop: 15,
     lineHeight: 26,
+  },
+  paragraph: {
+    fontSize: 18,
+    textAlign: "justify",
+    marginTop: 10,
+    lineHeight: 26,
+  },
+  list: {
+    paddingLeft: 8,
   },
   title: {
     fontWeight: "bold",

@@ -9,6 +9,7 @@ import { GoalScreen } from "./src/screens/Goal";
 import { UserStoriesScreen } from "./src/screens/UserStories/";
 import { MockScreen } from "./src/screens/Mock";
 import { ComparisonScreen } from "./src/screens/Comparison";
+import { StackScreen } from "./src/screens/Stack";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,11 @@ export default function App() {
         <Stack.Screen name="UserStories" component={UserStoriesScreen} />
         <Stack.Screen name="Mock" component={MockScreen} />
         <Stack.Screen name="Comparison" component={ComparisonScreen} />
+        <Stack.Screen
+          name="
+        "
+          component={StackScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
