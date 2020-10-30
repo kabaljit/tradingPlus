@@ -34,7 +34,7 @@ const DATA = [
         <Text style={{ ...styles.text }}>
           A 21 old year user want to buy a new cryptocurrency. But he doesn’t
           have any knowledge about the currency. He will follow the next steps
-          to own the currency:
+          to own the currency in the app:
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
           1. From the home screen he will tap the search icon to search the
@@ -44,27 +44,26 @@ const DATA = [
           2. Once he found the currency, he will tab on it
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          3. Then in a new screen he will be provide with more information about
-          the currency like price, description, volume and other technical
-          information.
+          3. Then he will be redirect to currency screen where he will be
+          provide with more information about the currency like price,
+          description, volume and other technical indicators.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          4. If he is happy with the currency then he will proceed to buy the
-          currency, by tapping on buy button.
+          4. He will proceed to buy the currency, by tapping on "Buy" button.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
           5. Then he will be shown summary of his transaction with exchange rate
           and quantity he wants to purchase.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          6. Then we will be asked to enter his bank details.
+          6. Then we he will be asked to enter his bank details.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          7. In the end we will be known success or failed screen depending on
-          status of the transaction
+          7. In the end he will be redirected to success or failed screen
+          depending on status of the transaction.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          8. Once he is done with the transaction, we will be redirected to
+          8. Once he is done with the transaction, then he will be redirected to
           currency screen which the bought now with updated balance
         </Text>
       </>
@@ -84,43 +83,30 @@ const DATA = [
           ></Image>
         </View>
         <Text style={{ ...styles.text, ...styles.title }}>
-          User 1: Buy currency
+          User 2: View investment in the currency screen
         </Text>
         <Text style={{ ...styles.text }}>
-          A 21 old year user want to buy a new cryptocurrency. But he doesn’t
-          have any knowledge about the currency. He will follow the next steps
-          to own the currency:
+          User owns some currencies and want to see his investment.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          1. From the home screen he will tap the search icon to search the
+          1. User access the app by providing his biometrics
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          2. On the home screen he will be able to see total amount invested
+          until now and the outcome of that investment.
+        </Text>
+        <Text style={{ ...styles.paragraph, ...styles.list }}>
+          3. From the home screen he will tap the search icon to search the
           currency.
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          2. Once he found the currency, he will tab on it
+          4. Once he found the currency, he will tab on it
         </Text>
         <Text style={{ ...styles.paragraph, ...styles.list }}>
-          3. Then in a new screen he will be provide with more information about
-          the currency like price, description, volume and other technical
-          information.
-        </Text>
-        <Text style={{ ...styles.paragraph, ...styles.list }}>
-          4. If he is happy with the currency then he will proceed to buy the
-          currency, by tapping on buy button.
-        </Text>
-        <Text style={{ ...styles.paragraph, ...styles.list }}>
-          5. Then he will be shown summary of his transaction with exchange rate
-          and quantity he wants to purchase.
-        </Text>
-        <Text style={{ ...styles.paragraph, ...styles.list }}>
-          6. Then we will be asked to enter his bank details.
-        </Text>
-        <Text style={{ ...styles.paragraph, ...styles.list }}>
-          7. In the end we will be known success or failed screen depending on
-          status of the transaction
-        </Text>
-        <Text style={{ ...styles.paragraph, ...styles.list }}>
-          8. Once he is done with the transaction, we will be redirected to
-          currency screen which the bought now with updated balance
+          5. In Currency screen we will be provide with a graph. In that graph
+          will have a horizontal dashed line which represents the amount he
+          bought the currency, or the average amount spend for this currency to
+          a visual .
         </Text>
       </>
     ),
