@@ -78,7 +78,7 @@ export const MockScreen: React.FunctionComponent<MockScreenProps> = ({}) => {
             alignContent: "center",
             justifyContent: "center",
             flex: 1,
-            backgroundColor: "#13bdd8",
+            backgroundColor: "#3871C2",
           }}
         >
           <View style={styles.header}></View>
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     textAlign: "center",
   },
-  header: { backgroundColor: "#13bdd8", height: 20 },
+  header: { backgroundColor: "#3871C2", height: 20 },
 });
 
 export default MockScreen;
