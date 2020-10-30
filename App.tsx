@@ -26,11 +26,7 @@ export default function App() {
         <Stack.Screen name="UserStories" component={UserStoriesScreen} />
         <Stack.Screen name="Mock" component={MockScreen} />
         <Stack.Screen name="Comparison" component={ComparisonScreen} />
-        <Stack.Screen
-          name="
-        "
-          component={StackScreen}
-        />
+        <Stack.Screen name="Stack" component={StackScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
