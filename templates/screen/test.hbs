@@ -1,0 +1,15 @@
+import React from 'react';
+import renderer from 'react-test-renderer';
+
+import { {{ pascalCase name }}Screen } from './{{ camelCase name }}Screen';
+import { {{ pascalCase name }}ScreenProps } from './{{ camelCase name }}Screen.models';
+
+const {{ camelCase name }}ScreenProps: {{ pascalCase name }}ScreenProps = {
+};
+
+describe('Given a {{ pascalCase name }} screen, when it is rendered', () => {
+  it('should match the snapshot', () => {
+    const tree = renderer.create(<{{ pascalCase name }}Screen {...{{ camelCase name }}ScreenProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
