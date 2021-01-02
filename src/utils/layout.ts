@@ -59,6 +59,7 @@ const guidelineBaseHeight = 805;
 
 export const scaleHelper = (size: number) =>
   (longDimension / guidelineBaseHeight) * size;
+
 export const moderateScale = (size: number, factor = 0.5) =>
   size + (scaleHelper(size) - size) * factor;
 
