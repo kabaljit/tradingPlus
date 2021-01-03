@@ -6,14 +6,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HomeScreen } from "./src/screens/Home";
 import { LoginScreen } from "./src/screens/Login";
+import theme from "./src/theme";
 
 const Stack = createStackNavigator();
-const backgroundColor = "#3871C2";
+const backgroundColor = theme.colorPalette.red[6];
 const options = {
   headerStyle: {
     backgroundColor: backgroundColor,
   },
-  headerTintColor: "#fff",
+  headerTintColor: theme.colorPalette.white[0],
+  cardStyle: { backgroundColor: theme.colorPalette.white[0] },
 };
 export default function App() {
   return (

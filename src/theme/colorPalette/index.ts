@@ -37,7 +37,17 @@
       '#676978',
       '#484A58',
     ],
-    red: ['#FFF2F1', '#D95852'],
+    
+    red: [
+      '#FFFEF3',
+      '#FFE0D7',
+      '#FFC2BB',
+      '#FFA5A0',
+      '#FF8886',
+      '#FF6B6C',
+      '#FF4D54', // MAIN
+      '#FF333C',
+      '#FF1A23 '],
     yellow: ['#FFF8E4'],
     green: ['#0BA866'],
     white: ['#FFFFFF'],

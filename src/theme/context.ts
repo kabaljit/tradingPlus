@@ -71,7 +71,7 @@ const customColors: IColorContexts = {
     },
     border: {
       default: c.grey[5],
-      focused: c.mango[0],
+      focused: c.red[6],
       error: c.red[1],
       complete: c.skyBlue[7],
     },
