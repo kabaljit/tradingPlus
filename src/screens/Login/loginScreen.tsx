@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import TextInput from "../../components/TextInput";
 import { Box } from "../../components/Box";
 import { PrimaryButton } from "../../components/buttons";
+import SuperScreen from "../../components/SuperScreen";
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const navigaiton = useNavigation();
@@ -18,16 +19,17 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <Box flex={1}>
-        <Box spacing={{ bottom: 2 }}>
-          <TextInput placeholder="Username" />
+      <SuperScreen>
+        <Box flex={1}>
+          <Box spacing={{ bottom: 4, top: 4 }}>
+            <TextInput placeholder="Username" />
+          </Box>
+          <Box spacing={{ bottom: 8 }}>
+            <TextInput placeholder="Password" />
+          </Box>
+          <PrimaryButton onPress={onLoginPress}>Submit</PrimaryButton>
         </Box>
-        <Box spacing={{ bottom: 2 }}>
-          <TextInput placeholder="Password" />
-        </Box>
-        <View style={{ margin: 7 }} />
-      </Box>
-      <PrimaryButton onPress={onLoginPress}>Submit</PrimaryButton>
+      </SuperScreen>
     </>
   );
 };

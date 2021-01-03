@@ -80,6 +80,7 @@ const fontWeights = {
 
 
 const spacing = [
+  scale(2),
   scale(4),
   scale(8),
   scale(12),

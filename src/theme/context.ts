@@ -123,7 +123,7 @@ const customColors: IColorContexts = {
     },
     foreground: {
       primary: {
-        default: c.midnightBlue[0],
+        default: c.white[0],
         focused: '',
         error: '',
         complete: '',
