@@ -17,7 +17,7 @@ export const setWidthInPercent = (percent: number) =>
  * @deprecated do not use colors, instead use the context file
  */
 const colors = {
-  trade: {
+  customColors: {
     mango: '#FFB900',
     charcoal: '#262835',
     white: '#ffffff',

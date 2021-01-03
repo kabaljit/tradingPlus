@@ -76,6 +76,18 @@ export interface IColorContexts {
     outerLabel: IBaseColorContext;
     icon: IBaseColorContext;
   };
+  actions: {
+    background: {
+      primary: IActionColorContext;
+      secondary: IActionColorContext;
+      link: IActionColorContext;
+    };
+    foreground: {
+      primary: IActionColorContext;
+      secondary: IActionColorContext;
+      link: IActionColorContext;
+    };
+  };
   /**
    * Generic error and success states
    */

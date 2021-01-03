@@ -6,6 +6,7 @@ import { Button, ScrollView, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import TextInput from "../../components/TextInput";
 import { Box } from "../../components/Box";
+import { PrimaryButton } from "../../components/buttons";
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const navigaiton = useNavigation();
@@ -17,7 +18,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <ScrollView style={{ padding: 20 }}>
+      <Box flex={1}>
         <Box spacing={{ bottom: 2 }}>
           <TextInput placeholder="Username" />
         </Box>
@@ -25,8 +26,8 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
           <TextInput placeholder="Password" />
         </Box>
         <View style={{ margin: 7 }} />
-        <Button onPress={onLoginPress} title="Submit" />
-      </ScrollView>
+      </Box>
+      <PrimaryButton onPress={onLoginPress}>Submit</PrimaryButton>
     </>
   );
 };

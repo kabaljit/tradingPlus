@@ -94,6 +94,57 @@ const customColors: IColorContexts = {
       error: c.midnightBlue[0],
     },
   },
+  actions: {
+    background: {
+      primary: {
+        default: c.red[6],
+        focused: '',
+        disabled: c.grey[2],
+        loading: c.grey[2],
+        error: '',
+        complete: '',
+      },
+      secondary: {
+        default: 'transparent',
+        focused: 'transparent',
+        disabled: 'transparent',
+        loading: 'transparent',
+        error: '',
+        complete: '',
+      },
+      link: {
+        default: 'transparent',
+        focused: 'transparent',
+        disabled: 'transparent',
+        loading: 'transparent',
+        error: '',
+        complete: '',
+      },
+    },
+    foreground: {
+      primary: {
+        default: c.midnightBlue[0],
+        focused: '',
+        error: '',
+        complete: '',
+        disabled: c.midnightBlue[0],
+      },
+      secondary: {
+        default: c.red[0],
+        focused: '',
+        error: '',
+        complete: '',
+        disabled: c.midnightBlue[0],
+      },
+      link: {
+        default: c.red[0],
+        focused: '',
+        error: '',
+        complete: '',
+        disabled: c.midnightBlue[0],
+      },
+    },
+  },
   typography: {
     primary: c.midnightBlue[0],
     secondary: c.grey[0],
