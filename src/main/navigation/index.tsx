@@ -8,6 +8,7 @@ import { RegistrationScreen } from "../../screens/Registration";
 import theme from "../../theme";
 import { AuthContext } from "../AuthProvider";
 import firebase from "firebase";
+import { ActivityIndicator, View } from "react-native";
 
 const Stack = createStackNavigator();
 const backgroundColor = theme.colorPalette.red[6];
@@ -21,16 +22,33 @@ const options = {
 
 export default function Navigation() {
   const { user, setUser } = React.useContext(AuthContext);
+  const [loading, setLoading] = React.useState(true);
 
   // TODO: improve the auth logic, make a hook
   const onAuthStateChanged = (user) => {
     setUser(user);
+    setLoading(false);
   };
 
   React.useEffect(() => {
     const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
+
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: 10,
+        }}
+      >
+        <ActivityIndicator color={theme.colorPalette.red[4]} />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
