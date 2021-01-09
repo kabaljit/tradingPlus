@@ -3,7 +3,8 @@ export interface LoginScreenParams {
 }
 
 export interface LoginScreenFormValues {
-  // Formik parameters here.
+  email: string, 
+  password: string, 
 }
 
 export interface LoginScreenProps extends LoginScreenParams {
