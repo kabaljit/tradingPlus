@@ -9,6 +9,7 @@ import theme from "../../theme";
 import { AuthContext } from "../AuthProvider";
 import firebase from "firebase";
 import { ActivityIndicator, View } from "react-native";
+import { CoinDetailScreen } from "../../screens/CoinDetail/coinDetailScreen";
 
 const Stack = createStackNavigator();
 const backgroundColor = theme.colorPalette.red[6];
@@ -73,14 +74,24 @@ export default function Navigation() {
             />
           </>
         ) : (
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: "Home",
-              ...options,
-            }}
-          />
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: "Home",
+                ...options,
+              }}
+            />
+            <Stack.Screen
+              name="CoinDetail"
+              component={CoinDetailScreen}
+              options={{
+                title: "Detail",
+                ...options,
+              }}
+            />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
