@@ -24,6 +24,10 @@
     },
     "android": {
       "package": "mediastrategy.uni.kabaljit.mobilecomputing"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js"
     }
+   
   }
 }
