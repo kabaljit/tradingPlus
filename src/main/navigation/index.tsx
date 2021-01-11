@@ -10,6 +10,7 @@ import { AuthContext } from "../AuthProvider";
 import firebase from "firebase";
 import { ActivityIndicator, View } from "react-native";
 import { CoinDetailScreen } from "../../screens/CoinDetail/coinDetailScreen";
+import { BuyScreen } from "../../screens/Buy/buyScreen";
 
 const Stack = createStackNavigator();
 const backgroundColor = theme.colorPalette.red[6];
@@ -88,6 +89,14 @@ export default function Navigation() {
               component={CoinDetailScreen}
               options={{
                 title: "Detail",
+                ...options,
+              }}
+            />
+            <Stack.Screen
+              name="BuyCoin"
+              component={BuyScreen}
+              options={{
+                title: "Buy",
                 ...options,
               }}
             />

@@ -22,6 +22,7 @@ import { useTheme } from "../../theme/provider/themeProvider";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import WebView from "react-native-webview";
 import { api_key } from "../../../secret";
+import { useNavigation } from "@react-navigation/native";
 
 export const CoinDetailScreen: React.FunctionComponent<CoinDetailScreenProps> = (
   props
@@ -43,7 +44,7 @@ export const CoinDetailScreen: React.FunctionComponent<CoinDetailScreenProps> = 
       return { x: format(Number(`${value.time}000`), "k:m"), y: value.close };
     });
   }, [coinCurrencyGraphData]);
-
+  const navigation = useNavigation();
   const theme = useTheme();
   const [visible, setVisible] = React.useState(false);
 
@@ -53,9 +54,10 @@ export const CoinDetailScreen: React.FunctionComponent<CoinDetailScreenProps> = 
 
   const onPressBuy = React.useCallback(() => {
     // on press  handle buy
-    //add top  asycn storage
-  }, []);
+    navigation.navigate("BuyCoin", { ticker, price: price?.USDT ?? 0 });
+  }, [ticker, price]);
   console.log("price: ", price);
+
   const onPressSell = React.useCallback(() => {
     // on press  handle buy
     //remove from asycn storage

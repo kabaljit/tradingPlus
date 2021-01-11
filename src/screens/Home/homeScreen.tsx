@@ -14,17 +14,31 @@ import BalanceSummary from "../../components/BalanceSummary";
 import NoTrades from "./assets/noTrades.svg";
 import { scale } from "../../utils/layout";
 import { P } from "../../components/Typography";
-import { ImageWrapper, NoTradeImage, TitleWrapper } from "./homeScreen.styles";
+import { NoTradeImage, TitleWrapper } from "./homeScreen.styles";
 import theme from "../../theme";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
   const { user } = React.useContext(AuthContext);
+  const [myCurrencies, setMyCurrencies] = React.useState();
   const navigation = useNavigation();
   const [showSearchList, setShowSearchList] = React.useState(false);
 
   const [searchList, setSearchList] = React.useState([""]);
 
-  const myTrades = true;
+  React.useEffect(() => {
+    try {
+      AsyncStorage.getItem("mycurrencies").then((value) => {
+        if (value !== null) {
+          // We have old data!!
+          console.log("myCurrencies:", JSON.parse(value));
+          setMyCurrencies(JSON.parse(value));
+        }
+      });
+    } catch (error) {
+      console.log("we dont own any currencies");
+    }
+  }, [AsyncStorage]);
 
   const { data: coinsList, error } = useSWR(
     `https://min-api.cryptocompare.com/data/blockchain/list?api_key=${api_key}`
@@ -34,17 +48,20 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
     coinsList?.Data && setSearchList(Object.keys(coinsList.Data).slice(0, 10));
   }, [coinsList]);
 
-  const onSearch = React.useCallback((text) => {
-    const filterData =
-      coinsList?.Data &&
-      Object.keys(coinsList.Data)
-        .filter((key) => {
-          return key.toLowerCase().match(text.toLowerCase());
-        })
-        .slice(0, 10);
+  const onSearch = React.useCallback(
+    (text) => {
+      const filterData =
+        coinsList?.Data &&
+        Object.keys(coinsList.Data)
+          .filter((key) => {
+            return key.toLowerCase().match(text.toLowerCase());
+          })
+          .slice(0, 10);
 
-    setSearchList(filterData);
-  }, []);
+      setSearchList(filterData);
+    },
+    [coinsList]
+  );
 
   const renderItem = React.useCallback(({ item }) => {
     return <Item ticker={item} />;
@@ -66,19 +83,19 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
   );
 
   const renderCoinsItem = React.useCallback(({ item }) => {
-    return <CoinsItem ticker={item} />;
+    return <CoinsItem currency={item} />;
   }, []);
 
   const CoinsItem = React.useCallback(
-    ({ ticker }) => {
+    ({ currency }) => {
       return (
         <TouchableOpacity
           onPress={() => navigation.navigate("CoinDetail", { ticker: ticker })}
         >
           <Box spacing={{ left: 4, right: 4, top: 4, bottom: 2 }}>
             <Row flexDirection="row" justifyContent="space-between">
-              <P weight="bold">{ticker}/USDT</P>
-              <P>{Math.random()}</P>
+              <P weight="bold">{currency.ticker}/USDT</P>
+              <P>{currency.price}</P>
             </Row>
           </Box>
         </TouchableOpacity>
@@ -125,11 +142,11 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
         )}
         {/* //TODO: FIX THE SVG IMPORT */}
         {/* {!myTrades && <NoTrades width={220} />} */}
-        {!myTrades && !showSearchList && (
+        {!myCurrencies && !showSearchList && (
           <NoTradeImage source={require("./assets/noTrades.jpg")} />
         )}
 
-        {myTrades && !showSearchList && (
+        {myCurrencies && !showSearchList && (
           <>
             <TitleWrapper>
               <Row flexDirection="row" justifyContent="space-between">
@@ -147,7 +164,7 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
                 marginLeft: theme.spacing[4],
                 marginRight: theme.spacing[4],
               }}
-              data={searchList}
+              data={myCurrencies && Object.values(myCurrencies)}
               renderItem={renderCoinsItem}
               // keyExtractor={(item) => item.id}
             />
