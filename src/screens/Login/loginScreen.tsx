@@ -12,6 +12,8 @@ import { Formik, FormikErrors } from "formik";
 import InputWrapper from "../../components/InputWrapper";
 import firebase from "../../firebase";
 import { AuthContext } from "../../main/AuthProvider";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { P } from "../../components/Typography";
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);
@@ -59,42 +61,51 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
           validate={validate}
         >
           {(formikProps) => (
-            <Box flex={1}>
-              <InputWrapper
-                errorVisible={!!formikProps.errors.email}
-                errorMessage={formikProps.errors.email}
-                testID="lossOrStolenRadioButtonError"
-              >
-                <TextInput
-                  placeholder="Email"
-                  value={formikProps.values.email}
-                  onChangeText={(value) =>
-                    formikProps.setFieldValue("email", value)
-                  }
-                />
-              </InputWrapper>
+            <>
+              <Box flex={1}>
+                <InputWrapper
+                  errorVisible={!!formikProps.errors.email}
+                  errorMessage={formikProps.errors.email}
+                  testID="lossOrStolenRadioButtonError"
+                >
+                  <TextInput
+                    placeholder="Email"
+                    value={formikProps.values.email}
+                    onChangeText={(value) =>
+                      formikProps.setFieldValue("email", value)
+                    }
+                  />
+                </InputWrapper>
 
-              <InputWrapper
-                errorVisible={!!formikProps.errors.password}
-                errorMessage={formikProps.errors.password}
-                testID="lossOrStolenRadioButtonError"
-              >
-                <TextInput
-                  placeholder="Password"
-                  value={formikProps.values.password}
-                  onChangeText={(value) =>
-                    formikProps.setFieldValue("password", value)
-                  }
-                />
-              </InputWrapper>
+                <InputWrapper
+                  errorVisible={!!formikProps.errors.password}
+                  errorMessage={formikProps.errors.password}
+                  testID="lossOrStolenRadioButtonError"
+                >
+                  <TextInput
+                    placeholder="Password"
+                    value={formikProps.values.password}
+                    onChangeText={(value) =>
+                      formikProps.setFieldValue("password", value)
+                    }
+                  />
+                </InputWrapper>
 
-              <PrimaryButton
-                onPress={() => formikProps.handleSubmit()}
-                loading={loading}
-              >
-                {i18n.t("submitButtonLabel")}
-              </PrimaryButton>
-            </Box>
+                <PrimaryButton
+                  onPress={() => formikProps.handleSubmit()}
+                  loading={loading}
+                >
+                  {i18n.t("submitButtonLabel")}
+                </PrimaryButton>
+              </Box>
+              <Box justifyContent="center" spacing={{ top: 5 }}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("registration")}
+                >
+                  <P>Still, don't have an account?</P>
+                </TouchableOpacity>
+              </Box>
+            </>
           )}
         </Formik>
       </SuperScreen>
