@@ -151,7 +151,7 @@ const customColors: IColorContexts = {
     tertiary: c.grey[6],
     inverse: c.grey[3],
     link: c.skyBlue[8],
-    error: c.red[1],
+    error: c.red[4],
     white: c.white[0],
     success: c.green[0],
     mango: c.mango[0],

@@ -62,7 +62,9 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
       <Wrapper>
         <StatusBar
           backgroundColor={
-            fullscreen ? "transparent" : theme.palette[statusBarBackground][0]
+            fullscreen
+              ? "transparent"
+              : theme.colorPalette[statusBarBackground][0]
           }
           barStyle={statusBarColor}
         />

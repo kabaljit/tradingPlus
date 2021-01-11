@@ -2,7 +2,7 @@ import { ColorPalette } from '../palette.models';
 import { IColorContexts } from '../context.models';
 
 export interface ITheme {
-  palette: ColorPalette;
+  colorPalette: ColorPalette;
   context: {
     colors: IColorContexts;
   };

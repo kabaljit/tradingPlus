@@ -9,7 +9,7 @@ const {
 } = context;
 
 export const tradeTheme = {
-  palette: colorPalette,
+  colorPalette: colorPalette,
   context: {
     colors: customColors,
     ...contextRest,

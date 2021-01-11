@@ -42,17 +42,16 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
           return key.toLowerCase().match(text.toLowerCase());
         })
         .slice(0, 10);
+
     setSearchList(filterData);
   }, []);
 
   const renderItem = React.useCallback(({ item }) => {
-    console.log("item:", item);
     return <Item ticker={item} />;
   }, []);
 
   const Item = React.useCallback(
     ({ ticker }) => {
-      console.log(ticker);
       return (
         <TouchableOpacity
           onPress={() => navigation.navigate("CoinDetail", { ticker: ticker })}
@@ -67,21 +66,19 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
   );
 
   const renderCoinsItem = React.useCallback(({ item }) => {
-    console.log("item:", item);
     return <CoinsItem ticker={item} />;
   }, []);
 
   const CoinsItem = React.useCallback(
     ({ ticker }) => {
-      console.log(ticker);
       return (
         <TouchableOpacity
           onPress={() => navigation.navigate("CoinDetail", { ticker: ticker })}
         >
-          <Box spacing={{ left: 4, right: 4, top: 2, bottom: 2 }}>
+          <Box spacing={{ left: 4, right: 4, top: 4, bottom: 2 }}>
             <Row flexDirection="row" justifyContent="space-between">
-              <Text>{ticker}/USDT</Text>
-              <Text>{Math.random()}</Text>
+              <P weight="bold">{ticker}/USDT</P>
+              <P>{Math.random()}</P>
             </Row>
           </Box>
         </TouchableOpacity>
@@ -93,7 +90,6 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
   if (error) return <Text>failed to load</Text>;
   if (!coinsList) return <Text>loading...</Text>;
   // return <div>hello {data.name}!</div>;
-  console.log("showSearchList: ", showSearchList);
   return (
     <>
       <Box flex={1}>

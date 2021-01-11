@@ -14,6 +14,7 @@
     "@react-navigation/native": "^5.8.0",
     "@react-navigation/stack": "^5.10.0",
     "@types/react-native-snap-carousel": "^3.8.2",
+    "date-fns": "^2.16.1",
     "expo": "~39.0.2",
     "expo-localization": "^9.1.0",
     "expo-status-bar": "~1.0.2",
@@ -25,6 +26,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
+    "react-native-btr": "^1.1.5",
     "react-native-chart-kit": "^6.9.0",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-image-viewing": "^0.2.0",
@@ -38,6 +40,7 @@
     "react-native-svg": "12.1.0",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
+    "react-native-webview": "10.7.0",
     "react-navigation-props-mapper": "^1.0.4",
     "styled-components": "^5.2.1",
     "swr": "^0.4.0"
