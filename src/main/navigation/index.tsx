@@ -62,6 +62,7 @@ export default function Navigation() {
               component={LoginScreen}
               options={{
                 title: "Login",
+                headerShown: false,
                 ...options,
               }}
             />
