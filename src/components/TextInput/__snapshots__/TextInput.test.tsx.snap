@@ -1,0 +1,594 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a TextInput when the component is rendered should match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "rgba(247, 248, 252, 1)",
+      "minHeight": 74.4,
+      "position": "relative",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexBasis": 0,
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <TextInput
+        align="left"
+        allowFontScaling={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        rejectResponderTermination={true}
+        selectionColor="#FF4D54"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "fontSize": 21.25714285714286,
+              "fontWeight": "normal",
+              "lineHeight": 25.242857142857144,
+              "minHeight": 74.4,
+              "paddingLeft": 22.58571428571429,
+              "textAlign": "left",
+            },
+          ]
+        }
+        textAlignVertical="bottom"
+        textOnly={true}
+        theme={
+          Object {
+            "colorPalette": Object {
+              "green": Array [
+                "#0BA866",
+              ],
+              "grey": Array [
+                "#F7F8FC",
+                "#EDEDF4",
+                "#E1E1EA",
+                "#D4D5DD",
+                "#BCBCC9",
+                "#9699AA",
+                "#7C7E8D",
+                "#676978",
+                "#484A58",
+              ],
+              "mango": Array [
+                "#FFB900",
+                "#FFD566",
+              ],
+              "midnightBlue": Array [
+                "#262835",
+              ],
+              "red": Array [
+                "#FFFEF3",
+                "#FFE0D7",
+                "#FFC2BB",
+                "#FFA5A0",
+                "#FF8886",
+                "#FF6B6C",
+                "#FF4D54",
+                "#FF333C",
+                "#FF1A23 ",
+              ],
+              "seaGreen": Array [
+                "#D5F1F3",
+                "#C1EAED",
+                "#ACE3E7",
+                "#9CDEE1",
+                "#82D5DA",
+                "#6DCDD3",
+                "#59C7CE",
+                "#2FB9C2",
+                "#238B92",
+                "#185D61",
+              ],
+              "skyBlue": Array [
+                "#F7FAFD",
+                "#E5F2FC",
+                "#C0DEF8",
+                "#99CAF4",
+                "#75B6EF",
+                "#5DA6EC",
+                "#4C97E8",
+                "#4689DA",
+                "#3871C2",
+                "#3260B0",
+              ],
+              "white": Array [
+                "#FFFFFF",
+              ],
+              "yellow": Array [
+                "#FFF8E4",
+              ],
+            },
+            "context": Object {
+              "colors": Object {
+                "actions": Object {
+                  "background": Object {
+                    "link": Object {
+                      "complete": "",
+                      "default": "transparent",
+                      "disabled": "transparent",
+                      "error": "",
+                      "focused": "transparent",
+                      "loading": "transparent",
+                    },
+                    "primary": Object {
+                      "complete": "",
+                      "default": "#FF4D54",
+                      "disabled": "#E1E1EA",
+                      "error": "",
+                      "focused": "",
+                      "loading": "#E1E1EA",
+                    },
+                    "secondary": Object {
+                      "complete": "",
+                      "default": "transparent",
+                      "disabled": "transparent",
+                      "error": "",
+                      "focused": "transparent",
+                      "loading": "transparent",
+                    },
+                  },
+                  "foreground": Object {
+                    "link": Object {
+                      "complete": "",
+                      "default": "#FFFEF3",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                    "primary": Object {
+                      "complete": "",
+                      "default": "#FFFFFF",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                    "secondary": Object {
+                      "complete": "",
+                      "default": "#FFFEF3",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                  },
+                },
+                "input": Object {
+                  "background": Object {
+                    "complete": "#F7FAFD",
+                    "default": "#F7F8FC",
+                    "error": "#FFFEF3",
+                    "focused": "#FFFFFF",
+                  },
+                  "border": Object {
+                    "complete": "#4689DA",
+                    "default": "#9699AA",
+                    "error": "#FFE0D7",
+                    "focused": "#FF4D54",
+                  },
+                  "icon": Object {
+                    "complete": "#262835",
+                    "default": "#262835",
+                    "error": "#262835",
+                    "focused": "#262835",
+                  },
+                  "label": Object {
+                    "complete": "#9699AA",
+                    "default": "#9699AA",
+                    "error": "#FFE0D7",
+                    "focused": "#9699AA",
+                  },
+                  "outerLabel": Object {
+                    "complete": "#262835",
+                    "default": "#262835",
+                    "error": "#262835",
+                    "focused": "#262835",
+                  },
+                },
+                "states": Object {
+                  "error": Object {
+                    "complete": "",
+                    "default": "#FFFEF3",
+                    "error": "",
+                    "focused": "",
+                  },
+                  "loading": Object {
+                    "complete": "",
+                    "default": "#FFB900",
+                    "error": "",
+                    "focused": "",
+                  },
+                },
+                "typography": Object {
+                  "blue": "#3260B0",
+                  "error": "#FF8886",
+                  "inverse": "#D4D5DD",
+                  "link": "#3871C2",
+                  "mango": "#FFB900",
+                  "primary": "#262835",
+                  "secondary": "#F7F8FC",
+                  "success": "#0BA866",
+                  "tertiary": "#7C7E8D",
+                  "white": "#FFFFFF",
+                },
+              },
+              "fontSizes": Object {
+                "paragraph": Object {
+                  "large": 31.5,
+                  "normal": 27.5,
+                  "small": 23.5,
+                },
+                "title": Object {
+                  "large": 63,
+                  "normal": 47.5,
+                  "small": 35.5,
+                },
+              },
+              "fontWeights": Object {
+                "paragraph": Object {
+                  "bold": "700",
+                  "medium": "600",
+                  "regular": "400",
+                },
+                "title": Object {
+                  "bold": "700",
+                  "medium": "600",
+                  "regular": "400",
+                },
+              },
+              "sizes": Object {
+                "buttonHeight": 108.5,
+                "formElementHeight": 91,
+                "formElementIconHeight": 67,
+                "hairline": 0.5,
+                "listItemHeight": 108.5,
+              },
+              "spacing": Object {
+                "element": 16,
+                "screenEdge": 31.5,
+              },
+            },
+          }
+        }
+        underlineColorAndroid="transparent"
+        value="this is a test"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "rgba(150, 153, 170, 1)",
+        "bottom": 0,
+        "height": 2.6571428571428575,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "width": "100%",
+      }
+    }
+  />
+</View>
+`;
+
+exports[`Given a multi-line TextInput when the component is rendered should match the snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "rgba(247, 250, 253, 1)",
+      "minHeight": 74.4,
+      "position": "relative",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "flexBasis": 0,
+          "flexDirection": "row",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "position": "relative",
+          },
+        ]
+      }
+    >
+      <TextInput
+        align="left"
+        allowFontScaling={true}
+        multiline={true}
+        onBlur={[Function]}
+        onChangeText={[Function]}
+        onFocus={[Function]}
+        rejectResponderTermination={true}
+        selectionColor="#FF4D54"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "fontSize": 21.25714285714286,
+              "fontWeight": "normal",
+              "lineHeight": 25.242857142857144,
+              "minHeight": 74.4,
+              "paddingBottom": 13.285714285714286,
+              "paddingLeft": 22.58571428571429,
+              "paddingTop": 30.557142857142857,
+              "textAlign": "left",
+            },
+          ]
+        }
+        textAlignVertical="bottom"
+        textOnly={true}
+        theme={
+          Object {
+            "colorPalette": Object {
+              "green": Array [
+                "#0BA866",
+              ],
+              "grey": Array [
+                "#F7F8FC",
+                "#EDEDF4",
+                "#E1E1EA",
+                "#D4D5DD",
+                "#BCBCC9",
+                "#9699AA",
+                "#7C7E8D",
+                "#676978",
+                "#484A58",
+              ],
+              "mango": Array [
+                "#FFB900",
+                "#FFD566",
+              ],
+              "midnightBlue": Array [
+                "#262835",
+              ],
+              "red": Array [
+                "#FFFEF3",
+                "#FFE0D7",
+                "#FFC2BB",
+                "#FFA5A0",
+                "#FF8886",
+                "#FF6B6C",
+                "#FF4D54",
+                "#FF333C",
+                "#FF1A23 ",
+              ],
+              "seaGreen": Array [
+                "#D5F1F3",
+                "#C1EAED",
+                "#ACE3E7",
+                "#9CDEE1",
+                "#82D5DA",
+                "#6DCDD3",
+                "#59C7CE",
+                "#2FB9C2",
+                "#238B92",
+                "#185D61",
+              ],
+              "skyBlue": Array [
+                "#F7FAFD",
+                "#E5F2FC",
+                "#C0DEF8",
+                "#99CAF4",
+                "#75B6EF",
+                "#5DA6EC",
+                "#4C97E8",
+                "#4689DA",
+                "#3871C2",
+                "#3260B0",
+              ],
+              "white": Array [
+                "#FFFFFF",
+              ],
+              "yellow": Array [
+                "#FFF8E4",
+              ],
+            },
+            "context": Object {
+              "colors": Object {
+                "actions": Object {
+                  "background": Object {
+                    "link": Object {
+                      "complete": "",
+                      "default": "transparent",
+                      "disabled": "transparent",
+                      "error": "",
+                      "focused": "transparent",
+                      "loading": "transparent",
+                    },
+                    "primary": Object {
+                      "complete": "",
+                      "default": "#FF4D54",
+                      "disabled": "#E1E1EA",
+                      "error": "",
+                      "focused": "",
+                      "loading": "#E1E1EA",
+                    },
+                    "secondary": Object {
+                      "complete": "",
+                      "default": "transparent",
+                      "disabled": "transparent",
+                      "error": "",
+                      "focused": "transparent",
+                      "loading": "transparent",
+                    },
+                  },
+                  "foreground": Object {
+                    "link": Object {
+                      "complete": "",
+                      "default": "#FFFEF3",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                    "primary": Object {
+                      "complete": "",
+                      "default": "#FFFFFF",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                    "secondary": Object {
+                      "complete": "",
+                      "default": "#FFFEF3",
+                      "disabled": "#262835",
+                      "error": "",
+                      "focused": "",
+                    },
+                  },
+                },
+                "input": Object {
+                  "background": Object {
+                    "complete": "#F7FAFD",
+                    "default": "#F7F8FC",
+                    "error": "#FFFEF3",
+                    "focused": "#FFFFFF",
+                  },
+                  "border": Object {
+                    "complete": "#4689DA",
+                    "default": "#9699AA",
+                    "error": "#FFE0D7",
+                    "focused": "#FF4D54",
+                  },
+                  "icon": Object {
+                    "complete": "#262835",
+                    "default": "#262835",
+                    "error": "#262835",
+                    "focused": "#262835",
+                  },
+                  "label": Object {
+                    "complete": "#9699AA",
+                    "default": "#9699AA",
+                    "error": "#FFE0D7",
+                    "focused": "#9699AA",
+                  },
+                  "outerLabel": Object {
+                    "complete": "#262835",
+                    "default": "#262835",
+                    "error": "#262835",
+                    "focused": "#262835",
+                  },
+                },
+                "states": Object {
+                  "error": Object {
+                    "complete": "",
+                    "default": "#FFFEF3",
+                    "error": "",
+                    "focused": "",
+                  },
+                  "loading": Object {
+                    "complete": "",
+                    "default": "#FFB900",
+                    "error": "",
+                    "focused": "",
+                  },
+                },
+                "typography": Object {
+                  "blue": "#3260B0",
+                  "error": "#FF8886",
+                  "inverse": "#D4D5DD",
+                  "link": "#3871C2",
+                  "mango": "#FFB900",
+                  "primary": "#262835",
+                  "secondary": "#F7F8FC",
+                  "success": "#0BA866",
+                  "tertiary": "#7C7E8D",
+                  "white": "#FFFFFF",
+                },
+              },
+              "fontSizes": Object {
+                "paragraph": Object {
+                  "large": 31.5,
+                  "normal": 27.5,
+                  "small": 23.5,
+                },
+                "title": Object {
+                  "large": 63,
+                  "normal": 47.5,
+                  "small": 35.5,
+                },
+              },
+              "fontWeights": Object {
+                "paragraph": Object {
+                  "bold": "700",
+                  "medium": "600",
+                  "regular": "400",
+                },
+                "title": Object {
+                  "bold": "700",
+                  "medium": "600",
+                  "regular": "400",
+                },
+              },
+              "sizes": Object {
+                "buttonHeight": 108.5,
+                "formElementHeight": 91,
+                "formElementIconHeight": 67,
+                "hairline": 0.5,
+                "listItemHeight": 108.5,
+              },
+              "spacing": Object {
+                "element": 16,
+                "screenEdge": 31.5,
+              },
+            },
+          }
+        }
+        underlineColorAndroid="transparent"
+        value="this is a test"
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "rgba(70, 137, 218, 1)",
+        "bottom": 0,
+        "height": 2.6571428571428575,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "width": "100%",
+      }
+    }
+  />
+</View>
+`;
