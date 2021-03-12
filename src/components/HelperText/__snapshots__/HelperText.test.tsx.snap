@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given a HelperText when the component is rendered should match the snapshot when displaying an error 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "height": 27.900000000000002,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#FFE0D7",
+          "fontSize": 17.271428571428572,
+          "paddingHorizontal": 5.314285714285715,
+          "paddingVertical": 5.314285714285715,
+        },
+      ]
+    }
+    type="error"
+  >
+    HELP!!!!
+  </Text>
+</View>
+`;
+
+exports[`Given a HelperText when the component is rendered should match the snapshot when not visible 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "height": 27.900000000000002,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "transparent",
+          "fontSize": 17.271428571428572,
+          "paddingHorizontal": 5.314285714285715,
+          "paddingVertical": 5.314285714285715,
+        },
+      ]
+    }
+    visible={false}
+  >
+    HELP
+  </Text>
+</View>
+`;
+
+exports[`Given a HelperText when the component is rendered should match the snapshot with default values 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "height": 27.900000000000002,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#9699AA",
+          "fontSize": 17.271428571428572,
+          "paddingHorizontal": 5.314285714285715,
+          "paddingVertical": 5.314285714285715,
+        },
+      ]
+    }
+  >
+    HELP
+  </Text>
+</View>
+`;
