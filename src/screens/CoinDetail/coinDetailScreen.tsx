@@ -27,7 +27,7 @@ import { useNavigation } from "@react-navigation/native";
 export const CoinDetailScreen: React.FunctionComponent<CoinDetailScreenProps> = (
   props
 ) => {
-  const { ticker }: { ticker: string } = props.route.params;
+  const { ticker }: { ticker: string } = props.route?.params;
   console.log("ticker: ", ticker);
 
   const { data: price } = useSWR(
