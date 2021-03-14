@@ -1,7 +1,8 @@
 import _ from 'lodash';
-import { colorPalette } from './colorPalette';
 
 import { hp } from '../utils/layout';
+
+import { colorPalette } from './colorPalette';
 
 const designScreenHeight = 675; // Obtained from Figma.
 

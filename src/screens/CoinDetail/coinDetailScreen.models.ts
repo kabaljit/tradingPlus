@@ -6,5 +6,4 @@ export interface CoinDetailScreenFormValues {
   // Formik parameters here.
 }
 
-export interface CoinDetailScreenProps extends CoinDetailScreenParams {
-}
+export interface CoinDetailScreenProps extends CoinDetailScreenParams {}

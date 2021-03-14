@@ -78,7 +78,6 @@ const fontWeights = {
   fw700: '700',
 };
 
-
 const spacing = [
   scale(2),
   scale(4),
