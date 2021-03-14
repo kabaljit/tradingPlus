@@ -4,8 +4,8 @@ export const i18n = generateI18n('loginScreen', {
   en: {
     emailErrorMessage: 'Email is required',
     passwordErrorMessage: 'Name is required',
-    submitButtonLabel:'Login',
+    submitButtonLabel: 'Login',
     registerAccountLabel: "Still, don't have an account?",
-    forgetPasswordLabel: "Forget password?"
-  }
+    forgetPasswordLabel: 'Forget password?',
+  },
 });

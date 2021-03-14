@@ -14,7 +14,7 @@ const getColor = (props: IHelperTextProps) => {
   if (!visible) return 'transparent';
   return props.type === 'error'
     ? theme.context.customColors.input.border.error
-    : theme.context.customColors.input.border.default
+    : theme.context.customColors.input.border.default;
 };
 
 export const HelperTextView = styled.View`
