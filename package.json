@@ -5,8 +5,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject", 
-    "test": "jest"
+    "eject": "expo eject",
+    "test": "jest",
+    "lint": "eslint *.ts **/*.ts src/**/*.ts"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^2.1.0",
@@ -50,14 +51,26 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.19",
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^17.0.0",
     "@types/styled-components": "^5.1.7",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
     "babel-preset-expo": "^8.3.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-json": "^2.1.2",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.10.0",
+    "eslint-plugin-sonarjs": "^0.6.0",
     "jest-expo": "^40.0.1",
+    "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.1",
     "typescript": "~3.9.5"
   },

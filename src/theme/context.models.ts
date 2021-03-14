@@ -95,7 +95,7 @@ export interface IColorContexts {
     error: IBaseColorContext;
     loading: IBaseColorContext;
   };
- /**
+  /**
    * Typographic colours, primary is to be used in most cases such as titles and
    * paragraphs secondary can be used for typographic elements such as subtitles
    * or input descriptions.

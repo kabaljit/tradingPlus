@@ -3,10 +3,9 @@ export interface RegistrationScreenParams {
 }
 
 export interface RegistrationScreenFormValues {
-  name: string, 
-  email: string, 
-  password: string, 
+  name: string;
+  email: string;
+  password: string;
 }
 
-export interface RegistrationScreenProps extends RegistrationScreenParams {
-}
+export interface RegistrationScreenProps extends RegistrationScreenParams {}
