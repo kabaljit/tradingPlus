@@ -1,4 +1,4 @@
-import {  nestedColorPalette, } from './index';
+import { nestedColorPalette } from '.';
 
 export type ColorPalette = typeof nestedColorPalette;
 

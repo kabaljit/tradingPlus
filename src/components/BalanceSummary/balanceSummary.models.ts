@@ -1,2 +1,1 @@
-export interface BalanceSummaryProps {
-}
+export interface BalanceSummaryProps {}
