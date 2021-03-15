@@ -2,8 +2,6 @@ import { PixelRatio, Dimensions } from 'react-native';
 
 import { scale } from '../utils/layout';
 
-import context from './context';
-import { colorPalette } from './palette';
 
 export const DEVICE_HEIGHT = Dimensions.get('window').height;
 export const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -13,11 +11,8 @@ export const setHeightInPercent = (percent: number) =>
 export const setWidthInPercent = (percent: number) =>
   (DEVICE_WIDTH * percent) / 100;
 
-/**
- * @deprecated do not use colors, instead use the context file
- */
 const colors = {
-  customColors: {
+  tradingZ: {
     mango: '#FFB900',
     charcoal: '#262835',
     white: '#ffffff',
@@ -108,8 +103,7 @@ const theme = {
   fontWeights,
   spacing,
   borders,
-  context,
-  colorPalette,
+
 };
 
 export default theme;
