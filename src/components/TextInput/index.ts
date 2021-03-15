@@ -1,5 +1,3 @@
-import { withTheme } from '../../theme/provider/themeProvider';
-
 import { TextInput } from './TextInput';
 import type { TextInputProps as TextInputPropsBare } from './TextInput.models';
 
@@ -15,4 +13,4 @@ export {
 } from './TextInput.styles';
 
 export type TextInputProps = Omit<TextInputPropsBare, 'theme'>;
-export default withTheme(TextInput);
+export default TextInput;
