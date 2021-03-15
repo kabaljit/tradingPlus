@@ -1,16 +1,16 @@
-import React from "react";
-import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen } from "../../screens/Home";
-import { LoginScreen } from "../../screens/Login";
-import { RegistrationScreen } from "../../screens/Registration";
-import theme from "../../theme";
-import { AuthContext } from "../AuthProvider";
-import firebase from "firebase";
-import { ActivityIndicator, View } from "react-native";
-import { CoinDetailScreen } from "../../screens/CoinDetail/coinDetailScreen";
-import { BuyScreen } from "../../screens/Buy/buyScreen";
+import React from 'react';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { HomeScreen } from '../../screens/Home';
+import { LoginScreen } from '../../screens/Login';
+import { RegistrationScreen } from '../../screens/Registration';
+import theme from '../../theme';
+import { AuthContext } from '../AuthProvider';
+import firebase from 'firebase';
+import { ActivityIndicator, View } from 'react-native';
+import { CoinDetailScreen } from '../../screens/CoinDetail/coinDetailScreen';
+import { BuyScreen } from '../../screens/Buy/buyScreen';
 
 const Stack = createStackNavigator();
 const backgroundColor = theme.colorPalette.red[6];
@@ -42,8 +42,8 @@ export default function Navigation() {
       <View
         style={{
           flex: 1,
-          flexDirection: "row",
-          justifyContent: "space-around",
+          flexDirection: 'row',
+          justifyContent: 'space-around',
           padding: 10,
         }}
       >
@@ -51,7 +51,6 @@ export default function Navigation() {
       </View>
     );
   }
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -61,7 +60,7 @@ export default function Navigation() {
               name="Login"
               component={LoginScreen}
               options={{
-                title: "Login",
+                title: 'Login',
                 headerShown: false,
                 ...options,
               }}
@@ -70,7 +69,7 @@ export default function Navigation() {
               name="Registration"
               component={RegistrationScreen}
               options={{
-                title: "Signup",
+                title: 'Signup',
                 ...options,
               }}
             />
@@ -81,7 +80,7 @@ export default function Navigation() {
               name="Home"
               component={HomeScreen}
               options={{
-                title: "Home",
+                title: 'Home',
                 ...options,
               }}
             />
@@ -89,7 +88,7 @@ export default function Navigation() {
               name="CoinDetail"
               component={CoinDetailScreen}
               options={{
-                title: "Detail",
+                title: 'Detail',
                 ...options,
               }}
             />
@@ -97,7 +96,7 @@ export default function Navigation() {
               name="BuyCoin"
               component={BuyScreen}
               options={{
-                title: "Buy",
+                title: 'Buy',
                 ...options,
               }}
             />
