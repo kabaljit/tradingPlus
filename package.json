@@ -58,6 +58,7 @@
     "@types/react-native": "~0.63.2",
     "@types/react-test-renderer": "^17.0.0",
     "@types/styled-components": "^5.1.9",
+    "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "babel-preset-expo": "^8.3.0",

@@ -9,13 +9,13 @@ import theme from '../../theme';
 
 const Stack = createStackNavigator();
 
-const backgroundColor = theme.colorPalette.red[6];
+const backgroundColor = theme.colors.tradingZ.charcoal;
 const options = {
   headerStyle: {
     backgroundColor: backgroundColor,
   },
-  headerTintColor: theme.colorPalette.white[0],
-  cardStyle: { backgroundColor: theme.colorPalette.white[0] },
+  headerTintColor: theme.colors.tradingZ.white,
+  cardStyle: { backgroundColor: theme.colors.tradingZ.white },
 };
 
 export default function Navigation() {
