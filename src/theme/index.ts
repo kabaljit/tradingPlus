@@ -107,5 +107,3 @@ const theme = {
 };
 
 export default theme;
-export type { color } from './theme.models';
-export type { ITypographyColorContext } from './context.models';
