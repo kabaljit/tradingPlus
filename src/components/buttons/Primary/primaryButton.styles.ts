@@ -7,7 +7,7 @@ export const Button = styled(BaseButton)`
   ${(p) =>
     p.disabled &&
     `
-    background-color: ${theme.colors.customColors.grey};
+    background-color: ${theme.colors.tradingZ.grey};
   `}
 `;
 

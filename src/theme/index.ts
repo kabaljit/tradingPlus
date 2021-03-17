@@ -66,7 +66,7 @@ const fontSizes = {
   fs64: scale(64),
 };
 
-// These need to be strings for easy assignment to both StyleSheet and styled-components definitions.
+// These need to be colors.tradingZ.s for easy assignment to both StyleSheet and styled-components definitions.
 const fontWeights = {
   fw400: '400',
   fw600: '600',
@@ -91,11 +91,30 @@ const spacing = [
 
 const hairlineBorderWidth = 1 / PixelRatio.getPixelSizeForLayoutSize(1);
 
+
 const borders = {
   buttonRadius: 0,
   hairlineWidth: hairlineBorderWidth,
   separatorWidth: hairlineBorderWidth,
 };
+
+const context = {
+  colors: {
+    typography:{
+      primary: colors.tradingZ.charcoal,
+      secondary: colors.tradingZ.lightGrey,
+      tertiary: colors.tradingZ.lightSilver,
+      inverse: colors.tradingZ.silver,
+      link: colors.tradingZ.blue,
+      error: colors.tradingZ.error,
+      white: colors.tradingZ.white,
+      success: colors.tradingZ.success,
+      blue: colors.tradingZ.blue,
+    } 
+  }
+
+}
+
 
 const theme = {
   colors,
@@ -103,7 +122,9 @@ const theme = {
   fontWeights,
   spacing,
   borders,
-
+  context,
 };
 
 export default theme;
+
+export type { ITypographyColorContext } from './theme.models';

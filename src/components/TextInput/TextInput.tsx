@@ -13,6 +13,7 @@ import { TextInputProps, InputStates } from './TextInput.models';
 import { Input, InputInner } from './TextInput.styles';
 import Label from './Label';
 import Wrapper from './Wrapper';
+import theme from '../../theme';
 
 export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
   (props, ref) => {
@@ -23,7 +24,6 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
       placeholder,
       dangerouslySetStyles,
       label,
-      theme,
       formatText,
       onChangeText,
       onFocus,
@@ -166,7 +166,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChangeText={handleChangeText}
-            selectionColor={theme.context.colors.input.border.focused}
+            selectionColor={theme.colors.tradingZ.blue}
             textAlignVertical="bottom"
           />
         </InputInner>

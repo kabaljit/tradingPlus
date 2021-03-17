@@ -1,4 +1,5 @@
 import React from 'react';
+import theme from '../../../theme';
 
 import Button from '../Base';
 
@@ -9,15 +10,14 @@ const PrimaryButton: React.FunctionComponent<IPrimaryButton> = ({
   disabled,
   testID,
   loading,
-  theme,
   ...rest
 }) => (
   <Button
     testID={testID}
     labelColor={
       disabled || loading
-        ? theme.context.colors.actions.foreground.primary.disabled
-        : theme.context.colors.actions.foreground.primary.default
+        ? theme.colors.tradingZ.blue
+        : theme.colors.tradingZ.success
     }
     disabled={disabled || loading}
     loading={loading}
