@@ -2,9 +2,10 @@ import { StyleProp, Text, TextStyle } from 'react-native';
 import React from 'react';
 import { Platform } from 'react-native';
 
+import theme from '../../theme';
+
 import { ITypographyProps, IParagraphProps } from './typography.models';
 import { titleSizes, fontWeight, paragraphSizes } from './mappings';
-import theme from '../../theme';
 
 const determineLineHeight = (fontSize: number) => 1.4 * fontSize;
 
