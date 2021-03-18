@@ -1,22 +1,23 @@
-import * as React from "react";
+import * as React from 'react';
+import { Button, ScrollView, View, Text, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Formik, FormikErrors } from 'formik';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { database } from 'firebase';
 
-import { LoginScreenFormValues, LoginScreenProps } from "./loginScreen.models";
-import { i18n } from "./loginScreen.i18n";
-import { Button, ScrollView, View, Text } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import TextInput from "../../components/TextInput";
-import { Box, Row } from "../../components/Box";
-import { PrimaryButton } from "../../components/buttons";
-import SuperScreen from "../../components/SuperScreen";
-import { Formik, FormikErrors } from "formik";
-import InputWrapper from "../../components/InputWrapper";
-import firebase from "../../firebase";
-import { AuthContext } from "../../main/AuthProvider";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { P, Title } from "../../components/Typography";
-import PasswordInput from "../../components/PasswordInput";
-import { database } from "firebase";
-import { SafeArea } from "../../components/Layout";
+import TextInput from '../../components/TextInput';
+import { Box, Row } from '../../components/Box';
+import { PrimaryButton } from '../../components/buttons';
+import SuperScreen from '../../components/SuperScreen';
+import InputWrapper from '../../components/InputWrapper';
+import firebase from '../../firebase';
+import { AuthContext } from '../../main/AuthProvider';
+import { P, Title } from '../../components/Typography';
+import PasswordInput from '../../components/PasswordInput';
+import { SafeArea } from '../../components/Layout';
+
+import { i18n } from './loginScreen.i18n';
+import { LoginScreenFormValues, LoginScreenProps } from './loginScreen.models';
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);
@@ -27,10 +28,10 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     const errors: FormikErrors<LoginScreenFormValues> = {};
 
     if (!values.email) {
-      errors.email = i18n.t("emailErrorMessage");
+      errors.email = i18n.t('emailErrorMessage');
     }
     if (!values.password) {
-      errors.password = i18n.t("passwordErrorMessage");
+      errors.password = i18n.t('passwordErrorMessage');
     }
     return errors;
   }, []);
@@ -40,26 +41,26 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     // do something on submit
     login(values.email, values.password)
       .then(() => {
-        console.log("User login successfully!");
-        navigation.navigate("Home");
+        console.log('User login successfully!');
+        navigation.navigate('Home');
         setLoading(false);
       })
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
         setLoading(false);
       });
 
-    console.log("Login the registation");
+    console.log('Login the registation');
   }, []);
 
   return (
     <>
-      <SuperScreen statusBarColor="dark-content" background={"skyBlue"}>
+      <SuperScreen statusBarColor="dark-content" background={'skyBlue'}>
         <SafeArea>
           <Formik
             initialValues={{
-              email: "",
-              password: "",
+              email: '',
+              password: '',
             }}
             onSubmit={onSubmit}
             validate={validate}
@@ -71,6 +72,9 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                     <Title> Welcome back!!</Title>
                   </Box>
                 </Box>
+                <Image
+                  source={require('C:/Users/maste/OneDrive/Desktop/TMS/logo.png')}
+                />
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
                   <InputWrapper
                     errorVisible={!!formikProps.errors.email}
@@ -81,7 +85,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       placeholder="Email"
                       value={formikProps.values.email}
                       onChangeText={(value) =>
-                        formikProps.setFieldValue("email", value)
+                        formikProps.setFieldValue('email', value)
                       }
                     />
                   </InputWrapper>
@@ -95,16 +99,16 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       placeholder="Password"
                       value={formikProps.values.password}
                       onChangeText={(value) =>
-                        formikProps.setFieldValue("password", value)
+                        formikProps.setFieldValue('password', value)
                       }
                     />
                   </InputWrapper>
 
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("Registration")}
+                    onPress={() => navigation.navigate('Registration')}
                   >
                     <P color="link" align="right">
-                      {i18n.t("forgetPasswordLabel")}
+                      {i18n.t('forgetPasswordLabel')}
                     </P>
                   </TouchableOpacity>
 
@@ -112,7 +116,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                     onPress={() => formikProps.handleSubmit()}
                     loading={loading}
                   >
-                    {i18n.t("submitButtonLabel")}
+                    {i18n.t('submitButtonLabel')}
                   </PrimaryButton>
                 </Box>
                 <Box
@@ -122,9 +126,9 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                 >
                   <Row>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate("Registration")}
+                      onPress={() => navigation.navigate('Registration')}
                     >
-                      <P color="link">{i18n.t("registerAccountLabel")}</P>
+                      <P color="link">{i18n.t('registerAccountLabel')}</P>
                     </TouchableOpacity>
                   </Row>
                 </Box>
