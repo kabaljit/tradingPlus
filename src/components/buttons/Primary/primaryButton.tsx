@@ -1,6 +1,6 @@
 import React from 'react';
-import theme from '../../../theme';
 
+import theme from '../../../theme';
 import Button from '../Base';
 
 import { IPrimaryButton } from './primaryButton.models';

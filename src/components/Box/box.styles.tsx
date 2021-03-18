@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 import themeDefault from '../../theme';
+
 import { BoxProps, BoxSpacing } from './box.models';
 
 const createPadding = (key: keyof BoxSpacing) => (props: BoxProps) => {
