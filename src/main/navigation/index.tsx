@@ -37,6 +37,7 @@ export default function Navigation() {
             component={RegistrationScreen}
             options={{
               title: 'Signup',
+              headerShown: false,
               ...options,
             }}
           />

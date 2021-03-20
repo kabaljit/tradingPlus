@@ -3,7 +3,7 @@ import { Formik, FormikErrors } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 
 import SuperScreen from '../../components/SuperScreen';
-import { Box } from '../../components/Box';
+import { Box, Row } from '../../components/Box';
 import TextInput from '../../components/TextInput';
 import { PrimaryButton } from '../../components/buttons';
 import InputWrapper from '../../components/InputWrapper';
@@ -14,6 +14,9 @@ import {
   RegistrationScreenFormValues,
   RegistrationScreenProps,
 } from './registrationScreen.models';
+import { P, Title } from '../../components/Typography';
+import { TouchableOpacity } from 'react-native';
+import PasswordInput from '../../components/PasswordInput';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
@@ -75,6 +78,14 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
         >
           {(formikProps) => (
             <Box flex={1}>
+              <Box alignItems="center" spacing={{ top: 4, bottom: 4 }}>
+                <Row spacing={{ bottom: 4 }}>
+                  <Title weight="bold" color="white">
+                    {i18n.t('registrationTitle')}
+                  </Title>
+                </Row>
+                <P color="white">{i18n.t('registrationSubTitle')}</P>
+              </Box>
               <InputWrapper
                 errorVisible={!!formikProps.errors.name}
                 errorMessage={formikProps.errors.name}
@@ -108,7 +119,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                 errorMessage={formikProps.errors.password}
                 testID="lossOrStolenRadioButtonError"
               >
-                <TextInput
+                <PasswordInput
                   placeholder="Password"
                   value={formikProps.values.password}
                   onChangeText={(value) =>
@@ -121,8 +132,26 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                 onPress={() => formikProps.handleSubmit()}
                 loading={loading}
               >
-                Submit
+                {i18n.t('submitButtonLabel')}
               </PrimaryButton>
+              <Box
+                justifyContent="center"
+                alignItems="center"
+                spacing={{ top: 10 }}
+              >
+                <Row flexDirection="row">
+                  <P color="secondary" align="center">
+                    {i18n.t('haveLoginLabel')}
+                  </P>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Login')}
+                  >
+                    <P color="white" align="center">
+                      {i18n.t('loginLabel')}
+                    </P>
+                  </TouchableOpacity>
+                </Row>
+              </Box>
             </Box>
           )}
         </Formik>

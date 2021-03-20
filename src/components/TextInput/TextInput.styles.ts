@@ -58,7 +58,7 @@ export const AnimatedBorder = styled(Animated.View)`
   bottom: 0;
   left: 0;
   right: 0;
-  height: ${scale(2)}px;
+  height: ${scale(1)}px;
 `;
 
 export const InputInner = styled.View`
