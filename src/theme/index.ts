@@ -16,6 +16,7 @@ const colors = {
     mango: '#FFB900',
     charcoal: '#262835',
     white: '#ffffff',
+    black: '#000000',
     teal: '#00828E',
     lightSilver: '#F1F3F6',
     silver: '#f5f6f4',
@@ -29,7 +30,7 @@ const colors = {
     error: '#F5635D',
     grey: '#8C8C97',
     grayishNavy: '#404052',
-    lightGrey: '#848692',
+    lightGrey: '#C0C0C0',
     greenSuccess: '#0CB46D',
     textInputGrey: '#F0F0F0',
     cardScreenBg: '#454757',
@@ -37,6 +38,7 @@ const colors = {
     ivory: '#F5F5F4',
     blue: '#3871C2',
     transparent: 'transparent',
+    darkPurple: '#170440'
   },
   native: {
     // Add platform native colors
@@ -68,9 +70,9 @@ const fontSizes = {
 
 // These need to be colors.tradingZ.s for easy assignment to both StyleSheet and styled-components definitions.
 const fontWeights = {
-  fw400: '400',
-  fw600: '600',
-  fw700: '700',
+  light: '400',
+  normal: '600',
+  bold: '700',
 };
 
 const spacing = [

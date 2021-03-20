@@ -74,6 +74,7 @@ export const Input = styled.TextInput<{
 }>`
   min-height: ${(p) => p.dangerouslySetStyles?.input?.minHeight || scale(56)}px;
   font-size: ${(p) => p.dangerouslySetStyles?.font?.size || scale(16)}px;
+  color: ${theme.colors.tradingZ.white};
   background-color: ${(p) => p.backgroundColor ?? 'transparent'};
   padding-left: ${scale(17)}px;
   line-height: ${(p) =>

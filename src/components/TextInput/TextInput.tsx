@@ -168,6 +168,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
             onChangeText={handleChangeText}
             selectionColor={theme.colors.tradingZ.blue}
             textAlignVertical="bottom"
+            placeholderTextColor="#C0C0C5"
           />
         </InputInner>
         {!!props.accessoryRight && (

@@ -38,7 +38,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   const onSubmit = React.useCallback((values: LoginScreenFormValues) => {
     setLoading(true);
-    // do something on submit
+
     login(values.email, values.password)
       .then(() => {
         console.log('User login successfully!');
@@ -55,7 +55,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <SuperScreen statusBarColor="dark-content" background={'skyBlue'}>
+      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
         <SafeArea>
           <Formik
             initialValues={{
@@ -72,12 +72,12 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                     <Title> Welcome back!!</Title>
                   </Box>
                 </Box>
-                <Image
-                  source={require('C:/Users/maste/OneDrive/Desktop/TMS/logo.png')}
-                />
+
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
                   <InputWrapper
-                    errorVisible={!!formikProps.errors.email}
+                    errorVisible={
+                      !!formikProps.errors.email && !!formikProps.touched.email
+                    }
                     errorMessage={formikProps.errors.email}
                     testID="lossOrStolenRadioButtonError"
                   >
@@ -91,7 +91,10 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                   </InputWrapper>
 
                   <InputWrapper
-                    errorVisible={!!formikProps.errors.password}
+                    errorVisible={
+                      !!formikProps.errors.password &&
+                      !!formikProps.touched.password
+                    }
                     errorMessage={formikProps.errors.password}
                     testID="lossOrStolenRadioButtonError"
                   >
@@ -103,34 +106,39 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       }
                     />
                   </InputWrapper>
-
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('Registration')}
-                  >
-                    <P color="link" align="right">
-                      {i18n.t('forgetPasswordLabel')}
-                    </P>
-                  </TouchableOpacity>
-
+                  <Box spacing={{ bottom: 12 }}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Registration')}
+                    >
+                      <P color="secondary" align="center">
+                        {i18n.t('forgetPasswordLabel')}
+                      </P>
+                    </TouchableOpacity>
+                  </Box>
                   <PrimaryButton
                     onPress={() => formikProps.handleSubmit()}
                     loading={loading}
                   >
                     {i18n.t('submitButtonLabel')}
                   </PrimaryButton>
-                </Box>
-                <Box
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={{ top: 5 }}
-                >
-                  <Row>
+                  <Box
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={{ top: 10 }}
+                  >
+                    <Row>
+                      <P color="secondary" align="center">
+                        {i18n.t('registerAccountLabel')}
+                      </P>
+                    </Row>
                     <TouchableOpacity
                       onPress={() => navigation.navigate('Registration')}
                     >
-                      <P color="link">{i18n.t('registerAccountLabel')}</P>
+                      <P color="white" align="center">
+                        {i18n.t('registerAccountLinkLabel')}
+                      </P>
                     </TouchableOpacity>
-                  </Row>
+                  </Box>
                 </Box>
               </>
             )}
