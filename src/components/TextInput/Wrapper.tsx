@@ -1,21 +1,18 @@
 import React from 'react';
 import { Animated } from 'react-native';
 
-import { ITheme } from '../../theme/provider/models';
-import { withTheme } from '../../theme/provider/themeProvider';
-
 import {
   AnimatedBackground,
   AnimatedBorder,
   InnerRow,
 } from './TextInput.styles';
 import { IdangerouslySetInputStyles } from './TextInput.models';
+import theme from '../../theme';
 
 interface IWrapperProps {
   animation: Animated.AnimatedValue;
   state: 'default' | 'focused' | 'error' | 'complete';
   dangerouslySetStyles?: IdangerouslySetInputStyles;
-  theme: ITheme;
 }
 
 const Wrapper: React.FunctionComponent<IWrapperProps> = ({
@@ -23,25 +20,24 @@ const Wrapper: React.FunctionComponent<IWrapperProps> = ({
   animation,
   state,
   dangerouslySetStyles,
-  theme,
 }) => {
-  const {
-    context: {
-      colors: { input },
-    },
-  } = theme;
-
   const animatedStyles = {
     backgroundColor: animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [input.background[state], input.background.focused],
+      outputRange: [
+        theme.colors.tradingZ.transparent,
+        theme.colors.tradingZ.charcoal,
+      ],
     }),
   };
 
   const animatedBorderStyles = {
     backgroundColor: animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [input.border[state], input.border.focused],
+      outputRange: [
+        theme.colors.tradingZ.lightGrey,
+        theme.colors.tradingZ.white,
+      ],
     }),
   };
 
@@ -56,4 +52,4 @@ const Wrapper: React.FunctionComponent<IWrapperProps> = ({
   );
 };
 
-export default withTheme(Wrapper);
+export default Wrapper;

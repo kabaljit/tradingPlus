@@ -1,20 +1,19 @@
-import * as React from "react";
+import * as React from 'react';
+import { Formik, FormikErrors } from 'formik';
+import { useNavigation } from '@react-navigation/native';
 
+import SuperScreen from '../../components/SuperScreen';
+import { Box } from '../../components/Box';
+import TextInput from '../../components/TextInput';
+import { PrimaryButton } from '../../components/buttons';
+import InputWrapper from '../../components/InputWrapper';
+import firebase from '../../firebase';
+
+import { i18n } from './registrationScreen.i18n';
 import {
   RegistrationScreenFormValues,
   RegistrationScreenProps,
-} from "./registrationScreen.models";
-import { i18n } from "./registrationScreen.i18n";
-import SuperScreen from "../../components/SuperScreen";
-import { Box } from "../../components/Box";
-import TextInput from "../../components/TextInput";
-import { PrimaryButton } from "../../components/buttons";
-
-import { Formik, FormikErrors } from "formik";
-import InputWrapper from "../../components/InputWrapper";
-
-import firebase from "../../firebase";
-import { useNavigation } from "@react-navigation/native";
+} from './registrationScreen.models';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
@@ -23,13 +22,13 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
   const validate = React.useCallback((values: RegistrationScreenFormValues) => {
     const errors: FormikErrors<RegistrationScreenFormValues> = {};
     if (!values.name) {
-      errors.name = i18n.t("nameErrorMessage");
+      errors.name = i18n.t('nameErrorMessage');
     }
     if (!values.email) {
-      errors.email = i18n.t("emailErrorMessage");
+      errors.email = i18n.t('emailErrorMessage');
     }
     if (!values.password) {
-      errors.password = i18n.t("passwordErrorMessage");
+      errors.password = i18n.t('passwordErrorMessage');
     }
     return errors;
   }, []);
@@ -46,18 +45,18 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
           res.user?.updateProfile({
             displayName: values.name,
           });
-          console.log("User registered successfully!");
+          console.log('User registered successfully!');
           setLoading(false);
-          navigation.navigate("Login");
+          navigation.navigate('Login');
         })
         .catch((error) => {
-          console.log("Error: ", error);
+          console.log('Error: ', error);
           setLoading(false);
         });
 
       // setLoading(false);
 
-      console.log("Submit the registation");
+      console.log('Submit the registation');
     },
     [setLoading, loading, firebase]
   );
@@ -67,9 +66,9 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
       <SuperScreen>
         <Formik
           initialValues={{
-            name: "",
-            email: "",
-            password: "",
+            name: '',
+            email: '',
+            password: '',
           }}
           onSubmit={onSubmit}
           validate={validate}
@@ -85,7 +84,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                   placeholder="Name"
                   value={formikProps.values.name}
                   onChangeText={(value) =>
-                    formikProps.setFieldValue("name", value)
+                    formikProps.setFieldValue('name', value)
                   }
                 />
               </InputWrapper>
@@ -99,7 +98,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                   placeholder="Email"
                   value={formikProps.values.email}
                   onChangeText={(value) =>
-                    formikProps.setFieldValue("email", value)
+                    formikProps.setFieldValue('email', value)
                   }
                 />
               </InputWrapper>
@@ -113,7 +112,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                   placeholder="Password"
                   value={formikProps.values.password}
                   onChangeText={(value) =>
-                    formikProps.setFieldValue("password", value)
+                    formikProps.setFieldValue('password', value)
                   }
                 />
               </InputWrapper>

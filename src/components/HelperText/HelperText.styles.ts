@@ -8,13 +8,13 @@ import {
 } from '../TextInput';
 
 import { IHelperTextProps } from './HelperText.models';
-
+// TODO: Check the colors helper text
 const getColor = (props: IHelperTextProps) => {
   const visible = props.visible === true || props.visible === undefined;
   if (!visible) return 'transparent';
   return props.type === 'error'
-    ? theme.context.customColors.input.border.error
-    : theme.context.customColors.input.border.default;
+    ? theme.colors.tradingZ.error
+    : theme.colors.tradingZ.darkSilver;
 };
 
 export const HelperTextView = styled.View`

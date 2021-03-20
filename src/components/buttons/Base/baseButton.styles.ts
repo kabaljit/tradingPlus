@@ -2,32 +2,33 @@ import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
 import { scale } from '../../../utils/layout';
-import { ITheme } from '../../../theme/provider/models';
 import { fontFamily } from '../../Typography/Typography';
+import theme from '../../../theme';
 
-const determineBackgroundColor = (theme: ITheme, disabled: boolean) => {
+//TODO: CHANGE THE BUTTON COLORS, not using this functions
+const determineBackgroundColor = (disabled: boolean) => {
   if (disabled) {
-    return theme.context.colors.actions.background.primary.disabled;
+    return theme.colors.tradingZ.white;
   }
 
-  return theme.context.colors.actions.background.primary.default;
+  return theme.colors.tradingZ.white;
 };
 
-const determineLabelColor = (theme: ITheme, disabled: boolean) => {
+//TODO: Use the function to determine the color 
+const determineLabelColor = (disabled: boolean) => {
   if (disabled) {
-    return theme.context.colors.actions.foreground.primary.disabled;
+    return theme.colors.tradingZ.white;
   }
 
-  return theme.context.colors.actions.foreground.primary.default;
+  return theme.colors.tradingZ.white;
 };
 
 export const Button = styled(TouchableOpacity)<{
   backgroundColor?: string;
-  theme: ITheme;
   rounded?: boolean;
 }>`
   background-color: ${(p) =>
-    p.backgroundColor || determineBackgroundColor(p.theme, !!p.disabled)};
+    p.backgroundColor};
   height: ${scale(56)}px;
   border-radius: ${(p) => (p.rounded ? scale(28) : 0)}px;
   justify-content: center;
@@ -35,14 +36,13 @@ export const Button = styled(TouchableOpacity)<{
 
 export const Label = styled.Text<{
   labelColor?: string;
-  theme: ITheme;
   disabled?: boolean | null;
 }>`
   font-family: ${fontFamily};
   font-size: ${scale(16)}px;
   text-align: center;
   font-weight: 500;
-  color: ${(p) => p.labelColor || determineLabelColor(p.theme, !!p.disabled)};
+  color: ${(p) => p.labelColor};
 `;
 
 export const Inner = styled.View`

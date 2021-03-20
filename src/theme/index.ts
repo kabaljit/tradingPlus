@@ -2,8 +2,6 @@ import { PixelRatio, Dimensions } from 'react-native';
 
 import { scale } from '../utils/layout';
 
-import context from './context';
-import { colorPalette } from './palette';
 
 export const DEVICE_HEIGHT = Dimensions.get('window').height;
 export const DEVICE_WIDTH = Dimensions.get('window').width;
@@ -13,14 +11,12 @@ export const setHeightInPercent = (percent: number) =>
 export const setWidthInPercent = (percent: number) =>
   (DEVICE_WIDTH * percent) / 100;
 
-/**
- * @deprecated do not use colors, instead use the context file
- */
 const colors = {
-  customColors: {
+  tradingZ: {
     mango: '#FFB900',
     charcoal: '#262835',
     white: '#ffffff',
+    black: '#000000',
     teal: '#00828E',
     lightSilver: '#F1F3F6',
     silver: '#f5f6f4',
@@ -34,7 +30,7 @@ const colors = {
     error: '#F5635D',
     grey: '#8C8C97',
     grayishNavy: '#404052',
-    lightGrey: '#848692',
+    lightGrey: '#C0C0C0',
     greenSuccess: '#0CB46D',
     textInputGrey: '#F0F0F0',
     cardScreenBg: '#454757',
@@ -42,6 +38,7 @@ const colors = {
     ivory: '#F5F5F4',
     blue: '#3871C2',
     transparent: 'transparent',
+    darkPurple: '#170440'
   },
   native: {
     // Add platform native colors
@@ -71,11 +68,11 @@ const fontSizes = {
   fs64: scale(64),
 };
 
-// These need to be strings for easy assignment to both StyleSheet and styled-components definitions.
+// These need to be colors.tradingZ.s for easy assignment to both StyleSheet and styled-components definitions.
 const fontWeights = {
-  fw400: '400',
-  fw600: '600',
-  fw700: '700',
+  light: '400',
+  normal: '600',
+  bold: '700',
 };
 
 const spacing = [
@@ -96,11 +93,30 @@ const spacing = [
 
 const hairlineBorderWidth = 1 / PixelRatio.getPixelSizeForLayoutSize(1);
 
+
 const borders = {
   buttonRadius: 0,
   hairlineWidth: hairlineBorderWidth,
   separatorWidth: hairlineBorderWidth,
 };
+
+const context = {
+  colors: {
+    typography:{
+      primary: colors.tradingZ.charcoal,
+      secondary: colors.tradingZ.lightGrey,
+      tertiary: colors.tradingZ.lightSilver,
+      inverse: colors.tradingZ.silver,
+      link: colors.tradingZ.blue,
+      error: colors.tradingZ.error,
+      white: colors.tradingZ.white,
+      success: colors.tradingZ.success,
+      blue: colors.tradingZ.blue,
+    } 
+  }
+
+}
+
 
 const theme = {
   colors,
@@ -109,9 +125,8 @@ const theme = {
   spacing,
   borders,
   context,
-  colorPalette,
 };
 
 export default theme;
-export type { color } from './theme.models';
-export type { ITypographyColorContext } from './context.models';
+
+export type { ITypographyColorContext } from './theme.models';
