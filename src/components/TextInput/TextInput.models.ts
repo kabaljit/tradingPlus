@@ -1,9 +1,6 @@
 import { TextInputProps as RNTextInputProps } from 'react-native';
 import { ReactElement } from 'react';
 
-import { ITheme } from '../../theme/provider/models';
-import { FontWeightValue } from '../../theme/palette.models';
-
 export interface TextInputProps extends RNTextInputProps {
   accessoryLeft?: ReactElement<any>;
   accessoryRight?: ReactElement<any>;
@@ -12,7 +9,6 @@ export interface TextInputProps extends RNTextInputProps {
   formatText?: (text: string) => string;
   dangerouslySetStyles?: IdangerouslySetFontStyles & IdangerouslySetInputStyles;
   align?: 'left' | 'right';
-  theme: ITheme;
   backgroundColor?: string;
 }
 

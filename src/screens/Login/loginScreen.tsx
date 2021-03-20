@@ -72,8 +72,8 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                     <Title> Welcome back!!</Title>
                   </Box>
                 </Box>
-                <Image
-                  source={require('C:/Users/maste/OneDrive/Desktop/TMS/logo.png')}
+                <view
+                /*Empty container for the logo*/
                 />
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
                   <InputWrapper
