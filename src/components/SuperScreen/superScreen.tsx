@@ -1,36 +1,33 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   StatusBar,
   TouchableWithoutFeedback,
   Keyboard,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 
-import { ScrollableContent, SafeArea, KeyboardAvoidingView } from "../Layout";
-import { Box, ContainerNoPadding } from "../Box";
+import { ScrollableContent, SafeArea, KeyboardAvoidingView } from '../Layout';
+import { Box, ContainerNoPadding } from '../Box';
 
-import { useTheme } from "../../theme/provider/themeProvider";
-
-import { SuperScreenProps } from "./superScreen.models";
+import { SuperScreenProps } from './superScreen.models';
+import theme from '../../theme';
 
 // TODO: Pass style customisations via the style prop instead of having props for flex, justifyContent, etc.
 const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
   const {
     children,
     loading,
-    background = "white",
-    statusBarBackground = "midnightBlue",
-    statusBarColor = props.fullscreen ? "dark-content" : "light-content",
+    background = 'white',
+    statusBarBackground = 'midnightBlue',
+    statusBarColor = props.fullscreen ? 'dark-content' : 'light-content',
     keyboardAvoiding = true,
     hasPadding = true,
-    justifyContent = "flex-start",
+    justifyContent = 'flex-start',
     flex = 1,
     scrollable = false,
     keyboardVerticalOffset = 0,
     fullscreen,
   } = props;
-
-  const theme = useTheme();
 
   const Wrapper = fullscreen ? ContainerNoPadding : SafeArea;
 
@@ -62,9 +59,7 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
       <Wrapper>
         <StatusBar
           backgroundColor={
-            fullscreen
-              ? "transparent"
-              : theme.colorPalette[statusBarBackground][0]
+            fullscreen ? 'transparent' : theme.colors.tradingZ.white
           }
           barStyle={statusBarColor}
         />

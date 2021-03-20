@@ -6,12 +6,6 @@ import theme from '../../theme';
 
 import { StyledLabel } from './TextInput.styles';
 
-const {
-  context: {
-    customColors: { input },
-  },
-} = theme;
-
 interface ILabelProps {
   label: string;
   animation: any;
@@ -60,7 +54,9 @@ const Label = ({ label, animation, state }: ILabelProps) => {
   const labelStyles = {
     color: animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [input.label.default, input.label[state]],
+
+      // TODO: UPDATE THE COLOR FOR EACH STATE input.label[state]],
+      outputRange: [theme.colors.tradingZ.white, theme.colors.tradingZ.success],
     }),
   };
 

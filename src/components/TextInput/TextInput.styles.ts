@@ -21,14 +21,9 @@ export const helperPaddingHorizontal = theme.spacing[1];
 export const iconSize = height * 0.75;
 
 const borderColorForState = (isError: boolean, isActive: boolean) => {
-  const {
-    error,
-    default: borderDefault,
-    focused,
-  } = theme.context.customColors.input.border;
-  if (isError) return error;
-  if (isActive) return focused;
-  return borderDefault;
+  if (isError) return theme.colors.tradingZ.error;
+  if (isActive) return theme.colors.tradingZ.darkSilver;
+  return theme.colors.tradingZ.charcoal;
 };
 
 export const FakeInputBorder = styled.View<{
@@ -47,7 +42,7 @@ export const FakeInputBorder = styled.View<{
 
 export const AnimatedBackground = styled(Animated.View)<{ minHeight?: number }>`
   position: relative;
-  background-color: ${theme.context.customColors.input.background.default};
+  background-color: ${theme.colors.tradingZ.blue};
   min-height: ${(p) => p.minHeight || scale(56)}px;
 `;
 
@@ -79,6 +74,7 @@ export const Input = styled.TextInput<{
 }>`
   min-height: ${(p) => p.dangerouslySetStyles?.input?.minHeight || scale(56)}px;
   font-size: ${(p) => p.dangerouslySetStyles?.font?.size || scale(16)}px;
+  color: ${theme.colors.tradingZ.white};
   background-color: ${(p) => p.backgroundColor ?? 'transparent'};
   padding-left: ${scale(17)}px;
   line-height: ${(p) =>
