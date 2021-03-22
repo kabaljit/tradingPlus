@@ -9,7 +9,7 @@ import { titleSizes, fontWeight, paragraphSizes } from './mappings';
 
 const determineLineHeight = (fontSize: number) => 1.4 * fontSize;
 
-export const fontFamily = Platform.OS === 'android' ? 'roboto' : 'System';
+export const fontFamily = Platform.OS === 'android' ? 'Roboto' : 'System';
 
 export const Title: React.FunctionComponent<ITypographyProps> = ({
   size = 'medium',

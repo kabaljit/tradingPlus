@@ -2,7 +2,6 @@ import { PixelRatio, Dimensions } from 'react-native';
 
 import { scale } from '../utils/layout';
 
-
 export const DEVICE_HEIGHT = Dimensions.get('window').height;
 export const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -91,7 +90,6 @@ const spacing = [
 
 const hairlineBorderWidth = 1 / PixelRatio.getPixelSizeForLayoutSize(1);
 
-
 const borders = {
   buttonRadius: 0,
   hairlineWidth: hairlineBorderWidth,
@@ -100,7 +98,7 @@ const borders = {
 
 const context = {
   colors: {
-    typography:{
+    typography: {
       primary: colors.tradingZ.charcoal,
       secondary: colors.tradingZ.lightGrey,
       tertiary: colors.tradingZ.lightSilver,
@@ -110,11 +108,9 @@ const context = {
       white: colors.tradingZ.white,
       success: colors.tradingZ.success,
       blue: colors.tradingZ.blue,
-    } 
-  }
-
-}
-
+    },
+  },
+};
 
 const theme = {
   colors,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import { Button, ScrollView, View, Text, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -55,7 +56,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <SuperScreen statusBarColor="dark-content" background={'skyBlue'}>
+      <SuperScreen statusBarColor="dark-content" background={'pictonBlue'}>
         <SafeArea>
           <Formik
             initialValues={{

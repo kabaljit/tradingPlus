@@ -9,7 +9,6 @@ export interface IBaseButtonProps extends TouchableOpacityProps {
   accessoryRight?: () => void;
   loading?: boolean;
   rounded?: boolean;
-  theme: ITheme;
   onPress?: (event?: GestureResponderEvent) => void;
   dismissKeyboard?: boolean;
 }
