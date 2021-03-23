@@ -73,7 +73,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                     <Title> Welcome back!!</Title>
                   </Box>
                 </Box>
-                <view
+                <View
                 /*Empty container for the logo*/
                 />
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
