@@ -27,7 +27,6 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const { login } = React.useContext(AuthContext);
   const validate = React.useCallback((values: LoginScreenFormValues) => {
     const errors: FormikErrors<LoginScreenFormValues> = {};
-
     if (!values.email) {
       errors.email = i18n.t('emailErrorMessage');
     }
