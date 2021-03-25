@@ -16,6 +16,11 @@ import { AuthContext } from '../../main/AuthProvider';
 import { P, Title } from '../../components/Typography';
 import PasswordInput from '../../components/PasswordInput';
 import { SafeArea } from '../../components/Layout';
+import {
+  validatePassword,
+  validateEmail,
+  ErrorPasswordType,
+} from '../../utils/validation';
 
 import { i18n } from './loginScreen.i18n';
 import { LoginScreenFormValues, LoginScreenProps } from './loginScreen.models';
@@ -27,12 +32,29 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const { login } = React.useContext(AuthContext);
   const validate = React.useCallback((values: LoginScreenFormValues) => {
     const errors: FormikErrors<LoginScreenFormValues> = {};
-    if (!values.email) {
+
+    if (values.email) {
+      if (!validateEmail(values.email)) {
+        errors.email = i18n.t('emailFormatErrorMessage');
+      }
+    } else {
       errors.email = i18n.t('emailErrorMessage');
     }
-    if (!values.password) {
+    if (values.password) {
+      const passwordValidation = validatePassword(values.password);
+      if (passwordValidation === ErrorPasswordType.Number) {
+        errors.password = i18n.t('passwordNumberError');
+      } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+        errors.password = i18n.t('passwordUppercaseError');
+      } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+        errors.password = i18n.t('passwordLowercaseError');
+      } else if (passwordValidation === ErrorPasswordType.Length) {
+        errors.password = i18n.t('passwordLengthError');
+      }
+    } else {
       errors.password = i18n.t('passwordErrorMessage');
     }
+
     return errors;
   }, []);
 
@@ -65,7 +87,14 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
             onSubmit={onSubmit}
             validate={validate}
           >
-            {(formikProps) => (
+            {({
+              values,
+              touched,
+              errors,
+              setFieldTouched,
+              setFieldValue,
+              handleSubmit,
+            }) => (
               <>
                 <Box>
                   <Box>
@@ -77,30 +106,28 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                 />
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
                   <InputWrapper
-                    errorVisible={!!formikProps.errors.email}
-                    errorMessage={formikProps.errors.email}
+                    errorVisible={touched.email && !!errors.email}
+                    errorMessage={errors.email}
                     testID="lossOrStolenRadioButtonError"
                   >
                     <TextInput
                       placeholder="Email"
-                      value={formikProps.values.email}
-                      onChangeText={(value) =>
-                        formikProps.setFieldValue('email', value)
-                      }
+                      value={values.email}
+                      onBlur={() => setFieldTouched('email')}
+                      onChangeText={(value) => setFieldValue('email', value)}
                     />
                   </InputWrapper>
 
                   <InputWrapper
-                    errorVisible={!!formikProps.errors.password}
-                    errorMessage={formikProps.errors.password}
+                    errorVisible={touched.password && !!errors.password}
+                    errorMessage={errors.password}
                     testID="lossOrStolenRadioButtonError"
                   >
                     <PasswordInput
                       placeholder="Password"
-                      value={formikProps.values.password}
-                      onChangeText={(value) =>
-                        formikProps.setFieldValue('password', value)
-                      }
+                      value={values.password}
+                      onBlur={() => setFieldTouched('password')}
+                      onChangeText={(value) => setFieldValue('password', value)}
                     />
                   </InputWrapper>
 
@@ -113,7 +140,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                   </TouchableOpacity>
 
                   <PrimaryButton
-                    onPress={() => formikProps.handleSubmit()}
+                    onPress={() => handleSubmit()}
                     loading={loading}
                   >
                     {i18n.t('submitButtonLabel')}
