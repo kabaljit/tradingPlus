@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
-import firebase from "../firebase";
+import React, { createContext, useState } from 'react';
+
+import firebase from '../firebase';
 
 export const AuthContext = React.createContext({});
 
@@ -13,7 +14,7 @@ export const AuthProvider: React.FunctionComponent = ({ children }) => {
         setUser,
         login: async (email: string, password: string) => {
           try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
+            return firebase.auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
           }

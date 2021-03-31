@@ -1,9 +1,10 @@
-import { ColorPalette } from '../../theme/palette.models';
+import theme from "../../theme";
+
 
 export interface SuperScreenProps {
   keyboardAvoiding?: boolean;
   statusBarColor?: 'light-content' | 'dark-content';
-  background?: keyof ColorPalette;
+  background?: keyof typeof theme['colors']['tradingZ'];
   /**
    * Header offset for keyboard avoiding view which causes the button
    * to be behind the keyboard.
@@ -12,7 +13,7 @@ export interface SuperScreenProps {
    * React Navigation which have different API's.
    */
   keyboardVerticalOffset?: number;
-  statusBarBackground?: keyof ColorPalette;
+  statusBarBackground?: keyof typeof theme['colors']['tradingZ'];
   loading?: boolean;
   /**
    * SuperScreen content is always within device safe area unless this prop

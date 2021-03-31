@@ -25,6 +25,6 @@ export const SafeArea = styled.SafeAreaView`
 export const Divider = styled.View`
   width: 100%;
   height: ${StyleSheet.hairlineWidth}px;
-  background-color: ${theme.colorPalette.grey[0]};
+  background-color: ${theme.colors.tradingZ.grey};
   margin-bottom: ${theme.spacing[4]}px;
 `;

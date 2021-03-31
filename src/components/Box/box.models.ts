@@ -1,6 +1,7 @@
 import { ViewStyle } from 'react-native';
+import theme from '../../theme';
 
-import { ColorPalette } from '../../theme/palette.models';
+
 
 /**
  * True for standard element spacing, false or undefined for no spacing.
@@ -25,7 +26,7 @@ export interface BoxProps {
   flexDirection?: ViewStyle['flexDirection'];
   justifyContent?: ViewStyle['justifyContent'];
   alignItems?: ViewStyle['alignItems'];
-  background?: keyof ColorPalette;
+  background?: string; //TODO: Change the type to theme colors 
 }
 
 export const rowSpacing = {

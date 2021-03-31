@@ -2,16 +2,17 @@ import { StyleProp, Text, TextStyle } from 'react-native';
 import React from 'react';
 import { Platform } from 'react-native';
 
+import theme from '../../theme';
+
 import { ITypographyProps, IParagraphProps } from './typography.models';
 import { titleSizes, fontWeight, paragraphSizes } from './mappings';
 
 const determineLineHeight = (fontSize: number) => 1.4 * fontSize;
 
-export const fontFamily = Platform.OS === 'android' ? 'roboto' : 'System';
+export const fontFamily = Platform.OS === 'android' ? 'Roboto' : 'System';
 
 export const Title: React.FunctionComponent<ITypographyProps> = ({
   size = 'medium',
-  theme,
   color = 'primary',
   align = 'left',
   weight = 'bold',
@@ -37,7 +38,6 @@ export const Title: React.FunctionComponent<ITypographyProps> = ({
 
 export const Paragraph: React.FunctionComponent<IParagraphProps> = ({
   size = 'medium',
-  theme,
   color = 'primary',
   align = 'left',
   weight = 'regular',
