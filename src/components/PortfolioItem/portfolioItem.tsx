@@ -16,10 +16,15 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   price,
   amount,
 }) => {
-  const profit = currentValue * amount - price;
-  const profitPercentage = (profit / price) * 100;
-  const profitPercentageFixed = profitPercentage.toFixed(2);
-
+  const profit = React.useMemo<number>(() => {
+    return currentValue * amount - price;
+  }, [amount, currentValue, price]);
+  const profitPercentage = React.useMemo<number>(() => {
+    return (profit / price) * 100;
+  }, [price, profit]);
+  const profitPercentageFixed = React.useMemo(() => {
+    profitPercentage.toFixed(2);
+  }, [profitPercentage]);
   const profitColor = React.useMemo(() => {
     if (profit < 0) return 'error';
     return 'success';
