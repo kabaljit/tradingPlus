@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList } from 'react-native';
 
 import PortfolioItem from '../../components/PortfolioItem';
+import SuperScreen from '../../components/SuperScreen';
 
 import { HomeScreenFormValues, HomeScreenProps } from './homeScreen.models';
 import { i18n } from './homeScreen.i18n';
@@ -16,22 +17,22 @@ const DATA = {
       portfolio: [
         {
           amount: 2,
-          currency: 'usdt',
+          currency: 'USD',
           price: 10000,
         },
         {
-          amount: 2,
-          currency: 'btc',
-          price: 10000,
+          amount: 1.5,
+          currency: 'BTC',
+          price: 78456,
         },
         {
           amount: 1000,
-          currency: 'matic',
+          currency: 'MATIC',
           price: 1,
         },
         {
           amount: 1000,
-          currency: 'eth',
+          currency: 'ETH',
           price: 1,
         },
       ],
@@ -74,6 +75,7 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
       <PortfolioItem
         title={item.currency}
         amount={item.amount}
+        price={item.price}
         currentValue={currentValue}
       />
     );
@@ -81,11 +83,13 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
 
   return (
     <>
-      <FlatList
-        data={DATA.users[0].portfolio}
-        renderItem={renderItem}
-        // keyExtractor={(item) => item.id}
-      />
+      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
+        <FlatList
+          data={DATA.users[0].portfolio}
+          renderItem={renderItem}
+          // keyExtractor={(item) => item.id}
+        />
+      </SuperScreen>
     </>
   );
 };

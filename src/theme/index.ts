@@ -35,6 +35,7 @@ const colors = {
     pictonBlue: '#4C97E8',
     ivory: '#F5F5F4',
     blue: '#3871C2',
+    deepMagenta: '#4F1B57',
     transparent: 'transparent',
   },
   native: {
