@@ -19,7 +19,7 @@ export const BoxView = styled.View<BoxProps>`
   ${(p) => p.alignItems && `align-items: ${p.alignItems};`}
   ${(p) =>
     p.background &&
-    `background-color: ${themeDefault.colors.tradingZ.charcoal}`};
+    `background-color: ${themeDefault.colors.tradingZ[p.background]}`};
   padding-left: ${createPadding('left')};
   padding-right: ${createPadding('right')};
   padding-top: ${createPadding('top')};

@@ -1,7 +1,6 @@
 import { ViewStyle } from 'react-native';
+
 import theme from '../../theme';
-
-
 
 /**
  * True for standard element spacing, false or undefined for no spacing.
@@ -26,7 +25,7 @@ export interface BoxProps {
   flexDirection?: ViewStyle['flexDirection'];
   justifyContent?: ViewStyle['justifyContent'];
   alignItems?: ViewStyle['alignItems'];
-  background?: string; //TODO: Change the type to theme colors 
+  background?: keyof typeof theme.colors.tradingZ;
 }
 
 export const rowSpacing = {
