@@ -1,5 +1,7 @@
 import * as firebase from 'firebase';
 
+import "firebase/database";
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDcIRUEKSblScEI1JTL_YVQUr__h2-O0a0',
   authDomain: 'tradingplus-ee6fe.firebaseapp.com',
@@ -13,6 +15,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+//TODO: Check why is default
 
-export default firebase;
+
+export default firebase.default.initializeApp(firebaseConfig)
