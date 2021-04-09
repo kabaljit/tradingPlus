@@ -27,9 +27,10 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
 
   const renderItem = ({ item }) => {
     const currentValue = 10000;
+    const defaultCurrency = 'USD';
     return (
       <PortfolioItem
-        title={item.currency}
+        title={item.currency + ' / ' + defaultCurrency}
         amount={item.amount}
         price={item.price}
         currentValue={currentValue}

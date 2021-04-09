@@ -7,6 +7,7 @@ import { LoginScreen } from '../../screens/Login';
 import { RegistrationScreen } from '../../screens/Registration';
 import theme from '../../theme';
 import { HomeScreen } from '../../screens/Home';
+import { MarketScreen } from '../../screens/Market/marketScreen';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,13 @@ export default function Navigation() {
     <NavigationContainer>
       <Stack.Navigator>
         <>
+          <Stack.Screen
+            name="Market"
+            component={MarketScreen}
+            options={{
+              ...options,
+            }}
+          />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
