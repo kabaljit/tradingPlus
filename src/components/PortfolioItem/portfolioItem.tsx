@@ -17,16 +17,16 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   amount,
 }) => {
   const profit = React.useMemo<number>(() => {
+    // console.log(`current value:`, currentValue);
+    // console.log(`amount:`, amount);
+    // console.log(`price:`, price);
+    // console.log(currentValue * amount - price);
     return currentValue * amount - price;
   }, [amount, currentValue, price]);
 
-  const profitPercentage = React.useMemo<number>(() => {
-    return (profit / price) * 100;
+  const profitPercentage = React.useMemo(() => {
+    return Number(((profit / price) * 100).toFixed(2));
   }, [price, profit]);
-
-  const profitPercentageFixed = React.useMemo(() => {
-    profitPercentage.toFixed(2);
-  }, [profitPercentage]);
 
   const profitColor = React.useMemo(() => {
     if (profit < 0) return 'error';
@@ -34,10 +34,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   }, [profit]);
 
   function ProfitAndPercentage() {
-    if (profit) {
-      return `${profit} / ${profitPercentageFixed}%`;
-    }
-    return '';
+    return `${profit} / ${profitPercentage}%`;
   }
 
   return (
@@ -64,10 +61,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
               </P>
             </Box>
             <Box alignItems="flex-end">
-              <P color={profitColor}>
-                {/* {profit} / {profitPercentageFixed}% */}
-                <ProfitAndPercentage />
-              </P>
+              <P color={profitColor}>{profit && ProfitAndPercentage()}</P>
             </Box>
           </Box>
         </Box>
@@ -75,6 +69,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
     </TouchableOpacity>
   );
 };
+
 const styles = StyleSheet.create({
   tinyLogo: {
     width: 50,

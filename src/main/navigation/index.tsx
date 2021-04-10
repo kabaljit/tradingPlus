@@ -29,6 +29,7 @@ export default function Navigation() {
             name="Market"
             component={MarketScreen}
             options={{
+              headerShown: false,
               ...options,
             }}
           />
@@ -36,6 +37,7 @@ export default function Navigation() {
             name="Home"
             component={HomeScreen}
             options={{
+              headerShown: false,
               ...options,
             }}
           />
