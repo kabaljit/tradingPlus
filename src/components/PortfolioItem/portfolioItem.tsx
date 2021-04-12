@@ -17,10 +17,6 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   amount,
 }) => {
   const profit = React.useMemo<number>(() => {
-    // console.log(`current value:`, currentValue);
-    // console.log(`amount:`, amount);
-    // console.log(`price:`, price);
-    // console.log(currentValue * amount - price);
     return currentValue * amount - price;
   }, [amount, currentValue, price]);
 
