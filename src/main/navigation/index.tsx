@@ -7,6 +7,8 @@ import { LoginScreen } from '../../screens/Login';
 import { RegistrationScreen } from '../../screens/Registration';
 import theme from '../../theme';
 import { HomeScreen } from '../../screens/Home';
+import { MarketScreen } from '../../screens/Market/marketScreen';
+
 import navigationService, {
   isReadyRef,
   navigationRef,
@@ -83,6 +85,14 @@ export default function Navigation() {
             name="Home"
             component={HomeScreen}
             options={{
+              ...options,
+            }}
+          />
+          <Stack.Screen
+            name="Market"
+            component={MarketScreen}
+            options={{
+              headerShown: false,
               ...options,
             }}
           />

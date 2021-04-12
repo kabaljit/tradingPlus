@@ -77,7 +77,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <SuperScreen statusBarColor="dark-content" background={'pictonBlue'}>
+      <SuperScreen statusBarColor="dark-content" background={'charcoal'}>
         <SafeArea>
           <Formik
             initialValues={{
