@@ -1,5 +1,5 @@
-import { IBaseButtonProps } from '../Base/baseButton.models';
+import { BaseButtonProps } from '../Base/baseButton.models';
 
-export interface IPrimaryButton extends IBaseButtonProps {
+export interface PrimaryButtonProps extends BaseButtonProps {
   loading?: boolean;
 }

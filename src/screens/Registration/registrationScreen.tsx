@@ -3,7 +3,7 @@ import { Formik, FormikErrors } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 
 import SuperScreen from '../../components/SuperScreen';
-import { Box } from '../../components/Box';
+import { Box, Row } from '../../components/Box';
 import TextInput from '../../components/TextInput';
 import { PrimaryButton } from '../../components/buttons';
 import InputWrapper from '../../components/InputWrapper';
@@ -14,6 +14,8 @@ import {
   RegistrationScreenFormValues,
   RegistrationScreenProps,
 } from './registrationScreen.models';
+import { Title } from '../../components/Typography/Typography';
+import { P } from '../../components/Typography';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
@@ -63,7 +65,12 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
 
   return (
     <>
-      <SuperScreen>
+      <SuperScreen background={'charcoal'} statusBarColor="light-content">
+        <Box alignItems="center" spacing={{ top: 4, bottom: 4 }}>
+          <Title>{i18n.t('title')} </Title>
+          <Row spacing={{ bottom: 4 }} />
+          <P>{i18n.t('subTitle')}</P>
+        </Box>
         <Formik
           initialValues={{
             name: '',

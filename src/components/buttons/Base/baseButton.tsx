@@ -6,9 +6,9 @@ import {
 } from 'react-native';
 
 import { Button, Label, Inner } from './baseButton.styles';
-import { IBaseButtonProps } from './baseButton.models';
+import { BaseButtonProps } from './baseButton.models';
 
-const BaseButton: React.FunctionComponent<IBaseButtonProps> = ({
+const BaseButton: React.FunctionComponent<BaseButtonProps> = ({
   children,
   accessoryRight,
   accessoryLeft,
@@ -17,7 +17,6 @@ const BaseButton: React.FunctionComponent<IBaseButtonProps> = ({
   testID = 'default-button-testid',
   loading,
   disabled,
-  theme,
   onPress,
   dismissKeyboard = true,
   ...rest
@@ -29,7 +28,6 @@ const BaseButton: React.FunctionComponent<IBaseButtonProps> = ({
       testID={testID}
       backgroundColor={backgroundColor}
       disabled={disabled || loading}
-      theme={theme}
       onPress={(event: GestureResponderEvent) => {
         dismissKeyboard && Keyboard.dismiss();
         onPress && onPress(event);
@@ -43,7 +41,6 @@ const BaseButton: React.FunctionComponent<IBaseButtonProps> = ({
             <ActivityIndicator testID="activityIndicator" color={labelColor} />
           ) : (
             <Label
-              theme={theme}
               testID={buttonLabelTestID}
               labelColor={labelColor}
               disabled={disabled}
@@ -59,7 +56,6 @@ const BaseButton: React.FunctionComponent<IBaseButtonProps> = ({
             <ActivityIndicator testID="activityIndicator" color={labelColor} />
           ) : (
             <Label
-              theme={theme}
               testID={buttonLabelTestID}
               labelColor={labelColor}
               disabled={disabled}

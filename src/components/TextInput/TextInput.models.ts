@@ -1,5 +1,6 @@
 import { TextInputProps as RNTextInputProps } from 'react-native';
 import { ReactElement } from 'react';
+import theme from '../../theme';
 
 export interface TextInputProps extends RNTextInputProps {
   accessoryLeft?: ReactElement<any>;
@@ -23,7 +24,7 @@ export interface IdangerouslySetInputStyles {
 export interface IdangerouslySetFontStyles {
   font?: {
     size: number;
-    fontWeight?: FontWeightValue;
+    fontWeight?: keyof typeof theme.fontWeights;
   };
 }
 

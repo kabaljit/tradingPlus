@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { Button, ScrollView, View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Formik, FormikErrors } from 'formik';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { database } from 'firebase';
 
 import TextInput from '../../components/TextInput';
 import { Box, Row } from '../../components/Box';
 import { PrimaryButton } from '../../components/buttons';
 import SuperScreen from '../../components/SuperScreen';
 import InputWrapper from '../../components/InputWrapper';
-import firebase from '../../firebase';
 import { AuthContext } from '../../main/AuthProvider';
 import { P, Title } from '../../components/Typography';
 import PasswordInput from '../../components/PasswordInput';
 import { SafeArea } from '../../components/Layout';
+
 import {
   validatePassword,
   validateEmail,
@@ -24,12 +23,15 @@ import {
 
 import { i18n } from './loginScreen.i18n';
 import { LoginScreenFormValues, LoginScreenProps } from './loginScreen.models';
+import { images } from '../../data';
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);
   const navigation = useNavigation();
 
+  // TODO: Add types for AuthContext
   const { login } = React.useContext(AuthContext);
+
   const validate = React.useCallback((values: LoginScreenFormValues) => {
     const errors: FormikErrors<LoginScreenFormValues> = {};
 
@@ -68,16 +70,14 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log('Error: ', error);
+        console.log('[login] Failed to login: ', error);
         setLoading(false);
       });
-
-    console.log('Login the registation');
   }, []);
 
   return (
     <>
-      <SuperScreen statusBarColor="dark-content" background={'charcoal'}>
+      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
         <SafeArea>
           <Formik
             initialValues={{
@@ -96,15 +96,15 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
               handleSubmit,
             }) => (
               <>
-                <Box>
-                  <Box>
-                    <Title> Welcome back!!</Title>
-                  </Box>
-                </Box>
+                <Box>{/* <Title color="white"> Welcome back!!</Title> */}</Box>
+
                 <View
                 /*Empty container for the logo*/
-                />
+                >
+                  {/* <Image source={images.logo} width={10} height={10} /> */}
+                </View>
                 <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
+                  {/* <Image source={images.logo} width={10} height={10} /> */}
                   <InputWrapper
                     errorVisible={touched.email && !!errors.email}
                     errorMessage={errors.email}
@@ -130,15 +130,15 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       onChangeText={(value) => setFieldValue('password', value)}
                     />
                   </InputWrapper>
-
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('Registration')}
-                  >
-                    <P color="link" align="right">
-                      {i18n.t('forgetPasswordLabel')}
-                    </P>
-                  </TouchableOpacity>
-
+                  <Box alignItems="center" spacing={{ bottom: 4 }}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Registration')}
+                    >
+                      <P color="link" align="right">
+                        {i18n.t('forgetPasswordLabel')}
+                      </P>
+                    </TouchableOpacity>
+                  </Box>
                   <PrimaryButton
                     onPress={() => handleSubmit()}
                     loading={loading}
