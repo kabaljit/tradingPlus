@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  getFocusedRouteNameFromRoute,
+} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import * as SplashScreen from 'expo-splash-screen';
 
 import { LoginScreen } from '../../screens/Login';
 import { RegistrationScreen } from '../../screens/Registration';
 import theme from '../../theme';
 import { HomeScreen } from '../../screens/Home';
 import { MarketScreen } from '../../screens/Market/marketScreen';
-
 import navigationService, {
   isReadyRef,
   navigationRef,
 } from '../../utils/navigationService';
 import firebase from '../../firebase';
-
-const Stack = createStackNavigator();
 
 const backgroundColor = theme.colors.tradingZ.charcoal;
 const options = {
@@ -25,7 +27,8 @@ const options = {
   headerTintColor: theme.colors.tradingZ.white,
   cardStyle: { backgroundColor: theme.colors.tradingZ.white },
 };
-import * as SplashScreen from 'expo-splash-screen';
+
+const Stack = createStackNavigator();
 
 export default function Navigation() {
   React.useEffect(() => {
@@ -49,7 +52,7 @@ export default function Navigation() {
       firebase.auth().onAuthStateChanged((user) => {
         // Is user logged in ?
         if (user) {
-          navigationService.navigate('Home');
+          navigationService.navigate('HomeTabs');
         } else {
           navigationService.navigate('Login');
         }
@@ -59,6 +62,36 @@ export default function Navigation() {
       console.warn('[Navigation] failed to get user info: ', e);
     }
   }, []);
+
+  const HomeTabs = createBottomTabNavigator();
+
+  function HomeTabScreens() {
+    return (
+      <HomeTabs.Navigator>
+        <HomeTabs.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ tabBarLabel: 'Home' }}
+        />
+        <HomeTabs.Screen
+          name="Market"
+          component={MarketScreen}
+          options={{ tabBarLabel: 'Market' }}
+        />
+      </HomeTabs.Navigator>
+    );
+  }
+
+  function getHeaderTitle(route) {
+    const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+
+    switch (routeName) {
+      case 'Home':
+        return 'Home Screen';
+      case 'Market':
+        return 'Market Screen';
+    }
+  }
 
   return (
     <NavigationContainer ref={navigationRef}>
@@ -82,19 +115,11 @@ export default function Navigation() {
             }}
           />
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              ...options,
-            }}
-          />
-          <Stack.Screen
-            name="Market"
-            component={MarketScreen}
-            options={{
-              headerShown: false,
-              ...options,
-            }}
+            name="HomeTabs"
+            component={HomeTabScreens}
+            options={({ route }) => ({
+              headerTitle: getHeaderTitle(route),
+            })}
           />
         </>
       </Stack.Navigator>
