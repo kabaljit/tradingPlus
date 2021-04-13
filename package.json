@@ -44,7 +44,7 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.13.12",
-    "react-native-webview": "10.7.0",
+    "react-native-webview": "11.0.0",
     "react-navigation-props-mapper": "^1.0.4",
     "styled-components": "^5.2.1",
     "swr": "^0.4.0"
