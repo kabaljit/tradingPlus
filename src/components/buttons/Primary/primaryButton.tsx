@@ -17,7 +17,7 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = ({
     labelColor={
       disabled || loading
         ? theme.colors.tradingZ.lightGrey
-        : theme.colors.tradingZ.blue
+        : theme.colors.tradingZ.charcoal
     }
     disabled={disabled || loading}
     loading={loading}
