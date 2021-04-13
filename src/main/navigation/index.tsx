@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Image } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -13,7 +14,8 @@ import navigationService, {
 import firebase from '../../firebase';
 import { HomeStack } from './routes/homeStack';
 import { MarketStack } from './routes/marketStack';
-import { options } from './shared';
+import { options, renderIcon } from './shared';
+import { images } from '../../data';
 
 const Stack = createStackNavigator();
 
@@ -58,12 +60,18 @@ export default function Navigation() {
         <HomeTabs.Screen
           name="Home"
           component={HomeStack}
-          options={{ tabBarLabel: 'Home' }}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: () => renderIcon('home'),
+          }}
         />
         <HomeTabs.Screen
           name="Market"
           component={MarketStack}
-          options={{ tabBarLabel: 'Market' }}
+          options={{
+            tabBarLabel: 'Market',
+            tabBarIcon: () => renderIcon('graph'),
+          }}
         />
       </HomeTabs.Navigator>
     );
