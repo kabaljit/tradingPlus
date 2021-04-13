@@ -30,7 +30,8 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
     const defaultCurrency = 'USD';
     return (
       <PortfolioItem
-        title={`${item.currency} / ${defaultCurrency}`}
+        // title={`${item.currency} / ${defaultCurrency}`}
+        title={`${item.currency}`.toUpperCase()}
         amount={item.amount}
         price={item.price}
         currentValue={currentValue}

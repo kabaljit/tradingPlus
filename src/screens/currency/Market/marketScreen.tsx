@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import SuperScreen from '../../../components/SuperScreen';
 import PortfolioItem from '../../../components/PortfolioItem';
 import TextInput from '../../../components/TextInput';
+import { apiKey } from '../../../utils/cryptoAPI';
 
 import {
   MarketScreenFormValues,
@@ -12,27 +13,8 @@ import {
 } from './marketScreen.models';
 import { i18n } from './marketScreen.i18n';
 
-const DATA = [
-  {
-    currency: 'USD',
-    currentPrice: 10000,
-  },
-  {
-    currency: 'BTC',
-    currentPrice: 78456,
-  },
-  {
-    currency: 'MATIC',
-    currentPrice: 1,
-  },
-  {
-    currency: 'ETH',
-    currentPrice: 1,
-  },
-];
-
 const renderItem = ({ item }) => {
-  return <PortfolioItem title={item.currency} price={item.currentPrice} />;
+  return <PortfolioItem title={item.currency} price={item.price} />;
 };
 
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
@@ -48,8 +30,16 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   }, []);
 
   const fetchData = () => {
-    setfilteredData(DATA);
-    setmasterData(DATA);
+    fetch(
+      `https://api.nomics.com/v1/prices?key=${apiKey}&format=json&per-page=10&page=1`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data);
+        setfilteredData(data);
+        setmasterData(data);
+      })
+      .catch((e) => console.error('Error caught:', e));
   };
 
   const searchFilter = (text: string) => {

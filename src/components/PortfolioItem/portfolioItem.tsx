@@ -5,6 +5,7 @@ import { Image, StyleSheet } from 'react-native';
 import { P } from '../Typography';
 import { Box } from '../Box';
 import theme from '../../theme';
+import { apiKey } from '../../utils/cryptoAPI';
 
 import { PortfolioItemProps } from './portfolioItem.models';
 import { PortfolioItemView } from './portfolioItem.styles';
@@ -33,6 +34,32 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
     return `${profit} / ${profitPercentage}%`;
   }
 
+  const [logoUri, setlogoUri] = React.useState('');
+
+  // let logoURI = '';
+
+  React.useEffect(() => {
+    fetchLogo();
+    return () => {};
+  }, [title]);
+
+  const fetchLogo = () => {
+    fetch(
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${title.toUpperCase()}&interval=0&convert=USD`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('title is ', title);
+        console.log(
+          'api link:',
+          `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${title}&interval=0&convert=USD`
+        );
+        console.log('logo url: ', data[0].logo_url);
+        setlogoUri(data[0].logo_url);
+      });
+  };
+  // fetchLogo();
+
   return (
     <TouchableOpacity>
       <PortfolioItemView backgroundColor={theme.colors.tradingZ.deepMagenta}>
@@ -41,7 +68,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
             <Image
               style={styles.tinyLogo}
               source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
+                uri: logoUri,
               }}
             />
           </Box>
