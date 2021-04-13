@@ -100,7 +100,7 @@ const borders = {
 const context = {
   colors: {
     typography: {
-      primary: colors.tradingZ.charcoal,
+      primary: colors.tradingZ.white,
       secondary: colors.tradingZ.lightGrey,
       tertiary: colors.tradingZ.lightSilver,
       inverse: colors.tradingZ.silver,
