@@ -5,9 +5,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject",
+    "generate:asset-modules": "ts-node ./scripts/generateAssetModules",
     "test": "jest",
-    "lint": "eslint *.ts **/*.ts src/**/*.ts"
+    "lint": "eslint *.ts **/*.ts src/**/*.ts",
+    "eject": "expo eject"
   },
   "dependencies": {
     "@callstack/react-theme-provider": "^2.1.0",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.19",
     "@types/lodash": "^4.14.168",
     "@types/react": "~16.9.35",
@@ -71,9 +73,12 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.10.0",
     "eslint-plugin-sonarjs": "^0.6.0",
+    "fs-extra": "^9.1.0",
+    "glob-promise": "^4.1.0",
     "jest-expo": "^40.0.1",
     "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.1",
+    "ts-node": "^9.1.1",
     "typescript": "~3.9.5"
   },
   "private": true
