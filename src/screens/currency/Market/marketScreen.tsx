@@ -2,9 +2,9 @@ import * as React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
 
-import SuperScreen from '../../components/SuperScreen';
-import PortfolioItem from '../../components/PortfolioItem';
-import TextInput from '../../components/TextInput';
+import SuperScreen from '../../../components/SuperScreen';
+import PortfolioItem from '../../../components/PortfolioItem';
+import TextInput from '../../../components/TextInput';
 
 import {
   MarketScreenFormValues,
