@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import * as React from 'react';
 import {
   View,
@@ -8,12 +9,11 @@ import {
   NativeSyntheticEvent,
 } from 'react-native';
 
-import theme from '../../theme';
-
 import { TextInputProps, InputStates } from './TextInput.models';
 import { Input, InputInner } from './TextInput.styles';
 import Label from './Label';
 import Wrapper from './Wrapper';
+import theme from '../../theme';
 
 export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
   (props, ref) => {
@@ -30,7 +30,6 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
       onBlur,
     } = props;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const innerRef = ref ?? React.useRef();
 
     const labelAnimation = React.useMemo(() => new Animated.Value(0), []);
@@ -169,6 +168,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
             onChangeText={handleChangeText}
             selectionColor={theme.colors.tradingZ.blue}
             textAlignVertical="bottom"
+            placeholderTextColor="#C0C0C5"
           />
         </InputInner>
         {!!props.accessoryRight && (

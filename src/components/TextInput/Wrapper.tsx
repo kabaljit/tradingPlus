@@ -24,14 +24,20 @@ const Wrapper: React.FunctionComponent<IWrapperProps> = ({
   const animatedStyles = {
     backgroundColor: animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [theme.colors.tradingZ.white, theme.colors.tradingZ.blue],
+      outputRange: [
+        theme.colors.tradingZ.transparent,
+        theme.colors.tradingZ.charcoal,
+      ],
     }),
   };
 
   const animatedBorderStyles = {
     backgroundColor: animation.interpolate({
       inputRange: [0, 1],
-      outputRange: [theme.colors.tradingZ.white, theme.colors.tradingZ.blue],
+      outputRange: [
+        theme.colors.tradingZ.lightGrey,
+        theme.colors.tradingZ.white,
+      ],
     }),
   };
 

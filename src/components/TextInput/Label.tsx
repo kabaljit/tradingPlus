@@ -56,10 +56,7 @@ const Label = ({ label, animation, state }: ILabelProps) => {
       inputRange: [0, 1],
 
       // TODO: UPDATE THE COLOR FOR EACH STATE input.label[state]],
-      outputRange: [
-        theme.colors.tradingZ.charcoal,
-        theme.colors.tradingZ.success,
-      ],
+      outputRange: [theme.colors.tradingZ.white, theme.colors.tradingZ.success],
     }),
   };
 

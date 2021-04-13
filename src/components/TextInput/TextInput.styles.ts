@@ -58,7 +58,7 @@ export const AnimatedBorder = styled(Animated.View)`
   bottom: 0;
   left: 0;
   right: 0;
-  height: ${scale(2)}px;
+  height: ${scale(1)}px;
 `;
 
 export const InputInner = styled.View`
@@ -74,6 +74,7 @@ export const Input = styled.TextInput<{
 }>`
   min-height: ${(p) => p.dangerouslySetStyles?.input?.minHeight || scale(56)}px;
   font-size: ${(p) => p.dangerouslySetStyles?.font?.size || scale(16)}px;
+  color: ${theme.colors.tradingZ.white};
   background-color: ${(p) => p.backgroundColor ?? 'transparent'};
   padding-left: ${scale(17)}px;
   line-height: ${(p) =>

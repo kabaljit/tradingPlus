@@ -3,9 +3,9 @@ import React from 'react';
 import theme from '../../../theme';
 import Button from '../Base';
 
-import { IPrimaryButton } from './primaryButton.models';
+import { PrimaryButtonProps } from './primaryButton.models';
 
-const PrimaryButton: React.FunctionComponent<IPrimaryButton> = ({
+const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = ({
   children,
   disabled,
   testID,
@@ -16,11 +16,12 @@ const PrimaryButton: React.FunctionComponent<IPrimaryButton> = ({
     testID={testID}
     labelColor={
       disabled || loading
-        ? theme.colors.tradingZ.blue
-        : theme.colors.tradingZ.success
+        ? theme.colors.tradingZ.lightGrey
+        : theme.colors.tradingZ.blue
     }
     disabled={disabled || loading}
     loading={loading}
+    backgroundColor={theme.colors.tradingZ.white}
     {...rest}
   >
     {children}
