@@ -1,16 +1,30 @@
 import * as React from 'react';
-
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import { DataPoints, GraphProps, Prices, SIZE } from './graph.models';
 import {
-  DetailScreenFormValues,
-  DetailScreenProps,
-} from './detailScreen.models';
-import { i18n } from './detailScreen.i18n';
-import SuperScreen from '../../../components/SuperScreen';
-import { Title } from '../../../components/Typography';
-import { PrimaryButton } from '../../../components/buttons/Primary/primaryButton';
-import Graph from '../../../components/Graph';
+  backgroundSelection,
+  BUTTON_WIDTH,
+  GraphView,
+  Label,
+  LabelContainer,
+  Selection,
+} from './graph.styles';
+import { i18n } from './graph.i18n';
+import { View, StyleSheet, Text } from 'react-native';
 
-const DATA = {
+import * as shape from 'd3-shape';
+import Svg, { Path } from 'react-native-svg';
+import { scaleLinear } from 'd3-scale';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { P } from '../Typography';
+import Cursor from './cursor';
+import Header from './header';
+import { css } from 'styled-components';
+
+const data = {
   data: {
     base: 'BTC',
     base_id: '5b71fc48-3dd3-540c-809b-f8c94d0e68b5',
@@ -1815,19 +1829,101 @@ const DATA = {
   },
 };
 
-export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
-  navigation,
-}) => {
+export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
+  const selected = useSharedValue(0);
+  const values = data.data.prices as Prices;
+  const POINTS = 60;
+
+  const buildGraph = (datapoints: DataPoints, label: string) => {
+    const priceList = datapoints.prices.slice(0, POINTS);
+    const formattedValues = priceList.map(
+      (price) => [parseFloat(price[0]), price[1]] as [number, number]
+    );
+    const prices = formattedValues.map((value) => value[0]);
+    const dates = formattedValues.map((value) => value[1]);
+    const scaleX = scaleLinear()
+      .domain([Math.min(...dates), Math.max(...dates)])
+      .range([0, SIZE]);
+    const minPrice = Math.min(...prices);
+    const maxPrice = Math.max(...prices);
+    const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 0]);
+    return {
+      label,
+      minPrice,
+      maxPrice,
+      percentChange: datapoints.percent_change,
+      path: shape
+        .line()
+        .x(([, x]) => scaleX(x) as number)
+        .y(([y]) => scaleY(y) as number)
+        .curve(shape.curveBasis)(formattedValues) as string,
+    };
+  };
+  const graphs = [
+    {
+      label: '1H',
+      value: 0,
+      data: buildGraph(values.hour, 'Last Hour'),
+    },
+    {
+      label: '1D',
+      value: 1,
+      data: buildGraph(values.day, 'Today'),
+    },
+    {
+      label: '1M',
+      value: 2,
+      data: buildGraph(values.month, 'Last Month'),
+    },
+    {
+      label: '1Y',
+      value: 3,
+      data: buildGraph(values.year, 'This Year'),
+    },
+    {
+      label: 'all',
+      value: 4,
+      data: buildGraph(values.all, 'All time'),
+    },
+  ];
+
+  const current = graphs[0].data;
+  const style = useAnimatedStyle(() => ({
+    transform: [{ translateX: BUTTON_WIDTH * selected.value }],
+  }));
   return (
-    <>
-      <SuperScreen background="charcoal">
-        <Title>Detail screen</Title>
-        <Graph></Graph>
-        {/* <PrimaryButton backgroundColor="success">Buy</PrimaryButton>
-        <PrimaryButton backgroundColor="error">Sell</PrimaryButton> */}
-      </SuperScreen>
-    </>
+    <GraphView>
+      <Header data={current} />
+      <View>
+        <Svg width={SIZE} height={SIZE}>
+          <Path
+            d={current.path}
+            fill="transparent"
+            stroke="black"
+            strokeWidth={3}
+          />
+        </Svg>
+        <Cursor data={current} />
+      </View>
+      <Selection>
+        <View style={StyleSheet.absoluteFill}>
+          <View style={[backgroundSelection, style]} />
+        </View>
+        {graphs.map((graph, index) => {
+          return (
+            <TouchableWithoutFeedback
+              key={graph.label}
+              onPress={() => {
+                selected.value = index;
+              }}
+            >
+              <LabelContainer>
+                <Label>{graph.label}</Label>
+              </LabelContainer>
+            </TouchableWithoutFeedback>
+          );
+        })}
+      </Selection>
+    </GraphView>
   );
 };
-
-export default DetailScreen;
