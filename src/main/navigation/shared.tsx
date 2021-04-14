@@ -1,6 +1,7 @@
 import * as React from 'react';
-import theme from '../../theme';
 import { Image } from 'react-native';
+
+import theme from '../../theme';
 import { images } from '../../data';
 
 const backgroundColor = theme.colors.tradingZ.charcoal;
