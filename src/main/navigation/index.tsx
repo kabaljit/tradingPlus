@@ -12,10 +12,11 @@ import navigationService, {
   navigationRef,
 } from '../../utils/navigationService';
 import firebase from '../../firebase';
+import { images } from '../../data';
+
 import { HomeStack } from './routes/homeStack';
 import { MarketStack } from './routes/marketStack';
 import { options, renderIcon } from './shared';
-import { images } from '../../data';
 
 const Stack = createStackNavigator();
 

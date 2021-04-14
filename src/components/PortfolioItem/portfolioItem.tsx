@@ -85,7 +85,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
               </P>
             </Box>
             <Box alignItems="flex-end">
-              <P color={profitColor}>{profit && ProfitAndPercentage()}</P>
+              <P color={profitColor}>{amount && ProfitAndPercentage()}</P>
             </Box>
           </Box>
         </Box>
