@@ -21,7 +21,7 @@ const PrimaryButton: React.FunctionComponent<PrimaryButtonProps> = ({
     }
     disabled={disabled || loading}
     loading={loading}
-    backgroundColor={theme.colors.tradingZ.white}
+    backgroundColor="white"
     {...rest}
   >
     {children}

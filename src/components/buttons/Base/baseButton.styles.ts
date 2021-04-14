@@ -24,11 +24,11 @@ const determineLabelColor = (disabled: boolean) => {
 };
 
 export const Button = styled(TouchableOpacity)<{
-  backgroundColor?: string;
+  backgroundColor: keyof typeof theme.colors.tradingZ;
   rounded?: boolean;
 }>`
   background-color: ${(p) =>
-    p.backgroundColor};
+    theme.colors.tradingZ[p.backgroundColor]};
   height: ${scale(56)}px;
   border-radius: ${(p) => (p.rounded ? scale(28) : 0)}px;
   justify-content: center;
