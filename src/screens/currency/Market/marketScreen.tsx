@@ -13,10 +13,6 @@ import {
 } from './marketScreen.models';
 import { i18n } from './marketScreen.i18n';
 
-const renderItem = ({ item }) => {
-  return <PortfolioItem title={item.currency} price={item.price} />;
-};
-
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   navigation,
 }) => {
@@ -42,7 +38,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
       .catch((e) => console.error('Error caught:', e));
   };
 
-  const searchFilter = (text: string) => {
+  const searchFilter = React.useCallback((text: string) => {
     if (text) {
       const newData = masterData.filter((item) => {
         if (item.currency.includes(text.toUpperCase())) {
@@ -55,7 +51,17 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
       setfilteredData(masterData);
       setsearch(text);
     }
-  };
+  }, []);
+
+  const renderItem = React.useCallback(({ item }) => {
+    return (
+      <PortfolioItem
+        title={item.currency}
+        price={item.price}
+        onPress={() => navigation.navigate('detailCurrency')}
+      />
+    );
+  }, []);
 
   return (
     <>

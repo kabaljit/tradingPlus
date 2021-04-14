@@ -1,8 +1,9 @@
 import { TouchableOpacityProps, GestureResponderEvent } from 'react-native';
+import theme from '../../../theme';
 
 
 export interface BaseButtonProps extends TouchableOpacityProps {
-  backgroundColor?: string;
+  backgroundColor?: keyof typeof theme.colors.tradingZ;
   labelColor?: string;
   accessoryLeft?: () => void;
   accessoryRight?: () => void;

@@ -16,6 +16,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   currentValue,
   price,
   amount,
+  onPress,
 }) => {
   const profit = React.useMemo<number>(() => {
     return currentValue * amount - price;
@@ -61,12 +62,12 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   // fetchLogo();
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <PortfolioItemView backgroundColor={theme.colors.tradingZ.deepMagenta}>
         <Box flexDirection="row">
           <Box>
             <Image
-              style={styles.tinyLogo}
+              style={{ width: 50, height: 50 }}
               source={{
                 uri: logoUri,
               }}
@@ -92,10 +93,3 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  },
-});
