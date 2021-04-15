@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Animated, {
+  useAnimatedProps,
   useAnimatedStyle,
   useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
 import { DataPoints, GraphProps, Prices, SIZE } from './graph.models';
 import {
@@ -19,10 +21,9 @@ import * as shape from 'd3-shape';
 import Svg, { Path } from 'react-native-svg';
 import { scaleLinear } from 'd3-scale';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { P } from '../Typography';
 import Cursor from './cursor';
 import Header from './header';
-import { css } from 'styled-components';
+import { parse } from 'react-native-redash';
 
 const data = {
   data: {
@@ -1830,7 +1831,6 @@ const data = {
 };
 
 export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
-  const selected = useSharedValue(0);
   const values = data.data.prices as Prices;
   const POINTS = 60;
 
@@ -1859,6 +1859,7 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
         .curve(shape.curveBasis)(formattedValues) as string,
     };
   };
+
   const graphs = [
     {
       label: '1H',
@@ -1887,10 +1888,15 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
     },
   ];
 
-  const current = graphs[0].data;
+  const selected = useSharedValue(0);
+  const [selectedValue, setSelectedValue] = React.useState(0);
+  const current = graphs[selectedValue].data;
+  console.log('selectd: ', selected);
+
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: BUTTON_WIDTH * selected.value }],
   }));
+
   return (
     <GraphView>
       <Header data={current} />
@@ -1907,14 +1913,16 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
       </View>
       <Selection>
         <View style={StyleSheet.absoluteFill}>
-          <View style={[backgroundSelection, style]} />
+          <Animated.View style={[backgroundSelection, style]} />
         </View>
         {graphs.map((graph, index) => {
           return (
             <TouchableWithoutFeedback
               key={graph.label}
               onPress={() => {
-                selected.value = index;
+                selected.value = withTiming(index);
+                setSelectedValue(index);
+                console.log('selected: ', selected);
               }}
             >
               <LabelContainer>
