@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { round } from 'react-native-redash';
+import theme from '../../theme';
 
 // import ETH from './components/ETH';
 
@@ -16,9 +17,11 @@ const styles = StyleSheet.create({
   value: {
     fontWeight: '500',
     fontSize: 24,
+    color: theme.colors.tradingZ.white,
   },
   label: {
     fontSize: 18,
+    color: theme.colors.tradingZ.white,
   },
 });
 

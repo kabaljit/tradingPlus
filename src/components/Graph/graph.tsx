@@ -1900,7 +1900,7 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
   return (
     <GraphView>
       <Header data={current} />
-      <View>
+      <View style={{ backgroundColor: 'white' }}>
         <Svg width={SIZE} height={SIZE}>
           <Path
             d={current.path}

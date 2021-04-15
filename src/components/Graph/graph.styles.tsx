@@ -1,6 +1,7 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
+import theme from '../../theme';
 
 const { width } = Dimensions.get('window');
 
@@ -8,8 +9,8 @@ const SELECTION_WIDTH = width - 32;
 export const BUTTON_WIDTH = (width - 32) / 5;
 
 export const GraphView = styled.View`
-  flex: 1;
-  background-color: white;
+  /* flex: 1; */
+  background-color: ${theme.colors.tradingZ.charcoal};
 `;
 
 export const Selection = styled.View`
@@ -23,16 +24,17 @@ export const LabelContainer = styled.View`
   padding-top: 16;
   padding-bottom: 16;
   width: ${BUTTON_WIDTH};
+  /* background-color: ${theme.colors.tradingZ.blue}; */
 `;
 export const Label = styled.Text`
   font-size: 16;
-  color: black;
+  color: ${theme.colors.tradingZ.white};
   font-weight: bold;
   text-align: center;
 `;
 
 export const backgroundSelection = {
-  backgroundColor: '#f3f3f3',
+  backgroundColor: theme.colors.tradingZ.blue,
   ...StyleSheet.absoluteFillObject,
   width: BUTTON_WIDTH,
   borderRadius: 8,
