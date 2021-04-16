@@ -12,10 +12,10 @@ import navigationService, {
   navigationRef,
 } from '../../utils/navigationService';
 import firebase from '../../firebase';
-import { images } from '../../data';
 
 import { HomeStack } from './routes/homeStack';
 import { MarketStack } from './routes/marketStack';
+import { SettingsStack } from './routes/settingsStack';
 import { options, renderIcon } from './shared';
 
 const Stack = createStackNavigator();
@@ -72,6 +72,14 @@ export default function Navigation() {
           options={{
             tabBarLabel: 'Market',
             tabBarIcon: () => renderIcon('graph'),
+          }}
+        />
+        <HomeTabs.Screen
+          name="Settings"
+          component={SettingsStack}
+          options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: () => renderIcon('user'),
           }}
         />
       </HomeTabs.Navigator>
