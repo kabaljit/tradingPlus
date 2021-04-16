@@ -22,7 +22,8 @@ export const MarketStack = () => {
         name="detailCurrency"
         component={DetailScreen}
         options={{
-          headerShown: false,
+          // headerShown: false,
+          title: 'Currency Screen',
           ...options,
         }}
       />

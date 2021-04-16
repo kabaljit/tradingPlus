@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, Image } from 'react-native';
 
 import SuperScreen from '../../../components/SuperScreen';
 import PortfolioItem from '../../../components/PortfolioItem';
 import TextInput from '../../../components/TextInput';
 import { apiKey } from '../../../utils/cryptoAPI';
-import { P } from '../../../components/Typography';
 
 import {
   MarketScreenFormValues,
   MarketScreenProps,
 } from './marketScreen.models';
 import { i18n } from './marketScreen.i18n';
+import { images } from '../../../data';
+import { Row } from '../../../components/Box';
+import { P, Title } from '../../../components/Typography';
 
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   navigation,
@@ -71,16 +73,51 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
       <SuperScreen statusBarColor="light-content" background={'charcoal'}>
         <TextInput
           value={search}
-          placeholder="Search Here"
+          placeholder={i18n.t('searchLabel')}
           onChangeText={(text) => searchFilter(text)}
+          accessoryLeft={
+            <Image
+              style={{ tintColor: 'white' }}
+              source={images.search}
+              width={19}
+              height={21}
+            />
+          }
         />
         <FlatList
           data={filteredData}
           renderItem={renderItem}
           ListFooterComponent={
-            isLoading ? <ActivityIndicator color="#666" /> : <></>
+            isLoading ? (
+              <Row spacing={{ top: 6 }}>
+                <ActivityIndicator color="#666" />
+              </Row>
+            ) : (
+              <></>
+            )
           }
           // keyExtractor={(item) => item.id}
+          ListEmptyComponent={
+            !isLoading ? (
+              <Row
+                spacing={{ top: 12 }}
+                flex={1}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Title size="large">{i18n.t('emptyListTitle')}</Title>
+                <P>{i18n.t('emptyListLabel')}</P>
+                <Row spacing={{ top: 12, bottom: 12 }} flex={1} />
+
+                <Image
+                  source={images.userNoFound}
+                  style={{ width: '80%', height: 240 }}
+                />
+              </Row>
+            ) : (
+              <></>
+            )
+          }
         />
       </SuperScreen>
     </>
