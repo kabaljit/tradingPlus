@@ -22,7 +22,6 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
       .ref('users')
       .on('value', (snapshot) => {
         const data = snapshot.val();
-        console.log('users:', data);
         setUsers(data);
         setIsLoading(false);
       });
@@ -41,7 +40,6 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
       />
     );
   };
-  console.log('usersL : ', users);
 
   return (
     <>

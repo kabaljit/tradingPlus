@@ -1,11 +1,10 @@
+/* eslint-disable camelcase */
+
+import Animated from "react-native-reanimated";
+import { Vector } from "react-native-redash";
+
 export interface GraphProps {
 }
-
-
-/* eslint-disable camelcase */
-import { Dimensions } from "react-native";
-
-export const SIZE = Dimensions.get("window").width;
 
 export interface Amount {
   amount: string;
@@ -27,8 +26,7 @@ export interface LatestPrice {
   percent_change: PercentChange;
 }
 
-export type Price = [string, number];
-export type PriceList = [string, number][];
+type PriceList = [string, number][];
 
 export interface DataPoints {
   percent_change: number;
@@ -46,10 +44,17 @@ export interface Prices {
   all: DataPoints;
 }
 
-export interface Data {
-  base: string;
-  base_id: string;
-  unit_price_scale: number;
-  currency: string;
-  prices: Prices;
+export type GraphIndex = 0 | 1 | 2 | 3 | 4;
+
+
+
+export interface CursorProps {
+  index: Animated.SharedValue<GraphIndex>;
+  translation: Vector<Animated.SharedValue<number>>;
+}
+
+
+export interface HeaderProps {
+  translation: Vector<Animated.SharedValue<number>>;
+  index: Animated.SharedValue<GraphIndex>;
 }

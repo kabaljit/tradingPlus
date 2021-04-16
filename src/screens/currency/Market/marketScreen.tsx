@@ -61,7 +61,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
       <PortfolioItem
         title={item.currency}
         price={item.price}
-        onPress={() => navigation.navigate('detailCurrency')}
+        onPress={() => navigation.navigate('detailCurrency', { item: item })}
       />
     );
   }, []);

@@ -14,6 +14,7 @@ import { Box, Row } from '../../../components/Box';
 import { FlatList, View } from 'react-native';
 import { images } from '../../../data';
 import { scale } from '../../../utils/layout';
+// import NewGraph from '../../../components/NewGraph';
 
 const data = [
   {

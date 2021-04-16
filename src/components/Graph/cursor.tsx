@@ -1,7 +1,19 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { PanGestureHandler } from 'react-native-gesture-handler';
+import Animated, {
+  useAnimatedGestureHandler,
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from 'react-native-reanimated';
+import { getYForX } from 'react-native-redash';
+import { CursorProps } from './graph.models';
+import { CursorBody } from './graph.styles';
 
-const CURSOR = 50;
+import { graphs } from './graph.utils';
+export const CURSOR = 50;
+
 const styles = StyleSheet.create({
   cursor: {
     width: CURSOR,
@@ -19,16 +31,46 @@ const styles = StyleSheet.create({
   },
 });
 
-interface CursorProps {
-  data: { path: string };
-}
+const Cursor: React.FunctionComponent<CursorProps> = ({
+  index,
+  translation,
+}) => {
+  const isActive = useSharedValue(false);
+  const onGestureEvent = useAnimatedGestureHandler({
+    onStart: () => {
+      isActive.value = true;
+    },
+    onActive: (event) => {
+      translation.x.value = event.x;
+      translation.y.value =
+        getYForX(graphs[index.value].data.path, translation.x.value) || 0;
+    },
+    onEnd: () => {
+      isActive.value = false;
+    },
+  });
 
-const Cursor = ({ data }: CursorProps) => {
+  const style = useAnimatedStyle(() => {
+    const translateX = translation.x.value - CURSOR / 2;
+    const translateY = translation.y.value - CURSOR / 2;
+    return {
+      transform: [
+        { translateX },
+        { translateY },
+        { scale: withSpring(isActive.value ? 1 : 0) },
+      ],
+    };
+  });
+
   return (
     <View style={StyleSheet.absoluteFill}>
-      <View style={[styles.cursor]}>
-        <View style={styles.cursorBody} />
-      </View>
+      <PanGestureHandler {...{ onGestureEvent }}>
+        <Animated.View style={StyleSheet.absoluteFill}>
+          <Animated.View style={[styles.cursor, style]}>
+            <CursorBody />
+          </Animated.View>
+        </Animated.View>
+      </PanGestureHandler>
     </View>
   );
 };
