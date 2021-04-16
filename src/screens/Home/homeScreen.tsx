@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList, Text } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 
 import PortfolioItem from '../../components/PortfolioItem';
 import SuperScreen from '../../components/SuperScreen';
@@ -13,8 +13,10 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
 
   // TODO: INSTEAD OF FETCHING ALL DATA, ONLY FETCH DATA OF LOGGED IN USER
   const [users, setUsers] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
+    setIsLoading(true);
     firebase
       .database()
       .ref('users')
@@ -22,6 +24,7 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
         const data = snapshot.val();
         console.log('users:', data);
         setUsers(data);
+        setIsLoading(false);
       });
   }, [setUsers]);
 
@@ -42,11 +45,23 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
 
   return (
     <>
-      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
-        <Text>{}</Text>
+      <SuperScreen
+        statusBarColor="light-content"
+        background={'charcoal'}
+        scrollable={true}
+      >
+        <View
+          style={{
+            width: 350,
+            height: 350,
+            backgroundColor: 'white',
+            alignSelf: 'center',
+          }}
+        />
         <FlatList
           data={users[0]?.portfolio || []}
           renderItem={renderItem}
+          ListFooterComponent={isLoading && <ActivityIndicator />}
           // keyExtractor={(item) => item.id}
         />
       </SuperScreen>
