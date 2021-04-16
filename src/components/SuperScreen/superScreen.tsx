@@ -18,7 +18,7 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
     children,
     loading,
     background = 'white',
-    statusBarBackground = 'midnightBlue',
+    statusBarBackground = 'charchoal',
     statusBarColor = props.fullscreen ? 'dark-content' : 'light-content',
     keyboardAvoiding = true,
     hasPadding = true,
@@ -59,7 +59,9 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
       <Wrapper>
         <StatusBar
           backgroundColor={
-            fullscreen ? 'transparent' : theme.colors.tradingZ.white
+            fullscreen
+              ? 'transparent'
+              : theme.colors.tradingZ[statusBarBackground]
           }
           barStyle={statusBarColor}
         />

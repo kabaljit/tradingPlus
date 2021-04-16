@@ -42,7 +42,7 @@ export const FakeInputBorder = styled.View<{
 
 export const AnimatedBackground = styled(Animated.View)<{ minHeight?: number }>`
   position: relative;
-  background-color: ${theme.colors.tradingZ.blue};
+  background-color: ${theme.colors.tradingZ.charcoal};
   min-height: ${(p) => p.minHeight || scale(56)}px;
 `;
 

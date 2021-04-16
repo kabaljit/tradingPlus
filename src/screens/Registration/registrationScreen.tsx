@@ -16,6 +16,7 @@ import {
 } from './registrationScreen.models';
 import { Title } from '../../components/Typography/Typography';
 import { P } from '../../components/Typography';
+import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
@@ -115,7 +116,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                 errorMessage={formikProps.errors.password}
                 testID="lossOrStolenRadioButtonError"
               >
-                <TextInput
+                <PasswordInput
                   placeholder="Password"
                   value={formikProps.values.password}
                   onChangeText={(value) =>

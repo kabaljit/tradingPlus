@@ -13,6 +13,7 @@ import { Row } from '../../components/Box';
 import { images } from '../../data';
 import theme from '../../theme';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import firebase from '../../firebase';
 
 export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
   navigation,
@@ -27,6 +28,12 @@ export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
       route: 'Market',
     },
   ];
+  const logout = React.useCallback(() => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => navigation.navigate('Login'));
+  }, []);
 
   const renderItem = React.useCallback(({ item }: { item: SettingsMenu }) => {
     return (
@@ -61,11 +68,18 @@ export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
             <View
               style={{
                 borderWidth: theme.borders.hairlineWidth,
-                borderColor: theme.colors.tradingZ.white,
+                borderColor: theme.colors.tradingZ.grey,
               }}
             />
           )}
         />
+        <TouchableOpacity onPress={() => logout()}>
+          <Row alignItems="center">
+            <P size="large" color="link">
+              {i18n.t('signOutLabel')}
+            </P>
+          </Row>
+        </TouchableOpacity>
       </SuperScreen>
     </>
   );

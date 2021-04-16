@@ -4,5 +4,6 @@ export const i18n = generateI18n('settingsScreen', {
   en: {
     menuProfile: "Profile",
     menuChangePassword: "Change Password",
+    signOutLabel:'Sign Out'
   },
 });

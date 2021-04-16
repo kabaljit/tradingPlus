@@ -2,6 +2,7 @@ import { generateI18n } from '../../utils/i18n';
 
 export const i18n = generateI18n('loginScreen', {
   en: {
+    title:'Welcome back!!',
     emailErrorMessage: 'Email is required',
     emailFormatErrorMessage: 'Email is Invalid',
     passwordErrorMessage: 'Password is required',

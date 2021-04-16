@@ -42,7 +42,7 @@ export default function Navigation() {
       firebase.auth().onAuthStateChanged((user) => {
         // Is user logged in ?
         if (user) {
-          navigationService.navigate('HomeTabs');
+          navigationService.replace('HomeTabs');
         } else {
           navigationService.navigate('Login');
         }
