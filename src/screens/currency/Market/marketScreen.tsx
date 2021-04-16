@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
 import SuperScreen from '../../../components/SuperScreen';
 import PortfolioItem from '../../../components/PortfolioItem';
 import TextInput from '../../../components/TextInput';
 import { apiKey } from '../../../utils/cryptoAPI';
+import { P } from '../../../components/Typography';
 
 import {
   MarketScreenFormValues,
@@ -16,27 +18,28 @@ import { i18n } from './marketScreen.i18n';
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   navigation,
 }) => {
-  const [filteredData, setfilteredData] = useState([]);
-  const [masterData, setmasterData] = useState([]);
-  const [search, setsearch] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  const [masterData, setMasterData] = useState([]);
+  const [search, setSearch] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
-    return () => {};
-  }, []);
-
-  const fetchData = () => {
+    setIsLoading(true);
     fetch(
       `https://api.nomics.com/v1/prices?key=${apiKey}&format=json&per-page=10&page=1`
     )
       .then((response) => response.json())
       .then((data) => {
         // console.log(data);
-        setfilteredData(data);
-        setmasterData(data);
+        setFilteredData(data);
+        setMasterData(data);
+        setIsLoading(false);
       })
-      .catch((e) => console.error('Error caught:', e));
-  };
+      .catch((e) => {
+        console.error('Error caught:', e);
+        setIsLoading(false);
+      });
+  }, []);
 
   const searchFilter = React.useCallback((text: string) => {
     if (text) {
@@ -45,11 +48,11 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
           return item;
         }
       });
-      setfilteredData(newData);
-      setsearch(text);
+      setFilteredData(newData);
+      setSearch(text);
     } else {
-      setfilteredData(masterData);
-      setsearch(text);
+      setFilteredData(masterData);
+      setSearch(text);
     }
   }, []);
 
@@ -74,6 +77,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
         <FlatList
           data={filteredData}
           renderItem={renderItem}
+          ListFooterComponent={isLoading && <ActivityIndicator color="#666" />}
           // keyExtractor={(item) => item.id}
         />
       </SuperScreen>

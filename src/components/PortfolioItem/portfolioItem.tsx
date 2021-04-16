@@ -8,7 +8,7 @@ import theme from '../../theme';
 import { apiKey } from '../../utils/cryptoAPI';
 
 import { PortfolioItemProps } from './portfolioItem.models';
-import { PortfolioItemView } from './portfolioItem.styles';
+import { PortfolioItemView, PortfolioItemImage } from './portfolioItem.styles';
 import { i18n } from './portfolioItem.i18n';
 
 export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
@@ -37,14 +37,7 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
 
   const [logoUri, setlogoUri] = React.useState('');
 
-  // let logoURI = '';
-
   React.useEffect(() => {
-    fetchLogo();
-    return () => {};
-  }, [title]);
-
-  const fetchLogo = () => {
     fetch(
       `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${title.toUpperCase()}&interval=0&convert=USD`
     )
@@ -58,16 +51,14 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
         console.log('logo url: ', data[0].logo_url);
         setlogoUri(data[0].logo_url);
       });
-  };
-  // fetchLogo();
+  }, [title]);
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <PortfolioItemView backgroundColor={theme.colors.tradingZ.deepMagenta}>
+      <PortfolioItemView backgroundColor={theme.colors.tradingZ.majesticPeak}>
         <Box flexDirection="row">
           <Box>
-            <Image
-              style={{ width: 50, height: 50 }}
+            <PortfolioItemImage
               source={{
                 uri: logoUri,
               }}
@@ -76,16 +67,18 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
 
           <Box flex={1} spacing={{ left: 3 }}>
             <Box flexDirection="row" flex={1} justifyContent="space-between">
-              <P color="white" weight="bold" size="large">
+              <P color="white" weight="bold" size="small">
                 {title}
               </P>
 
-              <P color="white" size="large">
+              <P color="white" size="small">
                 $ {price}
               </P>
             </Box>
             <Box alignItems="flex-end">
-              <P color={profitColor}>{amount && ProfitAndPercentage()}</P>
+              <P color={profitColor} size="small">
+                {amount && ProfitAndPercentage()}
+              </P>
             </Box>
           </Box>
         </Box>
