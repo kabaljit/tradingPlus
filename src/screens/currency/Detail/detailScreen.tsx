@@ -1,4 +1,5 @@
 import * as React from 'react';
+import RNBottomsheet from 'reanimated-bottom-sheet';
 
 import { Image } from 'react-native';
 import {
@@ -14,6 +15,7 @@ import { Box, Row } from '../../../components/Box';
 import { FlatList, View } from 'react-native';
 import { images } from '../../../data';
 import { scale } from '../../../utils/layout';
+import Bottomsheet from '../../../components/Bottomsheet';
 // import NewGraph from '../../../components/NewGraph';
 
 const data = [
@@ -39,8 +41,12 @@ const data = [
   },
 ];
 export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
-  navigation,
+  route,
 }) => {
+  const data = route.params;
+
+  console.log('data: ', data);
+
   const renderItem = React.useCallback(({ item }) => {
     const p = (item.orderType === 'sell' && {
       icon: images.arrowUp,
@@ -72,6 +78,40 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       </Row>
     );
   }, []);
+
+  const buyRef = React.useRef<RNBottomsheet>(null);
+  const sellRef = React.useRef<RNBottomsheet>(null);
+
+  const renderBuyContent = React.useCallback(
+    () => (
+      <View
+        style={{
+          backgroundColor: 'white',
+          padding: 16,
+          height: 450,
+        }}
+      >
+        <P color="blue">WE CAN BUY NOW </P>
+      </View>
+    ),
+    []
+  );
+
+  const renderSellContent = React.useCallback(
+    () => (
+      <View
+        style={{
+          backgroundColor: 'white',
+          padding: 16,
+          height: 450,
+        }}
+      >
+        <P color="blue">WE CAN SELL NOW </P>
+      </View>
+    ),
+    []
+  );
+
   return (
     <>
       <SuperScreen background="charcoal" hasPadding={false} scrollable={true}>
@@ -82,13 +122,29 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
           spacing={{ left: 4, right: 4, top: 4, bottom: 4 }}
         >
           <Box flex={1}>
-            <PrimaryButton backgroundColor="success" labelColor="white">
+            <PrimaryButton
+              backgroundColor="success"
+              labelColor="white"
+              onPress={() => {
+                console.log('Pressed the button');
+                sellRef.current.snapTo(2);
+                buyRef.current.snapTo(0);
+              }}
+            >
               {i18n.t('buyLabel')}
             </PrimaryButton>
           </Box>
           <Row spacing={{ left: 4, right: 4 }} />
           <Box flex={1}>
-            <PrimaryButton backgroundColor="error" labelColor="white">
+            <PrimaryButton
+              backgroundColor="error"
+              labelColor="white"
+              onPress={() => {
+                console.log('Pressed the button');
+                buyRef.current.snapTo(2);
+                sellRef.current.snapTo(0);
+              }}
+            >
               {i18n.t('sellLabel')}
             </PrimaryButton>
           </Box>
@@ -103,6 +159,8 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
           />
         </Row>
       </SuperScreen>
+      <Bottomsheet ref={buyRef} renderContent={renderBuyContent} />
+      <Bottomsheet ref={sellRef} renderContent={renderSellContent} />
     </>
   );
 };

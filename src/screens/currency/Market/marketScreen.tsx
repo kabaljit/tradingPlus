@@ -77,7 +77,9 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
         <FlatList
           data={filteredData}
           renderItem={renderItem}
-          ListFooterComponent={isLoading && <ActivityIndicator color="#666" />}
+          ListFooterComponent={
+            isLoading ? <ActivityIndicator color="#666" /> : <></>
+          }
           // keyExtractor={(item) => item.id}
         />
       </SuperScreen>
