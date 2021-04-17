@@ -87,6 +87,7 @@ export const Input = styled.TextInput<{
       p.dangerouslySetStyles?.input?.paddingTop &&
       `padding-top: ${p.dangerouslySetStyles?.input?.paddingTop}`}px;
   ${(p) => !p.textOnly && `padding-top: ${scale(12)}px;`}
+  padding-bottom: ${scale(10)}px;
   ${(p) =>
     p.multiline &&
     `

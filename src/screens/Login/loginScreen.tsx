@@ -121,10 +121,10 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       testID="lossOrStolenRadioButtonError"
                     >
                       <TextInput
-                        label="Email"
-                        placeholder="Email"
+                        label={i18n.t('emailLabel')}
                         value={values.email}
                         onBlur={() => setFieldTouched('email')}
+                        error={!!errors.email}
                         onChangeText={(value) => setFieldValue('email', value)}
                       />
                     </InputWrapper>
@@ -135,8 +135,9 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                       testID="lossOrStolenRadioButtonError"
                     >
                       <PasswordInput
-                        placeholder="Password"
+                        label={i18n.t('passwordLabel')}
                         value={values.password}
+                        error={!!errors.password}
                         onBlur={() => setFieldTouched('password')}
                         onChangeText={(value) =>
                           setFieldValue('password', value)

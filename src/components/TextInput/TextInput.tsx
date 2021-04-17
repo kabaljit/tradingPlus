@@ -79,7 +79,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
     };
 
     React.useEffect(() => {
-      if (value?.length) {
+      if (value?.length && !error) {
         setInputState(InputStates.COMPLETE);
         labelAnimation.setValue(1);
       } else if (placeholder) {
