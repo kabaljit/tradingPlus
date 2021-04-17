@@ -54,6 +54,7 @@
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.0.0",
     "react-navigation-props-mapper": "^1.0.4",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
     "styled-components": "^5.2.1",
     "swr": "^0.4.0"
   },

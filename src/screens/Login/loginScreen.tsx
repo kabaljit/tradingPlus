@@ -77,7 +77,11 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
 
   return (
     <>
-      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
+      <SuperScreen
+        statusBarColor="light-content"
+        background={'charcoal'}
+        statusBarBackground="charcoal"
+      >
         <SafeArea>
           <Formik
             initialValues={{
@@ -96,68 +100,80 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
               handleSubmit,
             }) => (
               <>
-                <Box>{/* <Title color="white"> Welcome back!!</Title> */}</Box>
-
-                <View
-                /*Empty container for the logo*/
-                >
-                  {/* <Image source={images.logo} width={10} height={10} /> */}
-                </View>
-                <Box flex={10} spacing={{ top: 4 }} justifyContent="center">
-                  {/* <Image source={images.logo} width={10} height={10} /> */}
-                  <InputWrapper
-                    errorVisible={touched.email && !!errors.email}
-                    errorMessage={errors.email}
-                    testID="lossOrStolenRadioButtonError"
-                  >
-                    <TextInput
-                      placeholder="Email"
-                      value={values.email}
-                      onBlur={() => setFieldTouched('email')}
-                      onChangeText={(value) => setFieldValue('email', value)}
+                <Box flex={1} justifyContent="space-between">
+                  <Row alignItems="center" spacing={{ top: 9, bottom: 9 }}>
+                    <Image
+                      source={images.logoWhite}
+                      width={50}
+                      height={50}
+                      style={{ width: 80, height: 90 }}
                     />
-                  </InputWrapper>
-
-                  <InputWrapper
-                    errorVisible={touched.password && !!errors.password}
-                    errorMessage={errors.password}
-                    testID="lossOrStolenRadioButtonError"
-                  >
-                    <PasswordInput
-                      placeholder="Password"
-                      value={values.password}
-                      onBlur={() => setFieldTouched('password')}
-                      onChangeText={(value) => setFieldValue('password', value)}
-                    />
-                  </InputWrapper>
-                  <Box alignItems="center" spacing={{ bottom: 4 }}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('Registration')}
-                    >
-                      <P color="link" align="right">
-                        {i18n.t('forgetPasswordLabel')}
-                      </P>
-                    </TouchableOpacity>
-                  </Box>
-                  <PrimaryButton
-                    onPress={() => handleSubmit()}
-                    loading={loading}
-                  >
-                    {i18n.t('submitButtonLabel')}
-                  </PrimaryButton>
-                </Box>
-                <Box
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={{ top: 5 }}
-                >
-                  <Row>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('Registration')}
-                    >
-                      <P color="link">{i18n.t('registerAccountLabel')}</P>
-                    </TouchableOpacity>
+                    <Row alignItems="center" spacing={{ top: 5, bottom: 9 }}>
+                      <Title color="white"> {i18n.t('title')}</Title>
+                    </Row>
                   </Row>
+
+                  <Box justifyContent="center">
+                    {/* <Image source={images.logo} width={10} height={10} /> */}
+                    <InputWrapper
+                      errorVisible={touched.email && !!errors.email}
+                      errorMessage={errors.email}
+                      testID="lossOrStolenRadioButtonError"
+                    >
+                      <TextInput
+                        label={i18n.t('emailLabel')}
+                        value={values.email}
+                        onBlur={() => setFieldTouched('email')}
+                        error={!!errors.email}
+                        onChangeText={(value) => setFieldValue('email', value)}
+                      />
+                    </InputWrapper>
+
+                    <InputWrapper
+                      errorVisible={touched.password && !!errors.password}
+                      errorMessage={errors.password}
+                      testID="lossOrStolenRadioButtonError"
+                    >
+                      <PasswordInput
+                        label={i18n.t('passwordLabel')}
+                        value={values.password}
+                        error={!!errors.password}
+                        onBlur={() => setFieldTouched('password')}
+                        onChangeText={(value) =>
+                          setFieldValue('password', value)
+                        }
+                      />
+                    </InputWrapper>
+                    <Box alignItems="center" spacing={{ bottom: 4 }}>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('Registration')}
+                      >
+                        <P color="link" align="right">
+                          {i18n.t('forgetPasswordLabel')}
+                        </P>
+                      </TouchableOpacity>
+                    </Box>
+                    <PrimaryButton
+                      onPress={() => handleSubmit()}
+                      loading={loading}
+                    >
+                      {i18n.t('submitButtonLabel')}
+                    </PrimaryButton>
+                  </Box>
+                  <Box
+                    justifyContent="flex-end"
+                    alignItems="center"
+                    spacing={{ top: 5 }}
+                    flex={1}
+                  >
+                    <Row>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('Registration')}
+                      >
+                        <P color="link">{i18n.t('registerAccountLabel')}</P>
+                      </TouchableOpacity>
+                    </Row>
+                  </Box>
                 </Box>
               </>
             )}

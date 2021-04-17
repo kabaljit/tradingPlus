@@ -42,7 +42,7 @@ export const FakeInputBorder = styled.View<{
 
 export const AnimatedBackground = styled(Animated.View)<{ minHeight?: number }>`
   position: relative;
-  background-color: ${theme.colors.tradingZ.blue};
+  background-color: ${theme.colors.tradingZ.charcoal};
   min-height: ${(p) => p.minHeight || scale(56)}px;
 `;
 
@@ -87,6 +87,7 @@ export const Input = styled.TextInput<{
       p.dangerouslySetStyles?.input?.paddingTop &&
       `padding-top: ${p.dangerouslySetStyles?.input?.paddingTop}`}px;
   ${(p) => !p.textOnly && `padding-top: ${scale(12)}px;`}
+  padding-bottom: ${scale(10)}px;
   ${(p) =>
     p.multiline &&
     `

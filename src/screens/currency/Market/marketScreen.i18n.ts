@@ -2,6 +2,8 @@ import { generateI18n } from '../../../utils/i18n';
 
 export const i18n = generateI18n('marketScreen', {
   en: {
-    title: 'Title',
+    searchLabel: "Search...",
+    emptyListTitle: 'Not Found',
+    emptyListLabel: "Could not find any currency, please try again"
   },
 });
