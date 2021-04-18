@@ -23,7 +23,7 @@ export const SettingsStack = () => (
       component={ProfileScreen}
       options={{
         title: 'Profile',
-        headerShown: true,
+        headerShown: false,
         ...options,
       }}
     />
