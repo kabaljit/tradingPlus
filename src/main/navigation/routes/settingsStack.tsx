@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import { SettingsScreen } from '../../../screens/Settings';
 import { options } from '../shared';
+import { ProfileScreen } from '../../../screens/Profile';
 
 const Stack = createStackNavigator();
 
@@ -12,6 +14,15 @@ export const SettingsStack = () => (
       component={SettingsScreen}
       options={{
         title: 'Settings',
+        headerShown: true,
+        ...options,
+      }}
+    />
+    <Stack.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        title: 'Profile',
         headerShown: true,
         ...options,
       }}

@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList, Text, View, Image } from 'react-native';
 import PortfolioItem from '../../components/PortfolioItem';
 import SuperScreen from '../../components/SuperScreen';
 import firebase from '../../firebase';
+import { Row } from '../../components/Box';
 
 import { HomeScreenProps } from './homeScreen.models';
 import { i18n } from './homeScreen.i18n';
