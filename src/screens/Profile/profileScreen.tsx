@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 
 import firebase from '../../firebase';
 import { P } from '../../components/Typography';
@@ -8,7 +8,7 @@ import { Box } from '../../components/Box';
 
 import {
   ProfileItems,
-  ProfileScreenFormValues,
+  // ProfileScreenFormValues,
   ProfileScreenProps,
 } from './profileScreen.models';
 import { i18n } from './profileScreen.i18n';
@@ -28,11 +28,11 @@ export const ProfileScreen: React.FunctionComponent<ProfileScreenProps> = ({}) =
 
   const fields: ProfileItems[] = [
     {
-      title: 'Full Name',
+      title: i18n.t('profileName'),
       value: `${users[0]?.firstname} ${users[0]?.surname}`,
     },
     {
-      title: 'Email',
+      title: i18n.t('profileEmail'),
       value: `${users[0]?.email}`,
     },
   ];
