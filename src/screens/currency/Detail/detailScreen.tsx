@@ -19,7 +19,6 @@ import { P, Title } from '../../../components/Typography';
 import { PrimaryButton } from '../../../components/buttons/Primary/primaryButton';
 import Graph from '../../../components/Graph';
 import { Box, Row } from '../../../components/Box';
-import { FlatList, View } from 'react-native';
 import { images } from '../../../data';
 import { scale } from '../../../utils/layout';
 import Bottomsheet from '../../../components/Bottomsheet';

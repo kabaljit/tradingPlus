@@ -6,5 +6,4 @@ export interface MarketScreenFormValues {
   // Formik parameters here.
 }
 
-export interface MarketScreenProps extends MarketScreenParams {
-}
+export interface MarketScreenProps extends MarketScreenParams {}

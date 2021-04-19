@@ -4,9 +4,7 @@ import renderer from 'react-test-renderer';
 import { Graph } from './graph';
 import { GraphProps } from './graph.models';
 
-const props: GraphProps = {
-
-};
+const props: GraphProps = {};
 
 describe('Given a Graph component, when it is rendered', () => {
   it('should match the snapshot', () => {

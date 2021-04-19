@@ -9,8 +9,13 @@ export const SIZE = Dimensions.get("window").width;
 const values = data[0].prices;
 const POINTS = 60;
 
+import data from './data.json';
 
+import { Prices, DataPoints } from '.';
 
+export const SIZE = Dimensions.get('window').width;
+const values = data.data.prices as Prices;
+const POINTS = 60;
 
 export const buildGraph = (datapoints: DataPoints, label: string) => {
 
@@ -51,22 +56,22 @@ export const graphs = [
     data: buildGraph(data[0], "Last Hour"),
   },
   {
-    label: "1D",
+    label: '1D',
     value: 1,
     // data: buildGraph(values.day, "Today"),
   },
   {
-    label: "1M",
+    label: '1M',
     value: 2,
     // data: buildGraph(values.month, "Last Month"),
   },
   {
-    label: "1Y",
+    label: '1Y',
     value: 3,
     // data: buildGraph(values.year, "This Year"),
   },
   {
-    label: "all",
+    label: 'all',
     value: 4,
     // data: buildGraph(values.all, "All time"),
   },

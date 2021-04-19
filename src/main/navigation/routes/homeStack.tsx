@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import { HomeScreen } from '../../../screens/Home';
 import { options } from '../shared';
 import { DetailScreen } from '../../../screens/currency/Detail';

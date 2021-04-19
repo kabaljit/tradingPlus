@@ -52,13 +52,10 @@ export interface DataPoints {
 
 export type GraphIndex = 0 | 1 | 2 | 3 | 4;
 
-
-
 export interface CursorProps {
   index: Animated.SharedValue<GraphIndex>;
   translation: Vector<Animated.SharedValue<number>>;
 }
-
 
 export interface HeaderProps {
   currencyName: string;

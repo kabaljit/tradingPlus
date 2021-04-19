@@ -8,15 +8,15 @@ import TextInput from '../../components/TextInput';
 import { PrimaryButton } from '../../components/buttons';
 import InputWrapper from '../../components/InputWrapper';
 import firebase from '../../firebase';
+import { Title } from '../../components/Typography/Typography';
+import { P } from '../../components/Typography';
+import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
 
-import { i18n } from './registrationScreen.i18n';
 import {
   RegistrationScreenFormValues,
   RegistrationScreenProps,
 } from './registrationScreen.models';
-import { Title } from '../../components/Typography/Typography';
-import { P } from '../../components/Typography';
-import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
+import { i18n } from './registrationScreen.i18n';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
