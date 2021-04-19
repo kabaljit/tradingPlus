@@ -6,7 +6,9 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 import { ReText, round } from 'react-native-redash';
+
 import theme from '../../theme';
+
 import { HeaderProps } from './graph.models';
 
 // import ETH from './components/ETH';

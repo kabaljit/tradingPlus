@@ -47,7 +47,6 @@ export const Footer: React.FunctionComponent<BoxProps> = (props) =>
 
 export const NavBarTransparent: React.FunctionComponent<BoxProps> = (props) =>
   Box({
-   
     spacing: Object.assign(
       {},
       {

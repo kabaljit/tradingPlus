@@ -1,3 +1,1 @@
-export interface ModalDragHeaderProps {
-
-}
+export interface ModalDragHeaderProps {}

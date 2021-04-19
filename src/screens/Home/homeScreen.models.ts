@@ -6,5 +6,4 @@ export interface HomeScreenFormValues {
   // Formik parameters here.
 }
 
-export interface HomeScreenProps extends HomeScreenParams {
-}
+export interface HomeScreenProps extends HomeScreenParams {}

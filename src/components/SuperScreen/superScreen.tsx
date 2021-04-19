@@ -8,9 +8,9 @@ import {
 
 import { ScrollableContent, SafeArea, KeyboardAvoidingView } from '../Layout';
 import { Box, ContainerNoPadding } from '../Box';
+import theme from '../../theme';
 
 import { SuperScreenProps } from './superScreen.models';
-import theme from '../../theme';
 
 // TODO: Pass style customisations via the style prop instead of having props for flex, justifyContent, etc.
 const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {

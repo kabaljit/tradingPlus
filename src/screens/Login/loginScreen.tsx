@@ -14,16 +14,15 @@ import { AuthContext } from '../../main/AuthProvider';
 import { P, Title } from '../../components/Typography';
 import PasswordInput from '../../components/PasswordInput';
 import { SafeArea } from '../../components/Layout';
-
 import {
   validatePassword,
   validateEmail,
   ErrorPasswordType,
 } from '../../utils/validation';
+import { images } from '../../data';
 
 import { i18n } from './loginScreen.i18n';
 import { LoginScreenFormValues, LoginScreenProps } from './loginScreen.models';
-import { images } from '../../data';
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);

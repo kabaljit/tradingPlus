@@ -1,7 +1,9 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
+
 import theme from '../../theme';
+
 import { BUTTON_WIDTH } from './graph.utils';
 import { CURSOR } from './cursor';
 

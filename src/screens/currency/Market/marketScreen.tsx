@@ -1,22 +1,19 @@
 import * as React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
 import { useState, useEffect } from 'react';
-import { ActivityIndicator, View, Image } from 'react-native';
+import { ActivityIndicator, Image } from 'react-native';
 
 import SuperScreen from '../../../components/SuperScreen';
 import PortfolioItem from '../../../components/PortfolioItem';
 import TextInput from '../../../components/TextInput';
-import { apiKey } from '../../../utils/cryptoAPI';
-
-import {
-  MarketScreenFormValues,
-  MarketScreenProps,
-} from './marketScreen.models';
-import { i18n } from './marketScreen.i18n';
+import { cryptoPrice } from '../../../utils/cryptoAPI';
 import { images } from '../../../data';
 import { Row } from '../../../components/Box';
 import { P, Title } from '../../../components/Typography';
 import { Currency } from '../../../api/currencies';
+
+import { i18n } from './marketScreen.i18n';
+import { MarketScreenProps } from './marketScreen.models';
 
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   navigation,
@@ -44,20 +41,23 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
       });
   }, []);
 
-  const searchFilter = React.useCallback((text: string) => {
-    if (text) {
-      const newData = masterData.filter((item) => {
-        if (item.currency.includes(text.toUpperCase())) {
-          return item;
-        }
-      });
-      setFilteredData(newData);
-      setSearch(text);
-    } else {
-      setFilteredData(masterData);
-      setSearch(text);
-    }
-  }, []);
+  const searchFilter = React.useCallback(
+    (text: string) => {
+      if (text) {
+        const newData = masterData.filter((item) => {
+          if (item.currency.includes(text.toUpperCase())) {
+            return item;
+          }
+        });
+        setFilteredData(newData);
+        setSearch(text);
+      } else {
+        setFilteredData(masterData);
+        setSearch(text);
+      }
+    },
+    [masterData]
+  );
 
   const renderItem = React.useCallback(({ item }) => {
     return (

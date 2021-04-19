@@ -8,6 +8,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated';
 import { getYForX } from 'react-native-redash';
+
 import { CursorProps } from './graph.models';
 import { CursorBody } from './graph.styles';
 

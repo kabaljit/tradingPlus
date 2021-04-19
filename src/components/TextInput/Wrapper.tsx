@@ -1,13 +1,14 @@
 import React from 'react';
 import { Animated } from 'react-native';
 
+import theme from '../../theme';
+
 import {
   AnimatedBackground,
   AnimatedBorder,
   InnerRow,
 } from './TextInput.styles';
 import { IdangerouslySetInputStyles } from './TextInput.models';
-import theme from '../../theme';
 
 interface IWrapperProps {
   animation: Animated.AnimatedValue;

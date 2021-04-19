@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface BottomsheetProps {
-    // Content  of the bottomsheet
-    renderContent: ()=> ReactNode
+  // Content  of the bottomsheet
+  renderContent: () => ReactNode;
 }
