@@ -16,19 +16,21 @@ import { i18n } from './marketScreen.i18n';
 import { images } from '../../../data';
 import { Row } from '../../../components/Box';
 import { P, Title } from '../../../components/Typography';
+import { Currency } from '../../../api/currencies';
 
 export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   navigation,
 }) => {
-  const [filteredData, setFilteredData] = useState([]);
-  const [masterData, setMasterData] = useState([]);
+  const [filteredData, setFilteredData] = useState<Currency[]>([]);
+  const [masterData, setMasterData] = useState<Currency[]>([]);
+
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `https://api.nomics.com/v1/prices?key=${apiKey}&format=json&per-page=10&page=1`
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=1d,2d,30d&convert=EUR&per-page=10&page=1`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -61,6 +63,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
   const renderItem = React.useCallback(({ item }) => {
     return (
       <PortfolioItem
+        logoUrl={item.logo_url}
         title={item.currency}
         price={item.price}
         onPress={() => navigation.navigate('detailCurrency', { item: item })}
@@ -70,20 +73,26 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
 
   return (
     <>
-      <SuperScreen statusBarColor="light-content" background={'charcoal'}>
-        <TextInput
-          value={search}
-          placeholder={i18n.t('searchLabel')}
-          onChangeText={(text) => searchFilter(text)}
-          accessoryLeft={
-            <Image
-              style={{ tintColor: 'white' }}
-              source={images.search}
-              width={19}
-              height={21}
-            />
-          }
-        />
+      <SuperScreen
+        statusBarColor="light-content"
+        background={'charcoal'}
+        flex={1}
+      >
+        <Row>
+          <TextInput
+            value={search}
+            placeholder={i18n.t('searchLabel')}
+            onChangeText={(text) => searchFilter(text)}
+            accessoryLeft={
+              <Image
+                style={{ tintColor: 'white' }}
+                source={images.search}
+                width={19}
+                height={21}
+              />
+            }
+          />
+        </Row>
         <FlatList
           data={filteredData}
           renderItem={renderItem}
@@ -96,7 +105,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
               <></>
             )
           }
-          // keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id}
           ListEmptyComponent={
             !isLoading ? (
               <Row
@@ -108,7 +117,6 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
                 <Title size="large">{i18n.t('emptyListTitle')}</Title>
                 <P>{i18n.t('emptyListLabel')}</P>
                 <Row spacing={{ top: 12, bottom: 12 }} flex={1} />
-
                 <Image
                   source={images.userNoFound}
                   style={{ width: '80%', height: 240 }}

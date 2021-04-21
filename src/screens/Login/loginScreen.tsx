@@ -103,7 +103,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                 <Box flex={1} justifyContent="space-between">
                   <Row alignItems="center" spacing={{ top: 9, bottom: 9 }}>
                     <Image
-                      source={images.logoWhite}
+                      source={images.logo}
                       width={50}
                       height={50}
                       style={{ width: 80, height: 90 }}

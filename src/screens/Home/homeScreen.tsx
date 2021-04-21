@@ -60,7 +60,7 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({}) => {
           data={users[0]?.portfolio || []}
           renderItem={renderItem}
           ListFooterComponent={isLoading && <ActivityIndicator />}
-          // keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id + item.currency}
         />
       </SuperScreen>
     </>

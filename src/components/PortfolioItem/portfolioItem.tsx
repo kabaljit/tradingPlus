@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { P } from '../Typography';
 import { Box } from '../Box';
@@ -10,12 +10,15 @@ import { apiKey } from '../../utils/cryptoAPI';
 import { PortfolioItemProps } from './portfolioItem.models';
 import { PortfolioItemView, PortfolioItemImage } from './portfolioItem.styles';
 import { i18n } from './portfolioItem.i18n';
-
+import { images } from '../../data';
+import Logo from '../../../assets/images/logo1.svg';
+import { SvgUri } from 'react-native-svg';
 export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
   title,
   currentValue,
   price,
   amount,
+  logoUrl,
   onPress,
 }) => {
   const profit = React.useMemo<number>(() => {
@@ -35,54 +38,62 @@ export const PortfolioItem: React.FunctionComponent<PortfolioItemProps> = ({
     return `${profit} / ${profitPercentage}%`;
   }
 
-  const [logoUri, setlogoUri] = React.useState('');
+  const [logo, setLogo] = React.useState(images.logo);
+  const [svgLogo, setSvgLogo] = React.useState();
 
   React.useEffect(() => {
-    fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${title.toUpperCase()}&interval=0&convert=USD`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('title is ', title);
-        console.log(
-          'api link:',
-          `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${title}&interval=0&convert=USD`
-        );
-        console.log('logo url: ', data[0].logo_url);
-        setlogoUri(data[0].logo_url);
-      });
-  }, [title]);
+    if (logoUrl) {
+      if (logoUrl.includes('.svg')) {
+        setSvgLogo(logoUrl);
+      } else {
+        setLogo({ uri: logoUrl });
+      }
+    }
+  }, []);
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <PortfolioItemView backgroundColor={theme.colors.tradingZ.majesticPeak}>
-        <Box flexDirection="row">
-          <Box>
-            <PortfolioItemImage
-              source={{
-                uri: logoUri,
-              }}
-            />
+    <PortfolioItemView
+      backgroundColor={theme.colors.tradingZ.majesticPeak}
+      onPress={onPress}
+    >
+      <Box flexDirection="row" flex={1} spacing={{ bottom: 2 }}>
+        <View
+          style={{
+            width: 35,
+            height: 35,
+            borderRadius: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {svgLogo ? (
+            <SvgUri uri={svgLogo} width={35} height={35} />
+          ) : (
+            <PortfolioItemImage source={logo} />
+          )}
+        </View>
+
+        <Box flex={1} spacing={{ left: 3 }}>
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            spacing={{ bottom: 2 }}
+          >
+            <P color="white" weight="bold" size="small">
+              {title}
+            </P>
+
+            <P color="white" size="small">
+              $ {price}
+            </P>
           </Box>
-
-          <Box flex={1} spacing={{ left: 3 }}>
-            <Box flexDirection="row" flex={1} justifyContent="space-between">
-              <P color="white" weight="bold" size="small">
-                {title}
-              </P>
-
-              <P color="white" size="small">
-                $ {price}
-              </P>
-            </Box>
-            <Box alignItems="flex-end">
-              <P color={profitColor} size="small">
-                {amount && ProfitAndPercentage()}
-              </P>
-            </Box>
+          <Box alignItems="flex-end">
+            <P color={profitColor} size="small">
+              {amount && ProfitAndPercentage()}
+            </P>
           </Box>
         </Box>
-      </PortfolioItemView>
-    </TouchableOpacity>
+      </Box>
+    </PortfolioItemView>
   );
 };

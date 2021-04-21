@@ -24,15 +24,17 @@ import {
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
+export const Graph: React.FunctionComponent<GraphProps> = (props) => {
   const translation = useVector();
   const transition = useSharedValue(0);
   const previous = useSharedValue<GraphIndex>(0);
   const current = useSharedValue<GraphIndex>(0);
+  const { data } = props;
+  console.log('[Graph] data: ', data);
 
   const animatedProps = useAnimatedProps(() => {
-    const previousPath = graphs[previous.value].data.path;
-    const currentPath = graphs[current.value].data.path;
+    const previousPath = data[previous.value].data.path;
+    const currentPath = data[current.value].data.path;
     return {
       d: mixPath(transition.value, previousPath, currentPath),
     };
@@ -41,6 +43,8 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: withTiming(BUTTON_WIDTH * current.value) }],
   }));
+
+  //
 
   return (
     <GraphView>
@@ -59,7 +63,7 @@ export const Graph: React.FunctionComponent<GraphProps> = ({}) => {
           <View style={StyleSheet.absoluteFill}>
             <Animated.View style={[backgroundSelection, style]} />
           </View>
-          {graphs.map((graph, index) => {
+          {data.map((graph, index) => {
             return (
               <TouchableWithoutFeedback
                 key={graph.label}
