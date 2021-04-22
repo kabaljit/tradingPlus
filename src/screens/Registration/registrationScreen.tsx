@@ -48,18 +48,15 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
           res.user?.updateProfile({
             displayName: values.name,
           });
-          console.log('User registered successfully!');
+
           setLoading(false);
           navigation.navigate('Login');
         })
         .catch((error) => {
-          console.log('Error: ', error);
           setLoading(false);
         });
 
       // setLoading(false);
-
-      console.log('Submit the registation');
     },
     [setLoading, loading, firebase]
   );

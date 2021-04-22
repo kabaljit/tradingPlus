@@ -1,11 +1,25 @@
 /* eslint-disable camelcase */
 
 import Animated from "react-native-reanimated";
-import { Vector } from "react-native-redash";
+import { Path, Vector } from "react-native-redash";
 
 export interface GraphProps {
-  data: any
+  data:  GraphDataset[];
+  disableHeader?: boolean;
+  currencyName: string;
 }
+
+export interface GraphDataset {
+    label: string;
+    value: number;
+    data?: {
+        label: string;
+        minPrice: number;
+        maxPrice: number;
+        percentChange: string;
+        path: Path;
+    };
+} 
 
 
 export interface Amount {
@@ -47,6 +61,8 @@ export interface CursorProps {
 
 
 export interface HeaderProps {
+  currencyName: string;
   translation: Vector<Animated.SharedValue<number>>;
   index: Animated.SharedValue<GraphIndex>;
+  graphs: GraphDataset[]
 }

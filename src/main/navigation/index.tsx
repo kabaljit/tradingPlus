@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image } from 'react-native';
+
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -25,7 +25,7 @@ export default function Navigation() {
     async function prepare() {
       try {
         // Keep the splash screen visible while we fetch resources
-        await SplashScreen.preventAutoHideAsync();
+        // await SplashScreen.preventAutoHideAsync();
       } catch (e) {
         console.warn(
           '[Navigation] failed to get prevent splash screen to hide: ',

@@ -13,7 +13,7 @@ import { mixPath, useVector } from 'react-native-redash';
 import Header from './header';
 import Cursor from './cursor';
 import { GraphIndex, GraphProps } from './graph.models';
-import { BUTTON_WIDTH, graphs, SIZE } from './graph.utils';
+import { BUTTON_WIDTH, SIZE } from './graph.utils';
 import {
   backgroundSelection,
   GraphView,
@@ -24,13 +24,15 @@ import {
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-export const Graph: React.FunctionComponent<GraphProps> = (props) => {
+export const Graph: React.FunctionComponent<GraphProps> = ({
+  data,
+  currencyName,
+  disableHeader = false,
+}) => {
   const translation = useVector();
   const transition = useSharedValue(0);
   const previous = useSharedValue<GraphIndex>(0);
   const current = useSharedValue<GraphIndex>(0);
-  const { data } = props;
-  console.log('[Graph] data: ', data);
 
   const animatedProps = useAnimatedProps(() => {
     const previousPath = data[previous.value].data.path;
@@ -48,7 +50,14 @@ export const Graph: React.FunctionComponent<GraphProps> = (props) => {
 
   return (
     <GraphView>
-      <Header translation={translation} index={current} />
+      {!disableHeader && (
+        <Header
+          currencyName={currencyName}
+          graphs={data}
+          translation={translation}
+          index={current}
+        />
+      )}
       <View style={{ backgroundColor: 'white' }}>
         <Svg width={SIZE} height={SIZE}>
           <AnimatedPath
@@ -58,7 +67,7 @@ export const Graph: React.FunctionComponent<GraphProps> = (props) => {
             strokeWidth={3}
           />
         </Svg>
-        <Cursor translation={translation} index={current} />
+        <Cursor graphs={data} translation={translation} index={current} />
         <Selection>
           <View style={StyleSheet.absoluteFill}>
             <Animated.View style={[backgroundSelection, style]} />

@@ -34,13 +34,12 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
     )
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
         setFilteredData(data);
         setMasterData(data);
         setIsLoading(false);
       })
       .catch((e) => {
-        console.error('Error caught:', e);
+        console.warn('[MarketScreen] Failed to load the graph data: ', e);
         setIsLoading(false);
       });
   }, []);
@@ -66,7 +65,7 @@ export const MarketScreen: React.FunctionComponent<MarketScreenProps> = ({
         logoUrl={item.logo_url}
         title={item.currency}
         price={item.price}
-        onPress={() => navigation.navigate('detailCurrency', { item: item })}
+        onPress={() => navigation.navigate('DetailCurrency', { item: item })}
       />
     );
   }, []);

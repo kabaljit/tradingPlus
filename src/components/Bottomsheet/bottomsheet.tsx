@@ -14,7 +14,7 @@ export const Bottomsheet = React.forwardRef<RNBottomSheet, BottomsheetProps>(
       <RNBottomSheet
         ref={ref}
         initialSnap={2}
-        snapPoints={[450, 300, 0]}
+        snapPoints={[550, 300, 0]}
         renderHeader={() => <ModalDragHeader />}
         borderRadius={10}
         renderContent={renderContent}

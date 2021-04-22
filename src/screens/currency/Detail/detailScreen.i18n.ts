@@ -4,7 +4,11 @@ export const i18n = generateI18n('detailScreen', {
   en: {
     buyLabel: 'Buy',
     sellLabel: 'Sell',
-    recentActivityLabel: 'Recent Activity'
+    recentActivityLabel: 'Recent Activity',
+    formAmountLabel: 'Amount',
+    formPriceLabel: 'Price',
+    formTotalLabel: 'Total',
+    formPurchaseTimeLabel: 'Purchase Time',
     
   },
 });

@@ -65,12 +65,11 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     // do something on submit
     login(values.email, values.password)
       .then(() => {
-        console.log('User login successfully!');
         navigation.navigate('Home');
         setLoading(false);
       })
       .catch((error) => {
-        console.log('[login] Failed to login: ', error);
+        console.warn('[login] Failed to login: ', error);
         setLoading(false);
       });
   }, []);

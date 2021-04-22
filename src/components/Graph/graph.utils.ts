@@ -33,7 +33,7 @@ export const buildGraph = (datapoints: DataPoints, label: string) => {
     label,
     minPrice,
     maxPrice,
-    percentChange: "100",
+    percentChange: 100,
     path: parse(
       shape
         .line()

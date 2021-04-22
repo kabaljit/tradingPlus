@@ -10,7 +10,7 @@ import theme from '../../theme';
 import { HeaderProps } from './graph.models';
 
 // import ETH from './components/ETH';
-import { graphs, SIZE } from './graph.utils';
+import { SIZE } from './graph.utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
 const Header: React.FunctionComponent<HeaderProps> = ({
   translation,
   index,
+  graphs,
+  currencyName,
 }) => {
   const data = useDerivedValue(() => graphs[index.value].data);
   const price = useDerivedValue(() => {
@@ -60,7 +62,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
       <View style={styles.values}>
         <View>
           <ReText style={styles.value} text={price} />
-          <Text style={styles.label}>Etherum</Text>
+          <Text style={styles.label}>{currencyName}</Text>
         </View>
         <View>
           <ReText style={style} text={percentChange} />
