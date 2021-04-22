@@ -6,7 +6,7 @@ import { Path, Vector } from "react-native-redash";
 export interface GraphProps {
   data:  GraphDataset[];
   disableHeader?: boolean;
-  currencyName: string;
+  currencyName?: string;
 }
 
 export interface GraphDataset {

@@ -52,7 +52,7 @@ export const Graph: React.FunctionComponent<GraphProps> = ({
     <GraphView>
       {!disableHeader && (
         <Header
-          currencyName={currencyName}
+          currencyName={currencyName || ''}
           graphs={data}
           translation={translation}
           index={current}

@@ -30,6 +30,7 @@ import { buildGraph } from '../../../components/Graph/graph.utils';
 import { FormBuy } from './formBuy';
 import firebase from '../../../firebase';
 import _ from 'lodash';
+import { FormSell } from './formSell';
 // import NewGraph from '../../../components/NewGraph';
 
 export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
@@ -42,98 +43,99 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
   const [yearlyData, setYearlyData] = React.useState(null);
   const [allYearlyData, setAllYearlyData] = React.useState(null);
 
-  // React.useEffect(() => {
-  //   // One hour from current
-  //   const hourDate = subHours(new Date(), 1).toISOString();
-  //   console.log('runnig hourly;');
-  //   fetch(
-  //     `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //       currencyInfo.currency
-  //     }&start=${encodeURI(hourDate)}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setHourlyData(data[0]);
-  //     });
+  React.useEffect(() => {
+    // One hour from current
+    const hourDate = subHours(new Date(), 1).toISOString();
+    console.log('runnig hourly;');
+    fetch(
+      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+        currencyInfo.currency
+      }&start=${encodeURI(hourDate)}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setHourlyData(data[0]);
+      });
 
-  //   // One day from current
-  //   const dayDate = subDays(new Date(), 1).toISOString();
-  //   console.log(
-  //     'date day: ',
-  //     `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //       currencyInfo.currency
-  //     }&start=${encodeURI(dayDate)}`
-  //   );
-  //   // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
-  //   setTimeout(() => {
-  //     fetch(
-  //       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //         currencyInfo.currency
-  //       }&start=${encodeURI(dayDate)}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log('Day data: ', data);
+    // One day from current
+    const dayDate = subDays(new Date(), 1).toISOString();
+    console.log(
+      'date day: ',
+      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+        currencyInfo.currency
+      }&start=${encodeURI(dayDate)}`
+    );
+    // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
+    setTimeout(() => {
+      fetch(
+        `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+          currencyInfo.currency
+        }&start=${encodeURI(dayDate)}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Day data: ', data);
 
-  //         setDaylyData(data[0]);
-  //       });
-  //   }, 1000);
+          setDaylyData(data[0]);
+        });
+    }, 1000);
 
-  //   // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
+    // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
 
-  //   // One month from current
-  //   const weekDate = subMonths(new Date(), 1).toISOString();
-  //   setTimeout(() => {
-  //     fetch(
-  //       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //         currencyInfo.currency
-  //       }&start=${encodeURI(weekDate)}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setMonthlyData(data[0]);
-  //       });
-  //   }, 2000);
+    // One month from current
+    const weekDate = subMonths(new Date(), 1).toISOString();
+    setTimeout(() => {
+      fetch(
+        `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+          currencyInfo.currency
+        }&start=${encodeURI(weekDate)}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMonthlyData(data[0]);
+        });
+    }, 2000);
 
-  //   // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
-  //   setTimeout(() => true, 1000);
-  //   // One year from current
-  //   const yearDate = subYears(new Date(), 1).toISOString();
-  //   setTimeout(() => {
-  //     fetch(
-  //       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //         currencyInfo.currency
-  //       }&start=${encodeURI(yearDate)}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log('data year: ', data);
-  //         setYearlyData(data[0]);
-  //       });
-  //   }, 3000);
-  //   // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
+    // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
+    setTimeout(() => true, 1000);
+    // One year from current
+    const yearDate = subYears(new Date(), 1).toISOString();
+    setTimeout(() => {
+      fetch(
+        `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+          currencyInfo.currency
+        }&start=${encodeURI(yearDate)}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data year: ', data);
+          setYearlyData(data[0]);
+        });
+    }, 3000);
+    // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
 
-  //   // One 5 year from current
-  //   const yearsDate = subYears(new Date(), 4).toISOString();
-  //   console.log('yearly-----');
-  //   console.log(
-  //     'url: ',
-  //     `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //       currencyInfo.currency
-  //     }&start=${encodeURI(yearsDate)}`
-  //   );
-  //   setTimeout(() => {
-  //     fetch(
-  //       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-  //         currencyInfo.currency
-  //       }&start=${encodeURI(yearsDate)}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setAllYearlyData(data[0]);
-  //       });
-  //   }, 4000);
-  // }, []);
+    // One 5 year from current
+    const yearsDate = subYears(new Date(), 4).toISOString();
+    console.log('yearly-----');
+    console.log(
+      'url: ',
+      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+        currencyInfo.currency
+      }&start=${encodeURI(yearsDate)}`
+    );
+    setTimeout(() => {
+      fetch(
+        `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
+          currencyInfo.currency
+        }&start=${encodeURI(yearsDate)}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setAllYearlyData(data[0]);
+        });
+    }, 4000);
+  }, []);
+
   const [transactions, setTransctions] = React.useState();
   React.useEffect(() => {
     const user = firebase.auth().currentUser;
@@ -218,36 +220,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
   const buyRef = React.useRef<RNBottomsheet>(null);
   const sellRef = React.useRef<RNBottomsheet>(null);
 
-  const renderBuyContent = React.useCallback(
-    () => (
-      <View
-        style={{
-          backgroundColor: 'white',
-          padding: 16,
-          height: 450,
-        }}
-      >
-        <P color="blue">WE CAN BUY NOW </P>
-      </View>
-    ),
-    []
-  );
-
-  const renderSellContent = React.useCallback(
-    () => (
-      <View
-        style={{
-          backgroundColor: 'white',
-          padding: 16,
-          height: 450,
-        }}
-      >
-        <P color="blue">WE CAN SELL NOW </P>
-      </View>
-    ),
-    []
-  );
-
   return (
     <>
       <SuperScreen background="charcoal" hasPadding={false} scrollable={true}>
@@ -302,7 +274,12 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
           <FormBuy currentInfo={currencyInfo} buyRef={buyRef} />
         )}
       />
-      <Bottomsheet ref={sellRef} renderContent={renderSellContent} />
+      <Bottomsheet
+        ref={sellRef}
+        renderContent={() => (
+          <FormSell currentInfo={currencyInfo} sellRef={buyRef}></FormSell>
+        )}
+      />
     </>
   );
 };

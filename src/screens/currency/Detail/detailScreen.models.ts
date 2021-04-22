@@ -15,6 +15,9 @@ export interface FormBuyProps{
   currentInfo: Currency
 }
 
+export interface FormSellProps{
+  currentInfo: Currency
+}
 export interface BuyValues{
   amount: string;
   price: string;
@@ -39,4 +42,8 @@ export interface Transaction {
   receiverId: string;
   senderId: string;
   timestamp: Number
+}
+
+export interface FormSellProps{
+  currentInfo: Currency
 }
