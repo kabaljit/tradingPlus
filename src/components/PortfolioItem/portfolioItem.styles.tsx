@@ -1,10 +1,13 @@
+import { SvgUri } from 'react-native-svg';
 import styled from 'styled-components/native';
 
-export const PortfolioItemView = styled.View<{ backgroundColor: string }>`
+export const PortfolioItemView = styled.TouchableOpacity<{
+  backgroundColor: string;
+}>`
   background-color: ${(p) => p.backgroundColor};
-  padding-top-: 8px;
-  padding-bottom: 12px;
-  padding-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
   padding-right: 15px;
   height: 63px;
   margin: 10px;
@@ -12,7 +15,6 @@ export const PortfolioItemView = styled.View<{ backgroundColor: string }>`
 `;
 
 export const PortfolioItemImage = styled.Image`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 35px;
+  height: 35px;
 `;

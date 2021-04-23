@@ -11,7 +11,7 @@ import { getYForX } from 'react-native-redash';
 import { CursorProps } from './graph.models';
 import { CursorBody } from './graph.styles';
 
-import { graphs } from './graph.utils';
+import {} from './graph.utils';
 export const CURSOR = 50;
 
 const styles = StyleSheet.create({
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
 const Cursor: React.FunctionComponent<CursorProps> = ({
   index,
   translation,
+  graphs,
 }) => {
   const isActive = useSharedValue(false);
   const onGestureEvent = useAnimatedGestureHandler({

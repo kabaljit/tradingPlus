@@ -3,5 +3,6 @@ export interface PortfolioItemProps {
   amount?: number;
   currentValue?: number;
   price: number;
+  logoUrl: string; 
   onPress: () => void;
 }

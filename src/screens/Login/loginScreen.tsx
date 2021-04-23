@@ -65,12 +65,11 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     // do something on submit
     login(values.email, values.password)
       .then(() => {
-        console.log('User login successfully!');
         navigation.navigate('Home');
         setLoading(false);
       })
       .catch((error) => {
-        console.log('[login] Failed to login: ', error);
+        console.warn('[login] Failed to login: ', error);
         setLoading(false);
       });
   }, []);
@@ -103,7 +102,7 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
                 <Box flex={1} justifyContent="space-between">
                   <Row alignItems="center" spacing={{ top: 9, bottom: 9 }}>
                     <Image
-                      source={images.logoWhite}
+                      source={images.logo}
                       width={50}
                       height={50}
                       style={{ width: 80, height: 90 }}

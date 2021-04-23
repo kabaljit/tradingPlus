@@ -11,7 +11,7 @@ export const MarketStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="searchCurrencies"
+        name="SearchCurrencies"
         component={MarketScreen}
         options={{
           headerShown: false,
@@ -19,7 +19,7 @@ export const MarketStack = () => {
         }}
       />
       <Stack.Screen
-        name="detailCurrency"
+        name="DetailCurrency"
         component={DetailScreen}
         options={{
           // headerShown: false,

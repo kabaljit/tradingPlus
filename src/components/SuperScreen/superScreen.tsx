@@ -18,7 +18,7 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
     children,
     loading,
     background = 'white',
-    statusBarBackground = 'charchoal',
+    statusBarBackground = 'charchoal' as 'charchoal',
     statusBarColor = props.fullscreen ? 'dark-content' : 'light-content',
     keyboardAvoiding = true,
     hasPadding = true,
@@ -27,6 +27,7 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
     scrollable = false,
     keyboardVerticalOffset = 0,
     fullscreen,
+    enableKeyboardDismiss = false,
   } = props;
 
   const Wrapper = fullscreen ? ContainerNoPadding : SafeArea;
@@ -48,10 +49,12 @@ const SuperScreen: React.FunctionComponent<SuperScreenProps> = (props) => {
 
   const content = scrollable ? (
     <ScrollableContent>{containedChildren}</ScrollableContent>
-  ) : (
+  ) : enableKeyboardDismiss ? (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       {containedChildren}
     </TouchableWithoutFeedback>
+  ) : (
+    containedChildren
   );
 
   return (
