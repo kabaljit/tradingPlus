@@ -78,3 +78,95 @@ export const graphs = [
 ] as const;
 
 export const BUTTON_WIDTH = (SIZE - 32) / graphs.length;
+
+
+
+
+  
+  export const defaultGraphDataset = () => [
+    {
+      label: '1D',
+      value: 0,
+      data: {
+        label: 'Last Day',
+        minPrice: 0,
+        maxPrice: 0,
+        percentChange: 0,
+        path: {
+          move: { x: 207, y: 207 },
+          curves: [
+            {
+              c1: { x: 207, y: 207 },
+              c2: { x: 207, y: 207 },
+              to: { x: 207, y: 207 },
+            },
+          ],
+          close: false,
+        },
+      },
+    },
+    {
+      label: '1M',
+      value: 0,
+      data: {
+        label: 'Last Month',
+        minPrice: 0,
+        maxPrice: 0,
+        percentChange: 0,
+        path: {
+          move: { x: 207, y: 207 },
+          curves: [
+            {
+              c1: { x: 207, y: 207 },
+              c2: { x: 207, y: 207 },
+              to: { x: 207, y: 207 },
+            },
+          ],
+          close: false,
+        },
+      },
+    },
+    {
+      label: '1Y',
+      value: 0,
+      data: {
+        label: 'Last Year',
+        minPrice: 0,
+        maxPrice: 0,
+        percentChange: 0,
+        path: {
+          move: { x: 207, y: 207 },
+          curves: [
+            {
+              c1: { x: 207, y: 207 },
+              c2: { x: 207, y: 207 },
+              to: { x: 207, y: 207 },
+            },
+          ],
+          close: false,
+        },
+      },
+    },
+    {
+      label: 'all',
+      value: 0,
+      data: {
+        label: 'All',
+        minPrice: 0,
+        maxPrice: 0,
+        percentChange: 0,
+        path: {
+          move: { x: 207, y: 207 },
+          curves: [
+            {
+              c1: { x: 207, y: 207 },
+              c2: { x: 207, y: 207 },
+              to: { x: 207, y: 207 },
+            },
+          ],
+          close: false,
+        },
+      },
+    },
+
+  ];

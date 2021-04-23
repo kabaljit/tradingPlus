@@ -25,7 +25,10 @@ import Bottomsheet from '../../../components/Bottomsheet';
 import { Currency } from '../../../api/currencies';
 import { apiKey } from '../../../utils/cryptoAPI';
 import { tr } from 'date-fns/locale';
-import { buildGraph } from '../../../components/Graph/graph.utils';
+import {
+  buildGraph,
+  defaultGraphDataset,
+} from '../../../components/Graph/graph.utils';
 import { FormBuy } from './formBuy';
 import firebase from '../../../firebase';
 import _ from 'lodash';
@@ -137,34 +140,43 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
   const graphData = React.useMemo(
     () => [
       {
-        label: '1H',
-        value: 0,
-        data: hourlyData ? buildGraph(hourlyData, 'Last Hour') : undefined,
-      },
-      {
         label: '1D',
         value: 1,
-        data: daylyData ? buildGraph(daylyData, 'Today') : undefined,
+        data: daylyData
+          ? buildGraph(daylyData, 'Today')
+          : defaultGraphDataset().filter((item) => item.label === '1D')[0].data,
       },
       {
         label: '1M',
         value: 2,
-        data: monthlyData ? buildGraph(monthlyData, 'Last Month') : undefined,
+        data: monthlyData
+          ? buildGraph(monthlyData, 'Last Month')
+          : defaultGraphDataset().filter((item) => item.label === '1M')[0].data,
       },
       {
         label: '1Y',
         value: 3,
-        data: yearlyData ? buildGraph(yearlyData, 'This Year') : undefined,
+        data: yearlyData
+          ? buildGraph(yearlyData, 'This Year')
+          : defaultGraphDataset().filter((item) => item.label === '1Y')[0].data,
       },
       {
         label: 'all',
         value: 4,
-        data: allYearlyData ? buildGraph(allYearlyData, 'All time') : undefined,
+        data: allYearlyData
+          ? buildGraph(allYearlyData, 'All time')
+          : defaultGraphDataset().filter((item) => item.label === 'all')[0]
+              .data,
       },
     ],
     [allYearlyData]
   );
 
+  console.log('GraphData: ', JSON.stringify(graphData));
+  console.log(
+    'load232: ',
+    defaultGraphDataset().filter((item) => item.label === '1D')[0].data
+  );
   const renderItem = React.useCallback(({ item }) => {
     const p = (item.orderType === OrderType.SELL && {
       icon: images.arrowUp,
