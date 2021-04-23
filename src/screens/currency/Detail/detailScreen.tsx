@@ -45,7 +45,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
   React.useEffect(() => {
     // One hour from current
     const hourDate = subHours(new Date(), 1).toISOString();
-    console.log('runnig hourly;');
     fetch(
       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
         currencyInfo.currency
@@ -58,12 +57,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
 
     // One day from current
     const dayDate = subDays(new Date(), 1).toISOString();
-    console.log(
-      'date day: ',
-      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-        currencyInfo.currency
-      }&start=${encodeURI(dayDate)}`
-    );
+
     // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
     setTimeout(() => {
       fetch(
@@ -73,8 +67,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log('Day data: ', data);
-
           setDaylyData(data[0]);
         });
     }, 1000);
@@ -107,7 +99,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log('data year: ', data);
           setYearlyData(data[0]);
         });
     }, 3000);
@@ -115,13 +106,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
 
     // One 5 year from current
     const yearsDate = subYears(new Date(), 4).toISOString();
-    console.log('yearly-----');
-    console.log(
-      'url: ',
-      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-        currencyInfo.currency
-      }&start=${encodeURI(yearsDate)}`
-    );
+
     setTimeout(() => {
       fetch(
         `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
@@ -143,15 +128,11 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
         .database()
         .ref(`/transactions/${user.uid}`)
         .orderByChild('finalCurrency')
+        .limitToLast(50)
         .equalTo(currencyInfo.currency)
         .on('value', (snapshot) => setTransctions(snapshot.val()));
     }
   }, [setTransctions]);
-
-  console.log(
-    'transactions: ',
-    _.map(transactions, (item) => item)
-  );
 
   const graphData = React.useMemo(
     () => [
@@ -276,7 +257,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       <Bottomsheet
         ref={sellRef}
         renderContent={() => (
-          <FormSell currentInfo={currencyInfo} sellRef={buyRef}></FormSell>
+          <FormSell currentInfo={currencyInfo} sellRef={sellRef}></FormSell>
         )}
       />
     </>

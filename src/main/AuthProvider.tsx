@@ -25,7 +25,7 @@ export const AuthProvider: React.FunctionComponent = ({ children }) => {
               .auth()
               .createUserWithEmailAndPassword(email, password);
           } catch (e) {
-            console.log(e);
+            console.warn('[AuthProvider] register : ', e);
           }
         },
         logout: async () => {
