@@ -1,6 +1,6 @@
 import { format, parse } from 'date-fns';
 import firebase from '../../../firebase';
-import { Formik, FormikHelpers } from 'formik';
+import { Formik, FormikErrors, FormikHelpers } from 'formik';
 import * as React from 'react';
 import { ActivityIndicator, Button, Platform, View } from 'react-native';
 import { Box, Row } from '../../../components/Box';
@@ -22,7 +22,15 @@ export const FormBuy: React.FunctionComponent<FormBuyProps> = ({
   currentInfo,
   buyRef,
 }) => {
-  const validate = React.useCallback(() => {}, []);
+  const validate = React.useCallback((values: BuyValues) => {
+    const errors: FormikErrors<BuyValues> = {};
+
+    if (Number(values.amount) === 0) {
+      errors.amount = i18n.t('amountIsSuperiorAvailable');
+    }
+    return errors;
+  }, []);
+
   const [mode, setMode] = React.useState('date');
 
   const onSubmit = React.useCallback(
@@ -48,12 +56,15 @@ export const FormBuy: React.FunctionComponent<FormBuyProps> = ({
         } as Transaction);
 
       // Updating the user portfolio
+      console.log('loading: ');
 
-      await firebase
+      firebase
         .database()
         .ref(`/users/${user?.uid}/portfolio/${currentInfo.currency}`)
-        .on('value', (snapshat) => {
+        .get()
+        .then((snapshat) => {
           const transcation = snapshat.val();
+          console.log('loadin2232g: ');
           if (transcation) {
             //  Already there is a transaction for this Currency',
             const amount = transcation.amount + values.amount;
@@ -61,6 +72,7 @@ export const FormBuy: React.FunctionComponent<FormBuyProps> = ({
               (Number(transcation.total) + Number(values.total)) /
               Number(amount);
             const total = Number(transcation.total) + Number(values.total);
+            console.log('sdfsd: ', amount);
             firebase
               .database()
               .ref(`/users/${user?.uid}/portfolio/${currentInfo.currency}`)
@@ -110,6 +122,7 @@ export const FormBuy: React.FunctionComponent<FormBuyProps> = ({
         handleSubmit,
         values,
         errors,
+        touched,
         isSubmitting,
       }) => (
         <View
@@ -119,14 +132,21 @@ export const FormBuy: React.FunctionComponent<FormBuyProps> = ({
             height: 550,
           }}
         >
-          <InputWrapper>
+          <InputWrapper
+            errorVisible={touched.amount && !!errors.amount}
+            errorMessage={errors.amount}
+          >
             <TextInput
               keyboardType="decimal-pad"
               label={i18n.t('formAmountLabel')}
               error={!!errors.amount}
               value={values.amount}
+              onBlur={() => {
+                setFieldTouched('amount', true);
+              }}
               onChangeText={(value) => {
                 setFieldValue('amount', value);
+
                 setFieldValue('total', Number(value) * Number(values.price));
               }}
             />

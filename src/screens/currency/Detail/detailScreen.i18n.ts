@@ -9,5 +9,6 @@ export const i18n = generateI18n('detailScreen', {
     formPriceLabel: 'Price',
     formTotalLabel: 'Total',
     formPurchaseTimeLabel: 'Purchase Time',
+    amountIsSuperiorAvailable: 'You don\'t have enough funds'
   },
 });
