@@ -7,6 +7,16 @@ export interface GraphProps {
   data:  GraphDataset[];
   disableHeader?: boolean;
   currencyName?: string;
+  height?: number
+  disabledButton: boolean
+}
+
+export interface DrawGraphProps {
+  data:  GraphDataset[];
+  transition: Animated.SharedValue<number>,
+  previous: Animated.SharedValue<GraphIndex>,
+  current: Animated.SharedValue<GraphIndex>,
+  height?: number
 }
 
 export interface GraphDataset {

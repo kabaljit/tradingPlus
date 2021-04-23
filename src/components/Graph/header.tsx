@@ -45,12 +45,12 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     const p = interpolate(
       translation.y.value,
       [0, SIZE],
-      [data.value.maxPrice, data.value.minPrice]
+      [data.value?.maxPrice | 0, data.value.minPrice | 0]
     );
     return `$ ${round(p, 2).toLocaleString('en-US', { currency: 'USD' })}`;
   });
   const percentChange = useDerivedValue(
-    () => `${round(data.value.percentChange, 3)}%`
+    () => `${round(data.value.percentChange | 0, 3)}%`
   );
   const label = useDerivedValue(() => data.value.label);
   const style = useAnimatedStyle(() => ({
@@ -58,6 +58,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     fontSize: 24,
     color: data.value.percentChange > 0 ? 'green' : 'red',
   }));
+
   return (
     <View style={styles.container}>
       {/* <ETH /> */}
