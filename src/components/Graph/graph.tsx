@@ -74,14 +74,15 @@ export const Graph: React.FunctionComponent<GraphProps> = ({
 
   return (
     <GraphView>
-      {!disableHeader && (
+      {
         <Header
           currencyName={currencyName || ''}
           graphs={data}
           translation={translation}
           index={current}
+          disableHeader={disableHeader}
         />
-      )}
+      }
       <View style={{ backgroundColor: 'white' }}>
         {data && (
           <DrawGraph

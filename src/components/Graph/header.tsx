@@ -39,6 +39,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   index,
   graphs,
   currencyName,
+  disableHeader,
 }) => {
   const data = useDerivedValue(() => graphs[index.value].data);
   const price = useDerivedValue(() => {
@@ -58,6 +59,14 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     fontSize: 24,
     color: data.value.percentChange > 0 ? 'green' : 'red',
   }));
+
+  if (disableHeader) {
+    return (
+      <View style={[styles.container, { alignItems: 'center' }]}>
+        <ReText style={styles.value} text={price} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
