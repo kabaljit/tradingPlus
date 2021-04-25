@@ -72,4 +72,5 @@ export interface HeaderProps {
   translation: Vector<Animated.SharedValue<number>>;
   index: Animated.SharedValue<GraphIndex>;
   graphs: GraphDataset[]
+  disableHeader?: boolean
 }
