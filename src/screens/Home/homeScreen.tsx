@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, Image } from 'react-native';
 
-import PortfolioItem from '../../components/PortfolioItem';
-import SuperScreen from '../../components/SuperScreen';
-import firebase from '../../firebase';
-import { Row } from '../../components/Box';
+// import { Row } from '../../components/Box';
 
-import { HomeScreenProps } from './homeScreen.models';
-import { i18n } from './homeScreen.i18n';
 import _ from 'lodash';
+
+import firebase from '../../firebase';
+import SuperScreen from '../../components/SuperScreen';
+import PortfolioItem from '../../components/PortfolioItem';
 import { Row } from '../../components/Box';
 import { images } from '../../data';
 import { Title } from '../../components/Typography/Typography';
 import { P } from '../../components/Typography';
 import Graph from '../../components/Graph';
 import { defaultGraphDataset } from '../../components/Graph/graph.utils';
+
+import { i18n } from './homeScreen.i18n';
+import { HomeScreenProps } from './homeScreen.models';
 
 export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
   navigation,

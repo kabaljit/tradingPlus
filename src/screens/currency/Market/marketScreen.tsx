@@ -6,7 +6,7 @@ import { ActivityIndicator, Image } from 'react-native';
 import SuperScreen from '../../../components/SuperScreen';
 import PortfolioItem from '../../../components/PortfolioItem';
 import TextInput from '../../../components/TextInput';
-import { cryptoPrice } from '../../../utils/cryptoAPI';
+import { apiKey } from '../../../utils/cryptoAPI';
 import { images } from '../../../data';
 import { Row } from '../../../components/Box';
 import { P, Title } from '../../../components/Typography';

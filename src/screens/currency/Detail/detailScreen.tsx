@@ -1,21 +1,17 @@
 import * as React from 'react';
 import RNBottomsheet from 'reanimated-bottom-sheet';
-import { Image } from 'react-native';
-import format from 'date-fns/format';
+import { FlatList, Image } from 'react-native';
+// import format from 'date-fns/format';
 import subHours from 'date-fns/subHours';
 import subDays from 'date-fns/subDays';
-import subWeeks from 'date-fns/subWeeks';
+// import subWeeks from 'date-fns/subWeeks';
 import subMonths from 'date-fns/subMonths';
 import subYears from 'date-fns/subYears';
+// import { tr } from 'date-fns/locale';
+import _ from 'lodash';
 
-import {
-  DetailScreenFormValues,
-  DetailScreenProps,
-  OrderType,
-} from './detailScreen.models';
-import { i18n } from './detailScreen.i18n';
 import SuperScreen from '../../../components/SuperScreen';
-import { P, Title } from '../../../components/Typography';
+import { P } from '../../../components/Typography';
 import { PrimaryButton } from '../../../components/buttons/Primary/primaryButton';
 import Graph from '../../../components/Graph';
 import { Box, Row } from '../../../components/Box';
@@ -24,14 +20,19 @@ import { scale } from '../../../utils/layout';
 import Bottomsheet from '../../../components/Bottomsheet';
 import { Currency } from '../../../api/currencies';
 import { apiKey } from '../../../utils/cryptoAPI';
-import { tr } from 'date-fns/locale';
 import {
   buildGraph,
   defaultGraphDataset,
 } from '../../../components/Graph/graph.utils';
-import { FormBuy } from './formBuy';
 import firebase from '../../../firebase';
-import _ from 'lodash';
+
+import { FormBuy } from './formBuy';
+import { i18n } from './detailScreen.i18n';
+import {
+  // DetailScreenFormValues,
+  DetailScreenProps,
+  OrderType,
+} from './detailScreen.models';
 import { FormSell } from './formSell';
 // import NewGraph from '../../../components/NewGraph';
 
@@ -121,7 +122,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
           setAllYearlyData(data[0]);
         });
     }, 4000);
-  }, []);
+  }, [currencyInfo.currency]);
 
   const [transactions, setTransctions] = React.useState();
   React.useEffect(() => {
@@ -135,7 +136,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
         .equalTo(currencyInfo.currency)
         .on('value', (snapshot) => setTransctions(snapshot.val()));
     }
-  }, [setTransctions]);
+  }, [currencyInfo.currency, setTransctions]);
 
   const graphData = React.useMemo(
     () => [
@@ -169,7 +170,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
               .data,
       },
     ],
-    [allYearlyData]
+    [allYearlyData, daylyData, monthlyData, yearlyData]
   );
 
   console.log('GraphData: ', JSON.stringify(graphData));
@@ -269,7 +270,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       <Bottomsheet
         ref={sellRef}
         renderContent={() => (
-          <FormSell currentInfo={currencyInfo} sellRef={sellRef}></FormSell>
+          <FormSell currentInfo={currencyInfo} sellRef={sellRef} />
         )}
       />
     </>
