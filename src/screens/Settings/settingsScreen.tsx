@@ -26,7 +26,7 @@ export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
     },
     {
       title: i18n.t('menuChangePassword'),
-      route: 'Market',
+      route: 'PasswordReset',
     },
   ];
   const logout = React.useCallback(() => {
