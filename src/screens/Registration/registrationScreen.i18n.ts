@@ -4,6 +4,7 @@ export const i18n = generateI18n('registrationScreen', {
   en: {
     title: 'Create a Free Account',
     subTitle: 'Welcome to Tracker Plus',
+    submitButtonLabel: 'Submit',
     nameErrorMessage: 'Name is required',
     emailErrorMessage: 'Email is required',
     passwordErrorMessage: 'Password is required',

@@ -43,13 +43,13 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     }
     if (values.password) {
       const passwordValidation = validatePassword(values.password);
-      if (passwordValidation === ErrorPasswordType.Number) {
+      if (passwordValidation.numeric) {
         errors.password = i18n.t('passwordNumberError');
-      } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+      } else if (passwordValidation.uppercase) {
         errors.password = i18n.t('passwordUppercaseError');
-      } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+      } else if (passwordValidation.lowercase) {
         errors.password = i18n.t('passwordLowercaseError');
-      } else if (passwordValidation === ErrorPasswordType.Length) {
+      } else if (passwordValidation.length) {
         errors.password = i18n.t('passwordLengthError');
       }
     } else {

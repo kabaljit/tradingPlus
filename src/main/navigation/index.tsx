@@ -24,7 +24,7 @@ export default function Navigation() {
     async function prepare() {
       try {
         // Keep the splash screen visible while we fetch resources
-        // await SplashScreen.preventAutoHideAsync();
+        await SplashScreen.preventAutoHideAsync();
       } catch (e) {
         console.warn(
           '[Navigation] failed to get prevent splash screen to hide: ',
