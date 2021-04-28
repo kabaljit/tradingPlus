@@ -7,7 +7,7 @@ import SuperScreen from '../../components/SuperScreen';
 import InputWrapper from '../../components/InputWrapper';
 import PasswordInput from '../../components/PasswordInput';
 import { PrimaryButton } from '../../components/buttons';
-import { ErrorPasswordType, validatePassword } from '../../utils/validation';
+import { validatePassword, ErrorType } from '../../utils/validation';
 import { Box } from '../../components/Box';
 import { P } from '../../components/Typography';
 
@@ -19,7 +19,6 @@ import { i18n } from './passwordResetScreen.i18n';
 
 export const PasswordResetScreen: React.FunctionComponent<PasswordResetScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);
-  // const { login } = React.useContext(AuthContext);
   const navigation = useNavigation();
 
   const reauthenticate = (currentPassword: string) => {
@@ -57,26 +56,24 @@ export const PasswordResetScreen: React.FunctionComponent<PasswordResetScreenPro
     },
     []
   );
-  const requirementChecklist = [''];
-  const textColor = (reqType: string) => {
-    if (requirementChecklist.includes(reqType)) {
-      return 'success';
-    }
-    return 'white';
-  };
+
+  const [
+    requirementChecklist,
+    setRequirementChecklist,
+  ] = React.useState<ErrorType>();
 
   const validate = React.useCallback(
     (values: PasswordResetScreenFormValues) => {
       const errors: FormikErrors<PasswordResetScreenFormValues> = {};
       if (values.currentPassword) {
         const passwordValidation = validatePassword(values.currentPassword);
-        if (passwordValidation === ErrorPasswordType.Number) {
+        if (passwordValidation.numeric) {
           errors.currentPassword = i18n.t('passwordNumberError');
-        } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+        } else if (passwordValidation.uppercase) {
           errors.currentPassword = i18n.t('passwordUppercaseError');
-        } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+        } else if (passwordValidation.lowercase) {
           errors.currentPassword = i18n.t('passwordLowercaseError');
-        } else if (passwordValidation === ErrorPasswordType.Length) {
+        } else if (passwordValidation.length) {
           errors.currentPassword = i18n.t('passwordLengthError');
         }
       } else {
@@ -84,18 +81,15 @@ export const PasswordResetScreen: React.FunctionComponent<PasswordResetScreenPro
       }
       if (values.newPassword) {
         const passwordValidation = validatePassword(values.newPassword);
-        if (passwordValidation === ErrorPasswordType.Number) {
+        setRequirementChecklist(passwordValidation);
+        if (passwordValidation.numeric) {
           errors.newPassword = i18n.t('passwordNumberError');
-          requirementChecklist.push(ErrorPasswordType.Number);
-        } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+        } else if (passwordValidation.uppercase) {
           errors.newPassword = i18n.t('passwordUppercaseError');
-          requirementChecklist.push(ErrorPasswordType.Uppercase);
-        } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+        } else if (passwordValidation.lowercase) {
           errors.newPassword = i18n.t('passwordLowercaseError');
-          requirementChecklist.push(ErrorPasswordType.Lowercase);
-        } else if (passwordValidation === ErrorPasswordType.Length) {
+        } else if (passwordValidation.length) {
           errors.newPassword = i18n.t('passwordLengthError');
-          requirementChecklist.push(ErrorPasswordType.Length);
         }
       } else {
         errors.newPassword = i18n.t('passwordErrorMessage');
@@ -162,16 +156,41 @@ export const PasswordResetScreen: React.FunctionComponent<PasswordResetScreenPro
               </InputWrapper>
               <Box spacing={{ bottom: 8, left: 6 }}>
                 <P>{i18n.t('passwordRequirementTopic')}</P>
-                <P color={textColor(ErrorPasswordType.Length)}>
+
+                <P
+                  color={
+                    !requirementChecklist?.length && values.newPassword
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('lengthRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Uppercase)}>
+                <P
+                  color={
+                    !requirementChecklist?.uppercase && values.newPassword
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('uppercaseRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Lowercase)}>
+                <P
+                  color={
+                    !requirementChecklist?.lowercase && values.newPassword
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('lowercaseRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Number)}>
+                <P
+                  color={
+                    !requirementChecklist?.numeric && values.newPassword
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('numericRequirement')}
                 </P>
               </Box>

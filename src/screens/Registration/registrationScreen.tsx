@@ -12,7 +12,7 @@ import { Title } from '../../components/Typography/Typography';
 import { P } from '../../components/Typography';
 import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
 import {
-  ErrorPasswordType,
+  ErrorType,
   validateEmail,
   validatePassword,
 } from '../../utils/validation';
@@ -27,7 +27,10 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
   const [loading, setLoading] = React.useState(false);
   const navigation = useNavigation();
 
-  const requirementChecklist = [''];
+  const [
+    requirementChecklist,
+    setRequirementChecklist,
+  ] = React.useState<ErrorType>();
 
   const validate = React.useCallback((values: RegistrationScreenFormValues) => {
     const errors: FormikErrors<RegistrationScreenFormValues> = {};
@@ -44,31 +47,21 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
     }
     if (values.password) {
       const passwordValidation = validatePassword(values.password);
-      if (passwordValidation === ErrorPasswordType.Number) {
+      setRequirementChecklist(passwordValidation);
+      if (passwordValidation.numeric) {
         errors.password = i18n.t('passwordNumberError');
-        requirementChecklist.push(ErrorPasswordType.Number);
-      } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+      } else if (passwordValidation.uppercase) {
         errors.password = i18n.t('passwordUppercaseError');
-        requirementChecklist.push(ErrorPasswordType.Uppercase);
-      } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+      } else if (passwordValidation.lowercase) {
         errors.password = i18n.t('passwordLowercaseError');
-        requirementChecklist.push(ErrorPasswordType.Lowercase);
-      } else if (passwordValidation === ErrorPasswordType.Length) {
+      } else if (passwordValidation.length) {
         errors.password = i18n.t('passwordLengthError');
-        requirementChecklist.push(ErrorPasswordType.Number);
       }
     } else {
       errors.password = i18n.t('passwordErrorMessage');
     }
     return errors;
   }, []);
-
-  const textColor = (reqType: string) => {
-    if (requirementChecklist.includes(reqType)) {
-      return 'success';
-    }
-    return 'white';
-  };
 
   const onSubmit = React.useCallback(
     (values: RegistrationScreenFormValues) => {
@@ -170,16 +163,44 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
 
               <Box spacing={{ bottom: 8, left: 6 }}>
                 <P>{i18n.t('passwordRequirementTopic')}</P>
-                <P color={textColor(ErrorPasswordType.Length)}>
+
+                <P
+                  color={
+                    !requirementChecklist?.length && formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('lengthRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Uppercase)}>
+                <P
+                  color={
+                    !requirementChecklist?.uppercase &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('uppercaseRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Lowercase)}>
+                <P
+                  color={
+                    !requirementChecklist?.lowercase &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('lowercaseRequirement')}
                 </P>
-                <P color={textColor(ErrorPasswordType.Number)}>
+                <P
+                  color={
+                    !requirementChecklist?.numeric &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
                   {i18n.t('numericRequirement')}
                 </P>
               </Box>
@@ -188,7 +209,7 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
                 onPress={() => formikProps.handleSubmit()}
                 loading={loading}
               >
-                Submit
+                {i18n.t('submitButtonLabel')}
               </PrimaryButton>
             </Box>
           )}
