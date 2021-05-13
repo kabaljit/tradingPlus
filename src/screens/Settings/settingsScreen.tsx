@@ -1,19 +1,20 @@
 import * as React from 'react';
+import { FlatList, Image, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import {
-  SettingsMenu,
-  SettingsScreenFormValues,
-  SettingsScreenProps,
-} from './settingsScreen.models';
-import { i18n } from './settingsScreen.i18n';
 import { P } from '../../components/Typography';
 import SuperScreen from '../../components/SuperScreen';
-import { FlatList, Image, View } from 'react-native';
 import { Row } from '../../components/Box';
 import { images } from '../../data';
 import theme from '../../theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../../firebase';
+
+import { i18n } from './settingsScreen.i18n';
+import {
+  SettingsMenu,
+  // SettingsScreenFormValues,
+  SettingsScreenProps,
+} from './settingsScreen.models';
 
 export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
   navigation,
@@ -21,11 +22,11 @@ export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
   const menu: SettingsMenu[] = [
     {
       title: i18n.t('menuProfile'),
-      route: 'Home',
+      route: 'Profile',
     },
     {
       title: i18n.t('menuChangePassword'),
-      route: 'Market',
+      route: 'PasswordReset',
     },
   ];
   const logout = React.useCallback(() => {
@@ -33,7 +34,7 @@ export const SettingsScreen: React.FunctionComponent<SettingsScreenProps> = ({
       .auth()
       .signOut()
       .then(() => navigation.navigate('Login'));
-  }, []);
+  }, [navigation]);
 
   const renderItem = React.useCallback(({ item }: { item: SettingsMenu }) => {
     return (

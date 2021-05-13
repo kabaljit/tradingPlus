@@ -5,7 +5,7 @@ import { Image, StyleSheet, View } from 'react-native';
 import { P } from '../Typography';
 import { Box } from '../Box';
 import theme from '../../theme';
-import { apiKey } from '../../utils/cryptoAPI';
+import { specificCoin } from '../../utils/cryptoAPI';
 
 import { PortfolioItemProps } from './portfolioItem.models';
 import { PortfolioItemView, PortfolioItemImage } from './portfolioItem.styles';

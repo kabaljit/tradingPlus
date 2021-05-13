@@ -1,6 +1,6 @@
 import { format, parse } from 'date-fns';
 import firebase from '../../../firebase';
-import { Formik, FormikHelpers } from 'formik';
+import { Formik, FormikErrors, FormikHelpers } from 'formik';
 import * as React from 'react';
 import { ActivityIndicator, Button, Platform, View } from 'react-native';
 import { Box, Row } from '../../../components/Box';
@@ -16,8 +16,10 @@ import {
   FormBuyProps,
   FormSellProps,
   OrderType,
+  SellValues,
   Transaction,
 } from './detailScreen.models';
+import _ from 'lodash';
 
 const user = firebase.auth().currentUser;
 
@@ -25,16 +27,29 @@ export const FormSell: React.FunctionComponent<FormSellProps> = ({
   currentInfo,
   sellRef,
 }) => {
-  const validate = React.useCallback(() => {}, []);
+  const [transaction, setTransaction] = React.useState();
+
+  const validate = React.useCallback((values: SellValues) => {
+    const errors: FormikErrors<SellValues> = {};
+
+    if (Number(values.amount) > Number(transaction?.amount | 0)) {
+      errors.amount = i18n.t('amountIsSuperiorAvailable');
+    }
+    if (Number(values.amount) === 0) {
+      errors.amount = i18n.t('amountIsSuperiorAvailable');
+    }
+    return errors;
+  }, []);
+
   const [mode, setMode] = React.useState('date');
-  const [transactions, setTransactions] = React.useState();
 
   React.useEffect(() => {
     firebase
       .database()
       .ref(`/users/${user?.uid}/portfolio/${currentInfo.currency}`)
       .on('value', (snapshat) => {
-        setTransactions;
+        console.log('_.map(snapshat.val(), (item) => item)', snapshat.val());
+        setTransaction(snapshat.val());
       });
   }, []);
 
@@ -51,9 +66,9 @@ export const FormSell: React.FunctionComponent<FormSellProps> = ({
           total: Number(values.total),
           price: Number(values.price),
           purchaseTime: new Date(values.purchaseTime).getTime(),
-          finalCurrency: currentInfo.currency || '',
-          initialCurrency: 'USDT',
-          orderType: OrderType.BUY,
+          finalCurrency: 'USDT',
+          initialCurrency: currentInfo.currency || '',
+          orderType: OrderType.SELL,
           receiverId: user?.uid,
           senderId: user?.uid,
           timestamp: new Date().getTime(),
@@ -62,10 +77,11 @@ export const FormSell: React.FunctionComponent<FormSellProps> = ({
       // Updating the user portfolio
 
       //  Already there is a transaction for this Currency',
-      const amount = transcation.amount + values.amount;
-      const price =
-        (Number(transcation.total) + Number(values.total)) / Number(amount);
-      const total = Number(transcation.total) + Number(values.total);
+      const amount = transaction.amount - values.amount;
+      const price = transaction.price;
+      const aveg = transaction.total / transaction.amount;
+      const total = aveg * amount;
+
       firebase
         .database()
         .ref(`/users/${user?.uid}/portfolio/${currentInfo.currency}`)
@@ -103,6 +119,7 @@ export const FormSell: React.FunctionComponent<FormSellProps> = ({
         handleSubmit,
         values,
         errors,
+        touched,
         isSubmitting,
       }) => (
         <View
@@ -112,14 +129,20 @@ export const FormSell: React.FunctionComponent<FormSellProps> = ({
             height: 550,
           }}
         >
-          <InputWrapper>
+          <P>Available: {transaction?.amount || 0}</P>
+          <InputWrapper
+            errorVisible={touched.amount && !!errors.amount}
+            errorMessage={errors.amount}
+          >
             <TextInput
               keyboardType="decimal-pad"
               label={i18n.t('formAmountLabel')}
               error={!!errors.amount}
               value={values.amount}
+              onBlur={() => setFieldTouched('amount')}
               onChangeText={(value) => {
                 setFieldValue('amount', value);
+
                 setFieldValue('total', Number(value) * Number(values.price));
               }}
             />

@@ -1,17 +1,22 @@
 import * as React from 'react';
 import { ActivityIndicator, FlatList, Text, View, Image } from 'react-native';
 
-import PortfolioItem from '../../components/PortfolioItem';
-import SuperScreen from '../../components/SuperScreen';
-import firebase from '../../firebase';
+// import { Row } from '../../components/Box';
 
-import { HomeScreenProps } from './homeScreen.models';
-import { i18n } from './homeScreen.i18n';
 import _ from 'lodash';
+
+import firebase from '../../firebase';
+import SuperScreen from '../../components/SuperScreen';
+import PortfolioItem from '../../components/PortfolioItem';
 import { Row } from '../../components/Box';
 import { images } from '../../data';
 import { Title } from '../../components/Typography/Typography';
 import { P } from '../../components/Typography';
+import Graph from '../../components/Graph';
+import { defaultGraphDataset } from '../../components/Graph/graph.utils';
+
+import { i18n } from './homeScreen.i18n';
+import { HomeScreenProps } from './homeScreen.models';
 
 export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
   navigation,
@@ -54,6 +59,18 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
     );
   };
 
+  const graphData = React.useMemo(
+    () => [
+      {
+        label: '1D',
+        value: 1,
+        data: defaultGraphDataset().filter((item) => item.label === '1D')[0]
+          .data,
+      },
+    ],
+    []
+  );
+
   return (
     <>
       <SuperScreen
@@ -61,21 +78,35 @@ export const HomeScreen: React.FunctionComponent<HomeScreenProps> = ({
         background={'charcoal'}
         scrollable={true}
       >
-        <FlatList
-          data={_.values(userData?.portfolio || [])}
-          renderItem={renderItem}
-          ListFooterComponent={isLoading && <ActivityIndicator />}
-          ListEmptyComponent={() => (
-            <Row alignItems="center" spacing={{ top: 4 }}>
-              <Title>{i18n.t('NoInvestmentTitle')}</Title>
-              <Row spacing={{ top: 2 }}>
-                <P>{i18n.t('NoInvestmentLabel')}</P>
-              </Row>
-              <Image source={images.noInvestment} width={100} height={100} />
-            </Row>
-          )}
-          keyExtractor={(item) => item.id + item.currency}
+        <Graph
+          data={graphData}
+          currencyName={'dskfjad'}
+          disableHeader
+          height={150}
+          disabledButton
         />
+        <Row spacing={{ top: 3 }}>
+          <FlatList
+            data={_.values(userData?.portfolio || [])}
+            renderItem={renderItem}
+            ListHeaderComponent={() => (
+              <Row spacing={{ top: 2 }} alignItems="center">
+                <P weight="bold">Your Invesments</P>
+              </Row>
+            )}
+            ListFooterComponent={isLoading ? <ActivityIndicator /> : <></>}
+            ListEmptyComponent={() => (
+              <Row alignItems="center" spacing={{ top: 4 }}>
+                <Title>{i18n.t('NoInvestmentTitle')}</Title>
+                <Row spacing={{ top: 2 }}>
+                  <P>{i18n.t('NoInvestmentLabel')}</P>
+                </Row>
+                <Image source={images.noInvestment} width={100} height={100} />
+              </Row>
+            )}
+            keyExtractor={(item) => item.id + item.currency}
+          />
+        </Row>
       </SuperScreen>
     </>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import * as React from 'react';
 import {
   View,
@@ -9,11 +8,12 @@ import {
   NativeSyntheticEvent,
 } from 'react-native';
 
+import theme from '../../theme';
+
 import { TextInputProps, InputStates } from './TextInput.models';
 import { Input, InputInner } from './TextInput.styles';
 import Label from './Label';
 import Wrapper from './Wrapper';
-import theme from '../../theme';
 
 export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
   (props, ref) => {

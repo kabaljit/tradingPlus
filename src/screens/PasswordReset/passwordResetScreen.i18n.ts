@@ -1,18 +1,15 @@
 import { generateI18n } from '../../utils/i18n';
 
-export const i18n = generateI18n('registrationScreen', {
+export const i18n = generateI18n('passwordResetScreen', {
   en: {
-    title: 'Create a Free Account',
-    subTitle: 'Welcome to Tracker Plus',
-    submitButtonLabel: 'Submit',
-    nameErrorMessage: 'Name is required',
-    emailErrorMessage: 'Email is required',
+    currentPasswordLabel: 'Current Password',
+    newPasswordLabel: 'New Password',
     passwordErrorMessage: 'Password is required',
     passwordUppercaseError: 'Need an Uppercase in the Password',
     passwordLowercaseError: 'Need a Lowercase in the Password',
     passwordNumberError: 'Need a number in the Password',
     passwordLengthError: 'Need atleast 8 Characters in the Password',
-    emailFormatErrorMessage: 'Email is Invalid',
+    submitButtonLabel: 'Reset Password',
     passwordRequirementTopic: 'Password Requirements:',
     lengthRequirement: '  - Need atleast 8 Characters',
     uppercaseRequirement: '  - Include One Uppercase Character',

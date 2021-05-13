@@ -1,5 +1,4 @@
-import theme from "../../theme";
-
+import theme from '../../theme';
 
 export interface SuperScreenProps {
   keyboardAvoiding?: boolean;

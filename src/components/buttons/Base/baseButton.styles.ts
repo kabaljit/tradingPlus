@@ -14,7 +14,7 @@ const determineBackgroundColor = (disabled: boolean) => {
   return theme.colors.tradingZ.white;
 };
 
-//TODO: Use the function to determine the color 
+//TODO: Use the function to determine the color
 const determineLabelColor = (disabled: boolean) => {
   if (disabled) {
     return theme.colors.tradingZ.white;
@@ -27,8 +27,7 @@ export const Button = styled(TouchableOpacity)<{
   backgroundColor: keyof typeof theme.colors.tradingZ;
   rounded?: boolean;
 }>`
-  background-color: ${(p) =>
-    theme.colors.tradingZ[p.backgroundColor]};
+  background-color: ${(p) => theme.colors.tradingZ[p.backgroundColor]};
   height: ${scale(56)}px;
   border-radius: ${(p) => (p.rounded ? scale(28) : 0)}px;
   justify-content: center;
