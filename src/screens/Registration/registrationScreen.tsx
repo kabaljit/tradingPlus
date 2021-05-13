@@ -8,29 +8,56 @@ import TextInput from '../../components/TextInput';
 import { PrimaryButton } from '../../components/buttons';
 import InputWrapper from '../../components/InputWrapper';
 import firebase from '../../firebase';
+import { Title } from '../../components/Typography/Typography';
+import { P } from '../../components/Typography';
+import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
+import {
+  ErrorType,
+  validateEmail,
+  validatePassword,
+} from '../../utils/validation';
 
-import { i18n } from './registrationScreen.i18n';
 import {
   RegistrationScreenFormValues,
   RegistrationScreenProps,
 } from './registrationScreen.models';
-import { Title } from '../../components/Typography/Typography';
-import { P } from '../../components/Typography';
-import { PasswordInput } from '../../components/PasswordInput/PasswordInput';
+import { i18n } from './registrationScreen.i18n';
 
 export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps> = () => {
   const [loading, setLoading] = React.useState(false);
   const navigation = useNavigation();
+
+  const [
+    requirementChecklist,
+    setRequirementChecklist,
+  ] = React.useState<ErrorType>();
 
   const validate = React.useCallback((values: RegistrationScreenFormValues) => {
     const errors: FormikErrors<RegistrationScreenFormValues> = {};
     if (!values.name) {
       errors.name = i18n.t('nameErrorMessage');
     }
-    if (!values.email) {
+
+    if (values.email) {
+      if (!validateEmail(values.email)) {
+        errors.email = i18n.t('emailFormatErrorMessage');
+      }
+    } else {
       errors.email = i18n.t('emailErrorMessage');
     }
-    if (!values.password) {
+    if (values.password) {
+      const passwordValidation = validatePassword(values.password);
+      setRequirementChecklist(passwordValidation);
+      if (passwordValidation.numeric) {
+        errors.password = i18n.t('passwordNumberError');
+      } else if (passwordValidation.uppercase) {
+        errors.password = i18n.t('passwordUppercaseError');
+      } else if (passwordValidation.lowercase) {
+        errors.password = i18n.t('passwordLowercaseError');
+      } else if (passwordValidation.length) {
+        errors.password = i18n.t('passwordLengthError');
+      }
+    } else {
       errors.password = i18n.t('passwordErrorMessage');
     }
     return errors;
@@ -83,7 +110,9 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
           {(formikProps) => (
             <Box flex={1}>
               <InputWrapper
-                errorVisible={!!formikProps.errors.name}
+                errorVisible={
+                  formikProps.touched.name && !!formikProps.errors.name
+                }
                 errorMessage={formikProps.errors.name}
                 testID="lossOrStolenRadioButtonError"
               >
@@ -97,13 +126,17 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
               </InputWrapper>
 
               <InputWrapper
-                errorVisible={!!formikProps.errors.email}
+                errorVisible={
+                  formikProps.touched.email && !!formikProps.errors.email
+                }
                 errorMessage={formikProps.errors.email}
                 testID="lossOrStolenRadioButtonError"
               >
                 <TextInput
                   placeholder="Email"
                   value={formikProps.values.email}
+                  onBlur={() => formikProps.setFieldTouched('email')}
+                  error={!!formikProps.errors.email}
                   onChangeText={(value) =>
                     formikProps.setFieldValue('email', value)
                   }
@@ -111,24 +144,72 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
               </InputWrapper>
 
               <InputWrapper
-                errorVisible={!!formikProps.errors.password}
+                errorVisible={
+                  formikProps.touched.password && !!formikProps.errors.password
+                }
                 errorMessage={formikProps.errors.password}
                 testID="lossOrStolenRadioButtonError"
               >
                 <PasswordInput
                   placeholder="Password"
                   value={formikProps.values.password}
+                  error={!!formikProps.errors.password}
+                  onBlur={() => formikProps.setFieldTouched('password')}
                   onChangeText={(value) =>
                     formikProps.setFieldValue('password', value)
                   }
                 />
               </InputWrapper>
 
+              <Box spacing={{ bottom: 8, left: 6 }}>
+                <P>{i18n.t('passwordRequirementTopic')}</P>
+
+                <P
+                  color={
+                    !requirementChecklist?.length && formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
+                  {i18n.t('lengthRequirement')}
+                </P>
+                <P
+                  color={
+                    !requirementChecklist?.uppercase &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
+                  {i18n.t('uppercaseRequirement')}
+                </P>
+                <P
+                  color={
+                    !requirementChecklist?.lowercase &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
+                  {i18n.t('lowercaseRequirement')}
+                </P>
+                <P
+                  color={
+                    !requirementChecklist?.numeric &&
+                    formikProps.values.password
+                      ? 'success'
+                      : 'primary'
+                  }
+                >
+                  {i18n.t('numericRequirement')}
+                </P>
+              </Box>
+
               <PrimaryButton
                 onPress={() => formikProps.handleSubmit()}
                 loading={loading}
               >
-                Submit
+                {i18n.t('submitButtonLabel')}
               </PrimaryButton>
             </Box>
           )}

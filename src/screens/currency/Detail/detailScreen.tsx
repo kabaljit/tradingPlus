@@ -1,35 +1,38 @@
 import * as React from 'react';
 import RNBottomsheet from 'reanimated-bottom-sheet';
-import { Image } from 'react-native';
-import format from 'date-fns/format';
+import { FlatList, Image } from 'react-native';
+// import format from 'date-fns/format';
 import subHours from 'date-fns/subHours';
 import subDays from 'date-fns/subDays';
-import subWeeks from 'date-fns/subWeeks';
+// import subWeeks from 'date-fns/subWeeks';
 import subMonths from 'date-fns/subMonths';
 import subYears from 'date-fns/subYears';
+// import { tr } from 'date-fns/locale';
+import _ from 'lodash';
 
-import {
-  DetailScreenFormValues,
-  DetailScreenProps,
-  OrderType,
-} from './detailScreen.models';
-import { i18n } from './detailScreen.i18n';
 import SuperScreen from '../../../components/SuperScreen';
-import { P, Title } from '../../../components/Typography';
+import { P } from '../../../components/Typography';
 import { PrimaryButton } from '../../../components/buttons/Primary/primaryButton';
 import Graph from '../../../components/Graph';
 import { Box, Row } from '../../../components/Box';
-import { FlatList, View } from 'react-native';
 import { images } from '../../../data';
 import { scale } from '../../../utils/layout';
 import Bottomsheet from '../../../components/Bottomsheet';
 import { Currency } from '../../../api/currencies';
 import { apiKey } from '../../../utils/cryptoAPI';
-import { tr } from 'date-fns/locale';
-import { buildGraph } from '../../../components/Graph/graph.utils';
-import { FormBuy } from './formBuy';
+import {
+  buildGraph,
+  defaultGraphDataset,
+} from '../../../components/Graph/graph.utils';
 import firebase from '../../../firebase';
-import _ from 'lodash';
+
+import { FormBuy } from './formBuy';
+import { i18n } from './detailScreen.i18n';
+import {
+  // DetailScreenFormValues,
+  DetailScreenProps,
+  OrderType,
+} from './detailScreen.models';
 import { FormSell } from './formSell';
 // import NewGraph from '../../../components/NewGraph';
 
@@ -46,7 +49,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
   React.useEffect(() => {
     // One hour from current
     const hourDate = subHours(new Date(), 1).toISOString();
-    console.log('runnig hourly;');
     fetch(
       `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
         currencyInfo.currency
@@ -59,12 +61,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
 
     // One day from current
     const dayDate = subDays(new Date(), 1).toISOString();
-    console.log(
-      'date day: ',
-      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-        currencyInfo.currency
-      }&start=${encodeURI(dayDate)}`
-    );
+
     // Adding the 1 second delay to prevent 429 error: Too  many request =>  Api Limit 1 request/second
     setTimeout(() => {
       fetch(
@@ -74,8 +71,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log('Day data: ', data);
-
           setDaylyData(data[0]);
         });
     }, 1000);
@@ -108,7 +103,6 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log('data year: ', data);
           setYearlyData(data[0]);
         });
     }, 3000);
@@ -116,13 +110,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
 
     // One 5 year from current
     const yearsDate = subYears(new Date(), 4).toISOString();
-    console.log('yearly-----');
-    console.log(
-      'url: ',
-      `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
-        currencyInfo.currency
-      }&start=${encodeURI(yearsDate)}`
-    );
+
     setTimeout(() => {
       fetch(
         `https://api.nomics.com/v1/currencies/sparkline?key=${apiKey}&ids=${
@@ -134,7 +122,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
           setAllYearlyData(data[0]);
         });
     }, 4000);
-  }, []);
+  }, [currencyInfo.currency]);
 
   const [transactions, setTransctions] = React.useState();
   React.useEffect(() => {
@@ -144,47 +132,52 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
         .database()
         .ref(`/transactions/${user.uid}`)
         .orderByChild('finalCurrency')
+        .limitToLast(50)
         .equalTo(currencyInfo.currency)
         .on('value', (snapshot) => setTransctions(snapshot.val()));
     }
-  }, [setTransctions]);
-
-  console.log(
-    'transactions: ',
-    _.map(transactions, (item) => item)
-  );
+  }, [currencyInfo.currency, setTransctions]);
 
   const graphData = React.useMemo(
     () => [
       {
-        label: '1H',
-        value: 0,
-        data: hourlyData ? buildGraph(hourlyData, 'Last Hour') : undefined,
-      },
-      {
         label: '1D',
         value: 1,
-        data: daylyData ? buildGraph(daylyData, 'Today') : undefined,
+        data: daylyData
+          ? buildGraph(daylyData, 'Today')
+          : defaultGraphDataset().filter((item) => item.label === '1D')[0].data,
       },
       {
         label: '1M',
         value: 2,
-        data: monthlyData ? buildGraph(monthlyData, 'Last Month') : undefined,
+        data: monthlyData
+          ? buildGraph(monthlyData, 'Last Month')
+          : defaultGraphDataset().filter((item) => item.label === '1M')[0].data,
       },
       {
         label: '1Y',
         value: 3,
-        data: yearlyData ? buildGraph(yearlyData, 'This Year') : undefined,
+        data: yearlyData
+          ? buildGraph(yearlyData, 'This Year')
+          : defaultGraphDataset().filter((item) => item.label === '1Y')[0].data,
       },
       {
         label: 'all',
         value: 4,
-        data: allYearlyData ? buildGraph(allYearlyData, 'All time') : undefined,
+        data: allYearlyData
+          ? buildGraph(allYearlyData, 'All time')
+          : defaultGraphDataset().filter((item) => item.label === 'all')[0]
+              .data,
       },
     ],
-    [allYearlyData]
+    [allYearlyData, daylyData, monthlyData, yearlyData]
   );
 
+  console.log('GraphData: ', JSON.stringify(graphData));
+  console.log(
+    'load232: ',
+    defaultGraphDataset().filter((item) => item.label === '1D')[0].data
+  );
   const renderItem = React.useCallback(({ item }) => {
     const p = (item.orderType === OrderType.SELL && {
       icon: images.arrowUp,
@@ -277,7 +270,7 @@ export const DetailScreen: React.FunctionComponent<DetailScreenProps> = ({
       <Bottomsheet
         ref={sellRef}
         renderContent={() => (
-          <FormSell currentInfo={currencyInfo} sellRef={buyRef}></FormSell>
+          <FormSell currentInfo={currencyInfo} sellRef={sellRef} />
         )}
       />
     </>

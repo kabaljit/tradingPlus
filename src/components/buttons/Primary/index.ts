@@ -1,3 +1,3 @@
 import { PrimaryButton } from './primaryButton';
 
-export default (PrimaryButton);
+export default PrimaryButton;

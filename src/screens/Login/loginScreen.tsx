@@ -14,16 +14,15 @@ import { AuthContext } from '../../main/AuthProvider';
 import { P, Title } from '../../components/Typography';
 import PasswordInput from '../../components/PasswordInput';
 import { SafeArea } from '../../components/Layout';
-
 import {
   validatePassword,
   validateEmail,
   ErrorPasswordType,
 } from '../../utils/validation';
+import { images } from '../../data';
 
 import { i18n } from './loginScreen.i18n';
 import { LoginScreenFormValues, LoginScreenProps } from './loginScreen.models';
-import { images } from '../../data';
 
 export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
   const [loading, setLoading] = React.useState(false);
@@ -44,13 +43,13 @@ export const LoginScreen: React.FunctionComponent<LoginScreenProps> = ({}) => {
     }
     if (values.password) {
       const passwordValidation = validatePassword(values.password);
-      if (passwordValidation === ErrorPasswordType.Number) {
+      if (passwordValidation.numeric) {
         errors.password = i18n.t('passwordNumberError');
-      } else if (passwordValidation === ErrorPasswordType.Uppercase) {
+      } else if (passwordValidation.uppercase) {
         errors.password = i18n.t('passwordUppercaseError');
-      } else if (passwordValidation === ErrorPasswordType.Lowercase) {
+      } else if (passwordValidation.lowercase) {
         errors.password = i18n.t('passwordLowercaseError');
-      } else if (passwordValidation === ErrorPasswordType.Length) {
+      } else if (passwordValidation.length) {
         errors.password = i18n.t('passwordLengthError');
       }
     } else {

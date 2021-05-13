@@ -1,5 +1,6 @@
 import { TextInputProps as RNTextInputProps } from 'react-native';
 import { ReactElement } from 'react';
+
 import theme from '../../theme';
 
 export interface TextInputProps extends RNTextInputProps {

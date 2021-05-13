@@ -6,7 +6,9 @@ import Animated, {
   useDerivedValue,
 } from 'react-native-reanimated';
 import { ReText, round } from 'react-native-redash';
+
 import theme from '../../theme';
+
 import { HeaderProps } from './graph.models';
 
 // import ETH from './components/ETH';
@@ -37,18 +39,19 @@ const Header: React.FunctionComponent<HeaderProps> = ({
   index,
   graphs,
   currencyName,
+  disableHeader,
 }) => {
   const data = useDerivedValue(() => graphs[index.value].data);
   const price = useDerivedValue(() => {
     const p = interpolate(
       translation.y.value,
       [0, SIZE],
-      [data.value.maxPrice, data.value.minPrice]
+      [data.value?.maxPrice | 0, data.value.minPrice | 0]
     );
     return `$ ${round(p, 2).toLocaleString('en-US', { currency: 'USD' })}`;
   });
   const percentChange = useDerivedValue(
-    () => `${round(data.value.percentChange, 3)}%`
+    () => `${round(data.value.percentChange | 0, 3)}%`
   );
   const label = useDerivedValue(() => data.value.label);
   const style = useAnimatedStyle(() => ({
@@ -56,6 +59,15 @@ const Header: React.FunctionComponent<HeaderProps> = ({
     fontSize: 24,
     color: data.value.percentChange > 0 ? 'green' : 'red',
   }));
+
+  if (disableHeader) {
+    return (
+      <View style={[styles.container, { alignItems: 'center' }]}>
+        <ReText style={styles.value} text={price} />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       {/* <ETH /> */}

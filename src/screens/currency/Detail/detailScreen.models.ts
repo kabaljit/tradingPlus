@@ -25,6 +25,13 @@ export interface BuyValues{
   purchaseTime: Date;
   total: string;
 }
+export interface SellValues{
+  amount: string;
+  price: string;
+  purchaseDate: Date;
+  purchaseTime: Date;
+  total: string;
+}
 
 export enum OrderType {
   BUY = "Buy",
