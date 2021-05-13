@@ -67,7 +67,9 @@ export const RegistrationScreen: React.FunctionComponent<RegistrationScreenProps
         <Box alignItems="center" spacing={{ top: 4, bottom: 4 }}>
           <Title>{i18n.t('title')} </Title>
           <Row spacing={{ bottom: 4 }} />
-          <P>{i18n.t('subTitle')}</P>
+          <P color={() => (true ? 'success' : 'primary')}>
+            {i18n.t('subTitle')}
+          </P>
         </Box>
         <Formik
           initialValues={{
